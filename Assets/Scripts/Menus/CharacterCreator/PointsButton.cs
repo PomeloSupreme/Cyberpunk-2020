@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PointsButton : MonoBehaviour
 {
+    
     public GameObject DicePoolPanel = new GameObject();
     public GameObject PointsPanel = new GameObject();
     public void OnPointsButton()

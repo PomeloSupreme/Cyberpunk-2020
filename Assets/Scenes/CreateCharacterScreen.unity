@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 43666285}
   - component: {fileID: 43666284}
   - component: {fileID: 43666283}
+  - component: {fileID: 43666286}
   m_Layer: 0
   m_Name: Button(Skill -)
   m_TagString: Untagged
@@ -319,7 +320,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 43666284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 43666286}
+        m_TargetAssemblyTypeName: CharacterStatsisticsButtons, Assembly-CSharp
+        m_MethodName: minusButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &43666284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +371,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43666281}
   m_CullTransparentMesh: 1
+--- !u!114 &43666286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43666281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d5fdd314bf6e746b8abf755ba0f922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointPool: {fileID: 1360381730}
+  statValue: {fileID: 1495706873}
 --- !u!1 &55215194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,6 +2757,7 @@ GameObject:
   - component: {fileID: 643368739}
   - component: {fileID: 643368738}
   - component: {fileID: 643368737}
+  - component: {fileID: 643368740}
   m_Layer: 0
   m_Name: Button (Skill +)
   m_TagString: Untagged
@@ -2801,7 +2829,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 643368738}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 643368740}
+        m_TargetAssemblyTypeName: CharacterStatsisticsButtons, Assembly-CSharp
+        m_MethodName: plusButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &643368738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2840,6 +2880,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643368735}
   m_CullTransparentMesh: 1
+--- !u!114 &643368740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643368735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d5fdd314bf6e746b8abf755ba0f922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointPool: {fileID: 1360381730}
+  statValue: {fileID: 1495706873}
 --- !u!1 &730464597
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,7 +3722,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933831906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -5397,7 +5451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: 32
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5720,7 +5774,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: 02
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
