@@ -920,7 +920,7 @@ GameObject:
   - component: {fileID: 872926374}
   - component: {fileID: 872926373}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button(Create Character)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -990,7 +990,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 872926374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1506549423}
+        m_TargetAssemblyTypeName: GameModeScreenCanvas, Assembly-CSharp
+        m_MethodName: OnCreateCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &872926374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1910,6 +1922,7 @@ GameObject:
   - component: {fileID: 1506549422}
   - component: {fileID: 1506549421}
   - component: {fileID: 1506549420}
+  - component: {fileID: 1506549423}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -2007,6 +2020,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1506549423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506549418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46bf1738ced69a84796428b4e193e269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1761645596
 GameObject:
   m_ObjectHideFlags: 0
