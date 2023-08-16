@@ -1042,6 +1042,7 @@ GameObject:
   - component: {fileID: 94245617}
   - component: {fileID: 94245616}
   - component: {fileID: 94245615}
+  - component: {fileID: 94245618}
   m_Layer: 0
   m_Name: Button(Random)
   m_TagString: Untagged
@@ -1113,7 +1114,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 94245616}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 94245618}
+        m_TargetAssemblyTypeName: RandomButton, Assembly-CSharp
+        m_MethodName: OnRandomButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &94245616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1165,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94245613}
   m_CullTransparentMesh: 1
+--- !u!114 &94245618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94245613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcefaa01d16935f4ca12c18fe05f271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DicePoolPanel: {fileID: 730464597}
+  PointsPanel: {fileID: 1431057243}
+  IntelligenceButtonPanel: {fileID: 933831906}
+  ReflexButtonPanel: {fileID: 1939128264}
+  TechnicalButtonPanel: {fileID: 507814945}
+  CoolButtonPanel: {fileID: 1567988764}
+  AttractivenessButtonPanel: {fileID: 1092063243}
+  LuckButtonPanel: {fileID: 2076475837}
+  MAButtonPanel: {fileID: 2007457298}
+  BodyButtonPanel: {fileID: 2123922360}
+  EmpathyButtonPanel: {fileID: 1944093866}
+  IntelligenceDropdownPanel: {fileID: 866067466}
+  ReflexDropdownPanel: {fileID: 1684756042}
+  TechnicalDropdownPanel: {fileID: 1209236390}
+  CoolDropdownPanel: {fileID: 1540752565}
+  AttractivenessDropdownPanel: {fileID: 592638882}
+  LuckDropdownPanel: {fileID: 382875759}
+  MADropdownPanel: {fileID: 1873912802}
+  BodyDropdownPanel: {fileID: 970191462}
+  EmpathyDropdownPanel: {fileID: 1047488156}
 --- !u!1 &100996810
 GameObject:
   m_ObjectHideFlags: 0
@@ -5243,7 +5288,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382875759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -7917,7 +7962,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592638882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -9070,7 +9115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &730464598
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10520,7 +10565,7 @@ GameObject:
   - component: {fileID: 813296216}
   - component: {fileID: 813296215}
   m_Layer: 0
-  m_Name: Text (TMP) (5)
+  m_Name: Text (Roll2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10853,7 +10898,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866067466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -11033,6 +11078,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DicePoolPanel: {fileID: 730464597}
   PointsPanel: {fileID: 1431057243}
+  IntelligenceButtonPanel: {fileID: 933831906}
+  ReflexButtonPanel: {fileID: 1939128264}
+  TechnicalButtonPanel: {fileID: 507814945}
+  CoolButtonPanel: {fileID: 1567988764}
+  AttractivenessButtonPanel: {fileID: 1092063243}
+  LuckButtonPanel: {fileID: 2076475837}
+  MAButtonPanel: {fileID: 2007457298}
+  BodyButtonPanel: {fileID: 2123922360}
+  EmpathyButtonPanel: {fileID: 1944093866}
+  IntelligenceDropdownPanel: {fileID: 866067466}
+  ReflexDropdownPanel: {fileID: 1684756042}
+  TechnicalDropdownPanel: {fileID: 1209236390}
+  CoolDropdownPanel: {fileID: 1540752565}
+  AttractivenessDropdownPanel: {fileID: 592638882}
+  LuckDropdownPanel: {fileID: 382875759}
+  MADropdownPanel: {fileID: 1873912802}
+  BodyDropdownPanel: {fileID: 970191462}
+  EmpathyDropdownPanel: {fileID: 1047488156}
+  RollOne: {fileID: 1988817720}
+  RollTwo: {fileID: 813296215}
+  RollThree: {fileID: 1067331350}
+  RollFour: {fileID: 1955936533}
+  RollFive: {fileID: 2053605976}
+  RollSix: {fileID: 1278765594}
+  RollSeven: {fileID: 1522671711}
+  RollEight: {fileID: 2050922587}
+  RollNine: {fileID: 1286555851}
 --- !u!1 &926650811
 GameObject:
   m_ObjectHideFlags: 0
@@ -11763,7 +11835,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970191462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -12078,6 +12150,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DicePoolPanel: {fileID: 730464597}
   PointsPanel: {fileID: 1431057243}
+  IntelligenceButtonPanel: {fileID: 933831906}
+  ReflexButtonPanel: {fileID: 1939128264}
+  TechnicalButtonPanel: {fileID: 507814945}
+  CoolButtonPanel: {fileID: 1567988764}
+  AttractivenessButtonPanel: {fileID: 1092063243}
+  LuckButtonPanel: {fileID: 2076475837}
+  MAButtonPanel: {fileID: 2007457298}
+  BodyButtonPanel: {fileID: 2123922360}
+  EmpathyButtonPanel: {fileID: 1944093866}
+  IntelligenceDropdownPanel: {fileID: 866067466}
+  ReflexDropdownPanel: {fileID: 1684756042}
+  TechnicalDropdownPanel: {fileID: 1209236390}
+  CoolDropdownPanel: {fileID: 1540752565}
+  AttractivenessDropdownPanel: {fileID: 592638882}
+  LuckDropdownPanel: {fileID: 382875759}
+  MADropdownPanel: {fileID: 1873912802}
+  BodyDropdownPanel: {fileID: 970191462}
+  EmpathyDropdownPanel: {fileID: 1047488156}
+  IntelligenceStat: {fileID: 1495706873}
+  ReflexStat: {fileID: 1077206357}
+  TechnicalStat: {fileID: 971322661}
+  CoolStat: {fileID: 1826264589}
+  AttractivenessStat: {fileID: 1842203676}
+  LuckStat: {fileID: 2139282985}
+  MAStat: {fileID: 1075122971}
+  BodyStat: {fileID: 2011204006}
+  EmpathyStat: {fileID: 78029681}
 --- !u!1 &1004824852
 GameObject:
   m_ObjectHideFlags: 0
@@ -12372,7 +12471,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047488156}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -12559,7 +12658,7 @@ GameObject:
   - component: {fileID: 1067331351}
   - component: {fileID: 1067331350}
   m_Layer: 0
-  m_Name: Text (TMP) (6)
+  m_Name: Text (Roll3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14651,7 +14750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209236390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -15569,7 +15668,7 @@ GameObject:
   - component: {fileID: 1278765595}
   - component: {fileID: 1278765594}
   m_Layer: 0
-  m_Name: Text (TMP) (9)
+  m_Name: Text (Roll6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15704,7 +15803,7 @@ GameObject:
   - component: {fileID: 1286555852}
   - component: {fileID: 1286555851}
   m_Layer: 0
-  m_Name: Text (TMP) (12)
+  m_Name: Text (Roll9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17228,7 +17327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1431057244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17870,7 +17969,7 @@ GameObject:
   - component: {fileID: 1522671712}
   - component: {fileID: 1522671711}
   m_Layer: 0
-  m_Name: Text (TMP) (10)
+  m_Name: Text (Roll7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18206,7 +18305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540752565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -19123,7 +19222,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684756042}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -20038,7 +20137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 225.99997}
+  m_AnchoredPosition: {x: 4.8053, y: 234}
   m_SizeDelta: {x: 302.328, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1731740005
@@ -20461,6 +20560,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: {fileID: 1360381730}
   dropdown: {fileID: 1746934954}
+  IntelligenceStat: {fileID: 1495706873}
+  ReflexStat: {fileID: 1077206357}
+  TechnicalStat: {fileID: 971322661}
+  CoolStat: {fileID: 1826264589}
+  AttractivenessStat: {fileID: 1842203676}
+  LuckStat: {fileID: 2139282985}
+  MAStat: {fileID: 1075122971}
+  BodyStat: {fileID: 2011204006}
+  EmpathyStat: {fileID: 78029681}
 --- !u!1 &1769010359
 GameObject:
   m_ObjectHideFlags: 0
@@ -22708,7 +22816,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873912802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -24189,7 +24297,7 @@ GameObject:
   - component: {fileID: 1955936534}
   - component: {fileID: 1955936533}
   m_Layer: 0
-  m_Name: Text (TMP) (7)
+  m_Name: Text (Roll4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24552,7 +24660,7 @@ GameObject:
   - component: {fileID: 1988817721}
   - component: {fileID: 1988817720}
   m_Layer: 0
-  m_Name: Text (TMP) (4)
+  m_Name: Text (Roll1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25148,7 +25256,7 @@ GameObject:
   - component: {fileID: 2050922588}
   - component: {fileID: 2050922587}
   m_Layer: 0
-  m_Name: Text (TMP) (11)
+  m_Name: Text (Roll8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25283,7 +25391,7 @@ GameObject:
   - component: {fileID: 2053605977}
   - component: {fileID: 2053605976}
   m_Layer: 0
-  m_Name: Text (TMP) (8)
+  m_Name: Text (Roll5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

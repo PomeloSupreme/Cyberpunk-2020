@@ -73,5 +73,7 @@ public class PointsButton : MonoBehaviour
         MAStat.text = "02";
         BodyStat.text = "02";
         EmpathyStat.text = "02";
-}
+
+
+    }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class DicePoolButton : MonoBehaviour
 {
-    List<int> RandomDiceRolls = new List<int>();
+    Stack<int> RandomDiceRolls = new Stack<int>();
 
     public GameObject DicePoolPanel = new GameObject();
     public GameObject PointsPanel = new GameObject();
@@ -68,18 +68,18 @@ public class DicePoolButton : MonoBehaviour
 
         for (int i = 0; i <= 9; i++)
         {
-            RandomDiceRolls[i] = Random.Range(2, 10);
+            RandomDiceRolls.Push(Random.Range(3, 10));
         }
 
-        RollOne.text = RandomDiceRolls[0].ToString();
-        RollTwo.text = RandomDiceRolls[1].ToString();
-        RollThree.text = RandomDiceRolls[2].ToString();
-        RollFour.text = RandomDiceRolls[3].ToString();
-        RollFive.text = RandomDiceRolls[4].ToString();
-        RollSix.text = RandomDiceRolls[5].ToString();
-        RollSeven.text = RandomDiceRolls[6].ToString();
-        RollEight.text = RandomDiceRolls[7].ToString();
-        RollNine.text = RandomDiceRolls[8].ToString();
+        RollOne.text = RandomDiceRolls.Pop().ToString();
+        RollTwo.text = RandomDiceRolls.Pop().ToString();
+        RollThree.text = RandomDiceRolls.Pop().ToString();
+        RollFour.text = RandomDiceRolls.Pop().ToString();
+        RollFive.text = RandomDiceRolls.Pop().ToString();
+        RollSix.text = RandomDiceRolls.Pop().ToString();
+        RollSeven.text = RandomDiceRolls.Pop().ToString();
+        RollEight.text = RandomDiceRolls.Pop().ToString();
+        RollNine.text = RandomDiceRolls.Pop().ToString();
 
     }
 }
