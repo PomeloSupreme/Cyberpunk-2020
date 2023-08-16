@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class DicePoolButton : MonoBehaviour
 {
-    Stack<int> RandomDiceRolls = new Stack<int>();
+    
 
     public GameObject DicePoolPanel = new GameObject();
     public GameObject PointsPanel = new GameObject();
@@ -41,8 +41,28 @@ public class DicePoolButton : MonoBehaviour
     public TMP_Text RollSeven;
     public TMP_Text RollEight;
     public TMP_Text RollNine;
+
+    public TMP_Dropdown IntelligenceDropdown;
+    public TMP_Dropdown ReflexDropdown;
+    public TMP_Dropdown TechnicalDropdown;
+    public TMP_Dropdown CoolDropdown;
+    public TMP_Dropdown AttractivenessDropdown;
+    public TMP_Dropdown LuckDropdown;
+    public TMP_Dropdown MADropdown;
+    public TMP_Dropdown BodyDropdown;
+    public TMP_Dropdown EmpathyDropdown;
     public void OnDicePoolButton()
     {
+        IntelligenceDropdown.ClearOptions();
+        ReflexDropdown.ClearOptions();
+        TechnicalDropdown.ClearOptions();
+        CoolDropdown.ClearOptions();
+        AttractivenessDropdown.ClearOptions();
+        LuckDropdown.ClearOptions();
+        MADropdown.ClearOptions();
+        BodyDropdown.ClearOptions();
+        EmpathyDropdown.ClearOptions();
+
         DicePoolPanel.SetActive(true);
         PointsPanel.SetActive(false);
 
@@ -66,20 +86,41 @@ public class DicePoolButton : MonoBehaviour
         BodyDropdownPanel.SetActive(true);
         EmpathyDropdownPanel.SetActive(true);
 
-        for (int i = 0; i <= 9; i++)
+        List<string> RandomDiceRolls = new List<string>();
+        RandomDiceRolls.Add("00");
+
+        for (int i = 0; i <= 8; i++)
         {
-            RandomDiceRolls.Push(Random.Range(3, 10));
+            int random = Random.Range(3, 11);
+            if (random < 10)
+            {
+                RandomDiceRolls.Add("0" + random.ToString());
+            }
+            else RandomDiceRolls.Add(random.ToString());
         }
 
-        RollOne.text = RandomDiceRolls.Pop().ToString();
-        RollTwo.text = RandomDiceRolls.Pop().ToString();
-        RollThree.text = RandomDiceRolls.Pop().ToString();
-        RollFour.text = RandomDiceRolls.Pop().ToString();
-        RollFive.text = RandomDiceRolls.Pop().ToString();
-        RollSix.text = RandomDiceRolls.Pop().ToString();
-        RollSeven.text = RandomDiceRolls.Pop().ToString();
-        RollEight.text = RandomDiceRolls.Pop().ToString();
-        RollNine.text = RandomDiceRolls.Pop().ToString();
+        RollOne.text = RandomDiceRolls[1];
+        RollTwo.text = RandomDiceRolls[2];
+        RollThree.text = RandomDiceRolls[3];
+        RollFour.text = RandomDiceRolls[4];
+        RollFive.text = RandomDiceRolls[5];
+        RollSix.text = RandomDiceRolls[6];
+        RollSeven.text = RandomDiceRolls[7];
+        RollEight.text = RandomDiceRolls[8];
+        RollNine.text = RandomDiceRolls[9];
+
+
+        IntelligenceDropdown.AddOptions(RandomDiceRolls);
+        ReflexDropdown.AddOptions(RandomDiceRolls);
+        TechnicalDropdown.AddOptions(RandomDiceRolls);
+        CoolDropdown.AddOptions(RandomDiceRolls);
+        AttractivenessDropdown.AddOptions(RandomDiceRolls);
+        LuckDropdown.AddOptions(RandomDiceRolls);
+        MADropdown.AddOptions(RandomDiceRolls);
+        BodyDropdown.AddOptions(RandomDiceRolls);
+        EmpathyDropdown.AddOptions(RandomDiceRolls);
+
+        
 
     }
 }
