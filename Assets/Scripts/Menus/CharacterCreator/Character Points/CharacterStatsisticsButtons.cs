@@ -18,7 +18,7 @@ public class CharacterStatsisticsButtons : MonoBehaviour
             {
                 statValue.text = "0" + (int.Parse(statValue.text.TrimEnd('\r', '\n')) + 1).ToString();
                 
-                if(int.Parse(pointPool.text.TrimEnd('\r', '\n')) <= 9)
+                if(int.Parse(pointPool.text.TrimEnd('\r', '\n')) <= 10)
                 {
                     pointPool.text = "0" + (int.Parse(pointPool.text.TrimEnd('\r', '\n')) - 1).ToString();
                 }
@@ -28,7 +28,7 @@ public class CharacterStatsisticsButtons : MonoBehaviour
             {
                 statValue.text = (int.Parse(statValue.text.TrimEnd('\r', '\n')) + 1).ToString();
 
-                if (int.Parse(pointPool.text.TrimEnd('\r', '\n')) <= 9)
+                if (int.Parse(pointPool.text.TrimEnd('\r', '\n')) <= 10)
                 {
                     pointPool.text = "0" + (int.Parse(pointPool.text.TrimEnd('\r', '\n')) - 1).ToString();
                 }

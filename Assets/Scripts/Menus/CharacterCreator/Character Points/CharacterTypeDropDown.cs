@@ -10,6 +10,16 @@ public class CharacterTypeDropDown : MonoBehaviour
     public TMP_Text points;
     public TMP_Dropdown dropdown;
 
+    public TMP_Text IntelligenceStat;
+    public TMP_Text ReflexStat;
+    public TMP_Text TechnicalStat;
+    public TMP_Text CoolStat;
+    public TMP_Text AttractivenessStat;
+    public TMP_Text LuckStat;
+    public TMP_Text MAStat;
+    public TMP_Text BodyStat;
+    public TMP_Text EmpathyStat;
+
 
     public void CharacterTypeDropdown()
     {
@@ -33,6 +43,16 @@ public class CharacterTypeDropDown : MonoBehaviour
         }
         
         points.text = (pointValue - 18).ToString();
+
+        IntelligenceStat.text = "02";
+        ReflexStat.text = "02";
+        TechnicalStat.text = "02";
+        CoolStat.text = "02";
+        AttractivenessStat.text = "02";
+        LuckStat.text = "02";
+        MAStat.text = "02";
+        BodyStat.text = "02";
+        EmpathyStat.text = "02";
 
     }
 }
