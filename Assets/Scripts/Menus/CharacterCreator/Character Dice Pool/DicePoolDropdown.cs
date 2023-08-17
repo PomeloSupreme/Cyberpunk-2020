@@ -11,7 +11,7 @@ public class DicePoolDropdown : MonoBehaviour
     public void OnDropdownValueChange()
     {
         List<string> OriginalList = new List<string>();
-        IntelligenceDropdown.GetComponent<TMP_Dropdown.Opt>();
+        //IntelligenceDropdown.GetComponent<TMP_Dropdown.
 
         
     }
