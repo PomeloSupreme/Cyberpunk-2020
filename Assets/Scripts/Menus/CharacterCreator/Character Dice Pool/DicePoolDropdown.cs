@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class DicePoolDropdown : MonoBehaviour
 {
-    TMP_Dropdown IntelligenceDropdown;
+    DicePoolButton dicePoolButton;
 
+    public void Start()
+    {
+        dicePoolButton = GameObject.FindGameObjectWithTag("DicePoolButton").GetComponent<DicePoolButton>();
+    }
     public void OnDropdownValueChange()
     {
-        List<string> OriginalList = new List<string>();
-        //IntelligenceDropdown.GetComponent<TMP_Dropdown.
+        List<string> originalList = dicePoolButton.ReportString();
+
 
         
     }

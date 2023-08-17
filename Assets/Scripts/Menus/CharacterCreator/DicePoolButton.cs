@@ -13,7 +13,8 @@ public class DicePoolButton : MonoBehaviour
      GameObject[] rollTexts;
      GameObject dicePoolPanel;
      GameObject[] pointAllotments;
-    GameObject pointsPanel;
+     GameObject pointsPanel;
+     List<string> RandomDiceRolls = new List<string>();
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class DicePoolButton : MonoBehaviour
 
     public void OnDicePoolButton()
     {
-        List<string> RandomDiceRolls = new List<string>();
+        RandomDiceRolls.Clear();
         RandomDiceRolls.Add("--");
 
         for (int i = 0; i <= 8; i++)
@@ -64,4 +65,9 @@ public class DicePoolButton : MonoBehaviour
             rollTextIndex++;
         }
     } 
+
+        public List<string> ReportString()
+    {
+        return RandomDiceRolls;
+    }
 }
