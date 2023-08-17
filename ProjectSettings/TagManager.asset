@@ -12,6 +12,7 @@ TagManager:
   - PointPanel
   - PointPool
   - DicePoolButton
+  - SecondaryPointsPool
   layers:
   - Default
   - TransparentFX

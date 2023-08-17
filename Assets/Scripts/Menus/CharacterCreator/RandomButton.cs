@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RandomButton : MonoBehaviour
@@ -35,7 +36,8 @@ public class RandomButton : MonoBehaviour
     GameObject dicePoolPanel;
     GameObject[] pointAllotments;
     GameObject pointsPanel;
-    List<string> RandomDiceRolls = new List<string>();
+    GameObject secondaryPointsPanel;
+    
 
     private void Start()
     {
@@ -45,13 +47,15 @@ public class RandomButton : MonoBehaviour
         dicePoolPanel = GameObject.FindGameObjectWithTag("DicePoolPanel");
         pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
         pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
+        secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
     }
 
     public void OnRandomButton()
     {
         pointsPanel.SetActive(true);
+        secondaryPointsPanel.SetActive(false);
         dicePoolPanel.SetActive(false);
-        //pointsPanel.
+        //  pointsPanel.
         foreach (GameObject pointAllotment in pointAllotments)
         {
             pointAllotment.SetActive(true);
@@ -63,6 +67,21 @@ public class RandomButton : MonoBehaviour
         foreach (GameObject statButton in statButtons)
         {
             statButton.SetActive(true);
+        }
+
+        int pointValue = 0;
+
+        for (int i = 0; i <= 8; i++)
+        {
+            pointValue += Random.Range(1, 10);
+        }
+
+        pointsPanel.GetComponentInChildren<TMP_Text>().text = (pointValue - 18).ToString();
+
+        foreach (GameObject pointAllotment in pointAllotments)
+        {
+            pointAllotment.SetActive(true);
+            pointAllotment.GetComponent<TMP_Text>().text = "02";
         }
     }
     
