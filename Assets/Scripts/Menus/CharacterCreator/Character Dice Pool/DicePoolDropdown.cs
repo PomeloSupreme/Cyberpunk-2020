@@ -14,7 +14,10 @@ public class DicePoolDropdown : MonoBehaviour
     }
     public void OnDropdownValueChange()
     {
+        
         List<string> originalList = dicePoolButton.ReportString();
+        List<string> updatedList= new List<string>();
+        
 
 
         
