@@ -4393,7 +4393,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1431057244}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12157,35 +12157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67584c49774fcbc46bdf8af34c6467cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DicePoolPanel: {fileID: 730464597}
-  PointsPanel: {fileID: 1431057243}
-  IntelligenceButtonPanel: {fileID: 933831906}
-  ReflexButtonPanel: {fileID: 1939128264}
-  TechnicalButtonPanel: {fileID: 507814945}
-  CoolButtonPanel: {fileID: 1567988764}
-  AttractivenessButtonPanel: {fileID: 1092063243}
-  LuckButtonPanel: {fileID: 2076475837}
-  MAButtonPanel: {fileID: 2007457298}
-  BodyButtonPanel: {fileID: 2123922360}
-  EmpathyButtonPanel: {fileID: 1944093866}
-  IntelligenceDropdownPanel: {fileID: 866067466}
-  ReflexDropdownPanel: {fileID: 1684756042}
-  TechnicalDropdownPanel: {fileID: 1209236390}
-  CoolDropdownPanel: {fileID: 1540752565}
-  AttractivenessDropdownPanel: {fileID: 592638882}
-  LuckDropdownPanel: {fileID: 382875759}
-  MADropdownPanel: {fileID: 1873912802}
-  BodyDropdownPanel: {fileID: 970191462}
-  EmpathyDropdownPanel: {fileID: 1047488156}
-  IntelligenceStat: {fileID: 1495706873}
-  ReflexStat: {fileID: 1077206357}
-  TechnicalStat: {fileID: 971322661}
-  CoolStat: {fileID: 1826264589}
-  AttractivenessStat: {fileID: 1842203676}
-  LuckStat: {fileID: 2139282985}
-  MAStat: {fileID: 1075122971}
-  BodyStat: {fileID: 2011204006}
-  EmpathyStat: {fileID: 78029681}
 --- !u!1 &1004824852
 GameObject:
   m_ObjectHideFlags: 0
@@ -16560,7 +16531,7 @@ GameObject:
   - component: {fileID: 1360381730}
   m_Layer: 0
   m_Name: Text (Point Pool)
-  m_TagString: Untagged
+  m_TagString: PointPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16578,7 +16549,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1431057244}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17316,11 +17287,11 @@ GameObject:
   - component: {fileID: 1431057245}
   m_Layer: 0
   m_Name: Panel(PointsPanel)
-  m_TagString: Untagged
+  m_TagString: PointPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1431057244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17333,8 +17304,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 308553731}
   - {fileID: 1360381729}
+  - {fileID: 308553731}
   - {fileID: 1746934953}
   m_Father: {fileID: 805794187}
   m_RootOrder: 5
@@ -19584,7 +19555,7 @@ GameObject:
   - component: {fileID: 1705143746}
   - component: {fileID: 1705143745}
   m_Layer: 0
-  m_Name: Text (TMP) (2)
+  m_Name: Text (CharacterPoints)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20551,17 +20522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f573c2b3fb3bd744aa59c86a9f67f589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: {fileID: 1360381730}
-  dropdown: {fileID: 1746934954}
-  IntelligenceStat: {fileID: 1495706873}
-  ReflexStat: {fileID: 1077206357}
-  TechnicalStat: {fileID: 971322661}
-  CoolStat: {fileID: 1826264589}
-  AttractivenessStat: {fileID: 1842203676}
-  LuckStat: {fileID: 2139282985}
-  MAStat: {fileID: 1075122971}
-  BodyStat: {fileID: 2011204006}
-  EmpathyStat: {fileID: 78029681}
 --- !u!1 &1769010359
 GameObject:
   m_ObjectHideFlags: 0

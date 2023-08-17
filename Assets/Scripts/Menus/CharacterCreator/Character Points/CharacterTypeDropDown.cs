@@ -7,23 +7,19 @@ using UnityEngine.UI;
 public class CharacterTypeDropDown : MonoBehaviour
 {
     int pointValue;
-    public TMP_Text points;
-    public TMP_Dropdown dropdown;
 
-    public TMP_Text IntelligenceStat;
-    public TMP_Text ReflexStat;
-    public TMP_Text TechnicalStat;
-    public TMP_Text CoolStat;
-    public TMP_Text AttractivenessStat;
-    public TMP_Text LuckStat;
-    public TMP_Text MAStat;
-    public TMP_Text BodyStat;
-    public TMP_Text EmpathyStat;
+    GameObject pointsPanel;
+    GameObject[] pointAllotments;
 
+    public void Start()
+    {
+        pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
+        pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
+    }
 
     public void CharacterTypeDropdown()
     {
-        switch (dropdown.value)
+        switch (pointsPanel.GetComponentInChildren<TMP_Dropdown>().value)
         {
             case 0:
                 pointValue = 50;
@@ -42,17 +38,12 @@ public class CharacterTypeDropDown : MonoBehaviour
                 break;
         }
         
-        points.text = (pointValue - 18).ToString();
+        pointsPanel.GetComponentInChildren<TMP_Text>().text = (pointValue - 18).ToString();
 
-        IntelligenceStat.text = "02";
-        ReflexStat.text = "02";
-        TechnicalStat.text = "02";
-        CoolStat.text = "02";
-        AttractivenessStat.text = "02";
-        LuckStat.text = "02";
-        MAStat.text = "02";
-        BodyStat.text = "02";
-        EmpathyStat.text = "02";
-
+        foreach (GameObject pointAllotment in pointAllotments)
+        {
+            pointAllotment.SetActive(true);
+            pointAllotment.GetComponent<TMP_Text>().text = "02";
+        }
     }
 }

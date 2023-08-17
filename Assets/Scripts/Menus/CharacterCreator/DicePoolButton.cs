@@ -13,6 +13,7 @@ public class DicePoolButton : MonoBehaviour
      GameObject[] rollTexts;
      GameObject dicePoolPanel;
      GameObject[] pointAllotments;
+    GameObject pointsPanel;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class DicePoolButton : MonoBehaviour
         rollTexts = GameObject.FindGameObjectsWithTag("RollText");
         dicePoolPanel = GameObject.FindGameObjectWithTag("DicePoolPanel");
         pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
+        pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
     }
 
     public void OnDicePoolButton()
@@ -39,6 +41,7 @@ public class DicePoolButton : MonoBehaviour
         }
 
         dicePoolPanel.SetActive(true);
+        pointsPanel.SetActive(false);
         foreach (GameObject pointAllotment in pointAllotments)
         {
             pointAllotment.SetActive(false);

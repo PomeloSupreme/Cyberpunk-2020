@@ -6,74 +6,40 @@ using UnityEngine.UI;
 
 public class PointsButton : MonoBehaviour
 {
-    
-    public GameObject DicePoolPanel = new GameObject();
-    public GameObject PointsPanel = new GameObject();
+    GameObject[] dicePoolDropdowns;
+    GameObject[] statButtons;
+    GameObject[] rollTexts;
+    GameObject dicePoolPanel;
+    GameObject[] pointAllotments;
+    GameObject pointsPanel;
 
-    public GameObject IntelligenceButtonPanel;
-    public GameObject ReflexButtonPanel;
-    public GameObject TechnicalButtonPanel;
-    public GameObject CoolButtonPanel;
-    public GameObject AttractivenessButtonPanel;
-    public GameObject LuckButtonPanel;
-    public GameObject MAButtonPanel;
-    public GameObject BodyButtonPanel;
-    public GameObject EmpathyButtonPanel;
-
-    public GameObject IntelligenceDropdownPanel;
-    public GameObject ReflexDropdownPanel;
-    public GameObject TechnicalDropdownPanel;
-    public GameObject CoolDropdownPanel;
-    public GameObject AttractivenessDropdownPanel;
-    public GameObject LuckDropdownPanel;
-    public GameObject MADropdownPanel;
-    public GameObject BodyDropdownPanel;
-    public GameObject EmpathyDropdownPanel;
-
-    public TMP_Text IntelligenceStat;
-    public TMP_Text ReflexStat;
-    public TMP_Text TechnicalStat;
-    public TMP_Text CoolStat;
-    public TMP_Text AttractivenessStat;
-    public TMP_Text LuckStat;
-    public TMP_Text MAStat;
-    public TMP_Text BodyStat;
-    public TMP_Text EmpathyStat;
+    private void Start()
+    {
+        dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
+        statButtons = GameObject.FindGameObjectsWithTag("StatButton");
+        rollTexts = GameObject.FindGameObjectsWithTag("RollText");
+        dicePoolPanel = GameObject.FindGameObjectWithTag("DicePoolPanel");
+        pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
+        pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
+    }
     public void OnPointsButton()
     {
-        DicePoolPanel.SetActive(false);
-        PointsPanel.SetActive(true);
-        
-        IntelligenceButtonPanel.SetActive(true);
-        ReflexButtonPanel.SetActive(true);
-        TechnicalButtonPanel.SetActive(true);
-        CoolButtonPanel.SetActive(true);
-        AttractivenessButtonPanel.SetActive(true);
-        LuckButtonPanel.SetActive(true);
-        MAButtonPanel.SetActive(true);
-        BodyButtonPanel.SetActive(true);
-        EmpathyButtonPanel.SetActive(true);
 
-        IntelligenceDropdownPanel.SetActive(false);
-        ReflexDropdownPanel.SetActive(false);
-        TechnicalDropdownPanel.SetActive(false);
-        CoolDropdownPanel.SetActive(false);
-        AttractivenessDropdownPanel.SetActive(false);
-        LuckDropdownPanel.SetActive(false);
-        MADropdownPanel.SetActive(false);
-        BodyDropdownPanel.SetActive(false);
-        EmpathyDropdownPanel.SetActive(false);
-
-        IntelligenceStat.text = "02";
-        ReflexStat.text = "02";
-        TechnicalStat.text = "02";
-        CoolStat.text = "02";
-        AttractivenessStat.text = "02";
-        LuckStat.text = "02";
-        MAStat.text = "02";
-        BodyStat.text = "02";
-        EmpathyStat.text = "02";
-
-
+        dicePoolPanel.SetActive(false);
+        pointsPanel.SetActive(true);
+        foreach (GameObject pointAllotment in pointAllotments)
+        {
+            pointAllotment.SetActive(true);
+            pointAllotment.GetComponent<TMP_Text>().text = "02";
+        }
+        foreach (GameObject dicepooldropdown in dicePoolDropdowns)
+        {
+            dicepooldropdown.SetActive(false);
+        }
+        foreach (GameObject statButton in statButtons)
+        {
+            statButton.SetActive(true);
+        }
     }
+    
 }

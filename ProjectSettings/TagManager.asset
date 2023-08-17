@@ -9,6 +9,8 @@ TagManager:
   - DicePoolPanel
   - RollText
   - PointAllotment
+  - PointPanel
+  - PointPool
   layers:
   - Default
   - TransparentFX
