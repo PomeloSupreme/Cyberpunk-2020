@@ -19,7 +19,6 @@ public class CharacterTypeDropDown : MonoBehaviour
 
     public void CharacterTypeDropdown()
     {
-        pointsPanel.GetComponentInChildren<TMP_Text>().text = (pointValue - 18).ToString();
 
         switch (pointsPanel.GetComponentInChildren<TMP_Dropdown>().value)
         {
