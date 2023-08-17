@@ -1177,26 +1177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcefaa01d16935f4ca12c18fe05f271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DicePoolPanel: {fileID: 730464597}
-  PointsPanel: {fileID: 1431057243}
-  IntelligenceButtonPanel: {fileID: 933831906}
-  ReflexButtonPanel: {fileID: 1939128264}
-  TechnicalButtonPanel: {fileID: 507814945}
-  CoolButtonPanel: {fileID: 1567988764}
-  AttractivenessButtonPanel: {fileID: 1092063243}
-  LuckButtonPanel: {fileID: 2076475837}
-  MAButtonPanel: {fileID: 2007457298}
-  BodyButtonPanel: {fileID: 2123922360}
-  EmpathyButtonPanel: {fileID: 1944093866}
-  IntelligenceDropdownPanel: {fileID: 866067466}
-  ReflexDropdownPanel: {fileID: 1684756042}
-  TechnicalDropdownPanel: {fileID: 1209236390}
-  CoolDropdownPanel: {fileID: 1540752565}
-  AttractivenessDropdownPanel: {fileID: 592638882}
-  LuckDropdownPanel: {fileID: 382875759}
-  MADropdownPanel: {fileID: 1873912802}
-  BodyDropdownPanel: {fileID: 970191462}
-  EmpathyDropdownPanel: {fileID: 1047488156}
 --- !u!1 &100996810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1716,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1.9851074
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10901,7 +10881,6 @@ GameObject:
   - component: {fileID: 866067467}
   - component: {fileID: 866067469}
   - component: {fileID: 866067468}
-  - component: {fileID: 866067470}
   m_Layer: 0
   m_Name: Panel (DropBar)
   m_TagString: DicePoolDropdown
@@ -10968,18 +10947,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866067466}
   m_CullTransparentMesh: 1
---- !u!114 &866067470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866067466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &906373022
 GameObject:
   m_ObjectHideFlags: 0

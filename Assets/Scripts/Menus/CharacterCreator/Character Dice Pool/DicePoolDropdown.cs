@@ -17,6 +17,9 @@ public class DicePoolDropdown : MonoBehaviour
         
         List<string> originalList = dicePoolButton.ReportString();
         List<string> updatedList= new List<string>();
+        updatedList = originalList;
+
+        updatedList.
         
 
 
