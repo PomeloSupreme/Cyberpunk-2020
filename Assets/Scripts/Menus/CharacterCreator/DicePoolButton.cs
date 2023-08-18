@@ -17,6 +17,7 @@ public class DicePoolButton : MonoBehaviour
     List<string> randomDiceRolls = new List<string>();
     List<string> optionDependentDiceRolls = new List<string>();
 
+    private IEnumerator coroutine;
     private void Start()
     {
         dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
@@ -25,8 +26,20 @@ public class DicePoolButton : MonoBehaviour
         dicePoolPanel = GameObject.FindGameObjectWithTag("DicePoolPanel");
         pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
         pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
+        coroutine = LateStart(0.1f);
+        StartCoroutine(coroutine);
+
     }
 
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        dicePoolPanel.SetActive(false);
+        foreach (GameObject dicepooldropdown in dicePoolDropdowns)
+        {
+            dicepooldropdown.SetActive(false);
+        }
+    }
     public void OnDicePoolButton()
     {
         randomDiceRolls.Clear();

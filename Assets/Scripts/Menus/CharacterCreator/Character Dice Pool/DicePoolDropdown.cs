@@ -8,15 +8,17 @@ using UnityEngine.UIElements;
 public class DicePoolDropdown : MonoBehaviour
 {
     DicePoolButton dicePoolButton;
-    GameObject[] dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
+    GameObject[] dicePoolDropdowns;
     string previousSelection;
     List<string> optionDependentDiceRolls = new List<string>();
+    public Label dropdownLabel;
     
 
 
 
     public void Start()
     {
+        dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
         dicePoolButton = GameObject.FindGameObjectWithTag("DicePoolButton").GetComponent<DicePoolButton>();
         previousSelection = "--";
     }
@@ -24,9 +26,7 @@ public class DicePoolDropdown : MonoBehaviour
     {
         optionDependentDiceRolls = dicePoolButton.ReportOptionDependentDiceRolls();
 
-        string currentSelection = GetComponentInChildren<Label>().text; 
-        
-
+        string currentSelection = dropdownLabel.text;
         if(currentSelection == "--")
         {
             optionDependentDiceRolls.Add(previousSelection);
