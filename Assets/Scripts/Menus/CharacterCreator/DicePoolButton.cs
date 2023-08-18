@@ -8,13 +8,14 @@ using UnityEngine.UIElements;
 
 public class DicePoolButton : MonoBehaviour
 {
-     GameObject[] dicePoolDropdowns;
-     GameObject[] statButtons;
-     GameObject[] rollTexts;
-     GameObject dicePoolPanel;
-     GameObject[] pointAllotments;
-     GameObject pointsPanel;
-     List<string> RandomDiceRolls = new List<string>();
+    GameObject[] dicePoolDropdowns;
+    GameObject[] statButtons;
+    GameObject[] rollTexts;
+    GameObject dicePoolPanel;
+    GameObject[] pointAllotments;
+    GameObject pointsPanel;
+    List<string> randomDiceRolls = new List<string>();
+    List<string> optionDependentDiceRolls = new List<string>();
 
     private void Start()
     {
@@ -28,18 +29,19 @@ public class DicePoolButton : MonoBehaviour
 
     public void OnDicePoolButton()
     {
-        RandomDiceRolls.Clear();
-        RandomDiceRolls.Add("--");
+        randomDiceRolls.Clear();
+        randomDiceRolls.Add("--");
 
         for (int i = 0; i <= 8; i++)
         {
             int random = Random.Range(3, 11);
             if (random < 10)
             {
-                RandomDiceRolls.Add("0" + random.ToString());
+                randomDiceRolls.Add("0" + random.ToString());
             }
-            else RandomDiceRolls.Add(random.ToString());
+            else randomDiceRolls.Add(random.ToString());
         }
+        optionDependentDiceRolls = randomDiceRolls;
 
         dicePoolPanel.SetActive(true);
         pointsPanel.SetActive(false);
@@ -51,7 +53,7 @@ public class DicePoolButton : MonoBehaviour
         {
             dicepooldropdown.SetActive(true);
             dicepooldropdown.GetComponentInChildren<TMP_Dropdown>().ClearOptions();
-            dicepooldropdown.GetComponentInChildren<TMP_Dropdown>().AddOptions(RandomDiceRolls);
+            dicepooldropdown.GetComponentInChildren<TMP_Dropdown>().AddOptions(randomDiceRolls);
         }
         foreach (GameObject statButton in statButtons)
         {
@@ -61,13 +63,21 @@ public class DicePoolButton : MonoBehaviour
         int rollTextIndex = 1;
         foreach (GameObject rollText in rollTexts)
         {
-            rollText.GetComponent<TMP_Text>().text = RandomDiceRolls[rollTextIndex];
+            rollText.GetComponent<TMP_Text>().text = randomDiceRolls[rollTextIndex];
             rollTextIndex++;
         }
     } 
 
-        public List<string> ReportString()
+        public List<string> ReportRandomDiceRolls()
     {
-        return RandomDiceRolls;
+        return randomDiceRolls;
+    }
+    public List<string> ReportOptionDependentDiceRolls()
+    {
+        return optionDependentDiceRolls;
+    }
+    public void UpdateOptionDependentDiceRolls(List<string> currentOptionList)
+    {
+        optionDependentDiceRolls = currentOptionList;
     }
 }

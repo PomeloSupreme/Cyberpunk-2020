@@ -1447,6 +1447,7 @@ GameObject:
   - component: {fileID: 104034750}
   - component: {fileID: 104034749}
   - component: {fileID: 104034748}
+  - component: {fileID: 104034751}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -1547,7 +1548,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 104034751}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &104034749
 MonoBehaviour:
@@ -1587,6 +1600,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104034746}
   m_CullTransparentMesh: 1
+--- !u!114 &104034751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104034746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &104312033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,6 +3706,7 @@ GameObject:
   - component: {fileID: 256651920}
   - component: {fileID: 256651919}
   - component: {fileID: 256651918}
+  - component: {fileID: 256651921}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -3766,13 +3792,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 256651921}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3817,6 +3843,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256651916}
   m_CullTransparentMesh: 1
+--- !u!114 &256651921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256651916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &262002430
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,6 +5624,7 @@ GameObject:
   - component: {fileID: 391025492}
   - component: {fileID: 391025491}
   - component: {fileID: 391025490}
+  - component: {fileID: 391025493}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -5686,7 +5725,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 391025493}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &391025491
 MonoBehaviour:
@@ -5726,6 +5777,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391025488}
   m_CullTransparentMesh: 1
+--- !u!114 &391025493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391025488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &449523143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,6 +6584,7 @@ GameObject:
   - component: {fileID: 486619202}
   - component: {fileID: 486619201}
   - component: {fileID: 486619200}
+  - component: {fileID: 486619203}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -6621,7 +6685,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 486619203}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &486619201
 MonoBehaviour:
@@ -6661,6 +6737,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486619198}
   m_CullTransparentMesh: 1
+--- !u!114 &486619203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486619198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &491848372
 GameObject:
   m_ObjectHideFlags: 0
@@ -15341,6 +15429,7 @@ GameObject:
   - component: {fileID: 1258138996}
   - component: {fileID: 1258138995}
   - component: {fileID: 1258138994}
+  - component: {fileID: 1258138997}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -15425,7 +15514,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1258138997}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1258138995
 MonoBehaviour:
@@ -15465,6 +15566,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258138992}
   m_CullTransparentMesh: 1
+--- !u!114 &1258138997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258138992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1272724490
 GameObject:
   m_ObjectHideFlags: 0
@@ -16856,6 +16969,7 @@ GameObject:
   - component: {fileID: 1404503917}
   - component: {fileID: 1404503916}
   - component: {fileID: 1404503915}
+  - component: {fileID: 1404503918}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -16956,7 +17070,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1404503918}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1404503916
 MonoBehaviour:
@@ -16996,6 +17122,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404503913}
   m_CullTransparentMesh: 1
+--- !u!114 &1404503918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404503913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1405674081
 GameObject:
   m_ObjectHideFlags: 0
@@ -19796,6 +19934,7 @@ GameObject:
   - component: {fileID: 1712227055}
   - component: {fileID: 1712227054}
   - component: {fileID: 1712227053}
+  - component: {fileID: 1712227056}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -19896,7 +20035,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1712227056}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1712227054
 MonoBehaviour:
@@ -19936,6 +20087,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712227051}
   m_CullTransparentMesh: 1
+--- !u!114 &1712227056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712227051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726693527
 GameObject:
   m_ObjectHideFlags: 0
@@ -22275,6 +22438,7 @@ GameObject:
   - component: {fileID: 1862661268}
   - component: {fileID: 1862661267}
   - component: {fileID: 1862661266}
+  - component: {fileID: 1862661269}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -22375,7 +22539,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1862661269}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1862661267
 MonoBehaviour:
@@ -22415,6 +22591,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862661264}
   m_CullTransparentMesh: 1
+--- !u!114 &1862661269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862661264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1865072563
 GameObject:
   m_ObjectHideFlags: 0
@@ -23218,6 +23406,7 @@ GameObject:
   - component: {fileID: 1894811674}
   - component: {fileID: 1894811673}
   - component: {fileID: 1894811672}
+  - component: {fileID: 1894811675}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -23318,7 +23507,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1894811675}
+        m_TargetAssemblyTypeName: DicePoolDropdown, Assembly-CSharp
+        m_MethodName: OnDropdownValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1894811673
 MonoBehaviour:
@@ -23358,6 +23559,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894811670}
   m_CullTransparentMesh: 1
+--- !u!114 &1894811675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894811670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e815a5aedb0f46af57beedfe640b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1906657313
 GameObject:
   m_ObjectHideFlags: 0
