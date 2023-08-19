@@ -15,7 +15,8 @@ public class DicePoolDropdown : MonoBehaviour
     GameObject[] dicePoolDropdowns;
     string previousSelection;
     List<string> optionDependentDiceRolls = new List<string>();
-    public Label dropdownLabel;
+    static List<int> chosenDropdownValues = new List<int>();
+
     
 
 
@@ -25,18 +26,38 @@ public class DicePoolDropdown : MonoBehaviour
         dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
         dicePoolButton = GameObject.FindGameObjectWithTag("DicePoolButton").GetComponent<DicePoolButton>();
         previousSelection = "--";
+        Debug.Log("started");
     }
 
     public void OnDropdownValueChange()
     {
+        int selectedValue = GetComponentInChildren<TMP_Dropdown>().value;
+
+        if(selectedValue == 0)
+        {
+            Debug.Log("Chose Empty");
+        }
+        else if (DicePoolDropdown.chosenDropdownValues.Contains(selectedValue))
+        {
+            Debug.Log("Number Already Chosen BOOOOO");
+        }
+        else DicePoolDropdown.chosenDropdownValues.Add(selectedValue);
+
+    }
+
+
+    public void BADOnDropdownValueChange()
+    {
         optionDependentDiceRolls = dicePoolButton.ReportOptionDependentDiceRolls();
         List<string> appendingString = dicePoolButton.ReportOptionDependentDiceRolls();
+        //Dropdown value assigned to text player has selected
         int selectedValue = GetComponent<TMP_Dropdown>().value;
+        //Text Player Has Selected
         string currentSelection = GetComponent<TMP_Dropdown>().options[selectedValue].text;
 
-        if(currentSelection == "--")
+        if (currentSelection == "--")
         {
-            if(previousSelection == "--")
+            if (previousSelection == "--")
             {
                 previousSelection = currentSelection;
                 foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
@@ -49,7 +70,7 @@ public class DicePoolDropdown : MonoBehaviour
                 }
             }
             else
-            optionDependentDiceRolls.RemoveAt(selectedValue);
+            //optionDependentDiceRolls.RemoveAt(selectedValue);
             optionDependentDiceRolls.Insert(1, previousSelection);
             previousSelection = currentSelection;
 
@@ -62,7 +83,7 @@ public class DicePoolDropdown : MonoBehaviour
                 }
             }
         }
-        else if( currentSelection != previousSelection)
+        else if (currentSelection != previousSelection)
         {
             if (previousSelection == "--")
             {
@@ -70,7 +91,7 @@ public class DicePoolDropdown : MonoBehaviour
                 optionDependentDiceRolls.RemoveAt(selectedValue);
                 foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
                 {
-                    if (dicePoolDropdown.GetComponent<TMP_Dropdown>().options[0].text == "--")
+                    if (dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().options[0].text == "--")
                     {
                         dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().ClearOptions();
                         dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().AddOptions(optionDependentDiceRolls);
@@ -84,11 +105,7 @@ public class DicePoolDropdown : MonoBehaviour
 
             foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
             {
-                if(dicePoolDropdown.GetComponent<TMP_Dropdown>().options[0].text == "--")
-                    {
-                    dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().ClearOptions();
-                    dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().AddOptions(optionDependentDiceRolls);
-                }
+                DropdownOptionsListUpdaterForEmpty(dicePoolDropdown);
             }
         }
 
@@ -100,10 +117,25 @@ public class DicePoolDropdown : MonoBehaviour
                 dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().AddOptions(optionDependentDiceRolls);
             }
         }
-        
+
         appendingString.Insert(0, currentSelection);
         GetComponent<TMP_Dropdown>().ClearOptions();
         GetComponent<TMP_Dropdown>().AddOptions(appendingString);
-        dicePoolButton.UpdateOptionDependentDiceRolls(optionDependentDiceRolls);        
+        dicePoolButton.UpdateOptionDependentDiceRolls(optionDependentDiceRolls);
+    }
+
+    public TMP_Dropdown GetDropdownComponent(GameObject panel)
+    {
+        return panel.GetComponentInChildren<TMP_Dropdown>();
+    }
+
+    public void DropdownOptionsListUpdaterForEmpty(GameObject panel)
+    {
+        TMP_Dropdown dropdown = GetDropdownComponent(panel);
+        if (dropdown.options[0].text == "--")
+        {
+            dropdown.ClearOptions();
+            dropdown.AddOptions(optionDependentDiceRolls);
+        }
     }
 }

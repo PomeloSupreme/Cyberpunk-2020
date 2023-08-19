@@ -49,7 +49,7 @@ public class RandomButton : MonoBehaviour
 
         for (int i = 0; i <= 8; i++)
         {
-            pointValue += Random.Range(1, 10);
+            pointValue += Random.Range(1, 11);
         }
 
         pointsPanel.GetComponentInChildren<TMP_Text>().text = (pointValue - 18).ToString();
