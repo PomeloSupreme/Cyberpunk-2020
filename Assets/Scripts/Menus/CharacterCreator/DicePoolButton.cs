@@ -16,7 +16,6 @@ public class DicePoolButton : MonoBehaviour
     GameObject pointsPanel;
     List<string> randomDiceRolls = new List<string>();
     List<string> optionDependentDiceRolls = new List<string>();
-
     private IEnumerator coroutine;
     private void Start()
     {
