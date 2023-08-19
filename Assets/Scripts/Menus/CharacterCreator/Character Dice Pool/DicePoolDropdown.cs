@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,11 +23,13 @@ public class DicePoolDropdown : MonoBehaviour
         dicePoolButton = GameObject.FindGameObjectWithTag("DicePoolButton").GetComponent<DicePoolButton>();
         previousSelection = "--";
     }
+
     public void OnDropdownValueChange()
     {
         optionDependentDiceRolls = dicePoolButton.ReportOptionDependentDiceRolls();
 
-        string currentSelection = dropdownLabel.text;
+        int selectedValue = GetComponent<TMP_Dropdown>().value;
+        string currentSelection = GetComponent<TMP_Dropdown>().options[selectedValue].text;
         if(currentSelection == "--")
         {
             optionDependentDiceRolls.Add(previousSelection);
@@ -44,15 +47,10 @@ public class DicePoolDropdown : MonoBehaviour
 
             foreach(GameObject dicePoolDropdown in dicePoolDropdowns)
             {
-                dicePoolDropdown.GetComponent<TMP_Dropdown>().ClearOptions();
-                dicePoolDropdown.GetComponent<TMP_Dropdown>().AddOptions(optionDependentDiceRolls);
+                dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().ClearOptions();
+                dicePoolDropdown.GetComponentInChildren<TMP_Dropdown>().AddOptions(optionDependentDiceRolls);
             }
         }
-        dicePoolButton.UpdateOptionDependentDiceRolls(optionDependentDiceRolls);
-        
-        
-
-
-        
+        dicePoolButton.UpdateOptionDependentDiceRolls(optionDependentDiceRolls);        
     }
 }
