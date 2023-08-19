@@ -16,6 +16,7 @@ public class DicePoolDropdown : MonoBehaviour
     string previousSelection;
     List<string> optionDependentDiceRolls = new List<string>();
     static List<int> chosenDropdownValues = new List<int>();
+    Controller controller;
 
     
 
@@ -23,13 +24,19 @@ public class DicePoolDropdown : MonoBehaviour
     //8.18.23 The logic is kind of fucked. Need to adjust lists to subtract at index selected value, and then append the currentSelection to the front of the list. 
     public void Start()
     {
+        controller = GetComponentInParent<Controller>();
         dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
         dicePoolButton = GameObject.FindGameObjectWithTag("DicePoolButton").GetComponent<DicePoolButton>();
         previousSelection = "--";
         Debug.Log("started");
     }
 
-    public void OnDropdownValueChange()
+    public void ReportDropdownToController()
+    {
+        controller.SetCurrentDropdown(GetComponent<TMP_Dropdown>());
+    }
+
+    /*public void OnDropdownValueChange()
     {
         int selectedValue = GetComponentInChildren<TMP_Dropdown>().value;
 
@@ -137,5 +144,5 @@ public class DicePoolDropdown : MonoBehaviour
             dropdown.ClearOptions();
             dropdown.AddOptions(optionDependentDiceRolls);
         }
-    }
+    }*/
 }

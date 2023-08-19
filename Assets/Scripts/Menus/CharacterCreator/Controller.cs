@@ -30,12 +30,15 @@ public class Controller : MonoBehaviour
     GameObject[] pointAllotments;
     GameObject pointsPanel;
     List<string> randomDiceRolls = new List<string>();
-    List<string> optionDependentDiceRolls = new List<string>();
+    
     private IEnumerator coroutine;
 
     //OnDicePoolDropDown() Variables
 
     List<int> chosenDropdownValues = new List<int>();
+    TMP_Dropdown currentDropdown;
+    List<string> optionDependentDiceRolls = new List<string>();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -45,11 +48,12 @@ public class Controller : MonoBehaviour
     
     public void OnDicePoolDropdown()
     {
-        TMP_Dropdown currentDropdown = GetComponentInChildren<TMP_Dropdown>();
-        Debug.Log("Dropdown Value is " + GetComponentInChildren<TMP_Dropdown>().value);
+        
+        Debug.Log("Dropdown Value is " + currentDropdown.value);
         Debug.Log("Dropdown Chosen List Count is " + chosenDropdownValues.Count);
         if (currentDropdown.value == 0)
         {
+            chosenDropdownValues.Remove(currentDropdown.value);
             Debug.Log("Chose Empty");
         }
         else if (chosenDropdownValues.Contains(currentDropdown.value))
@@ -57,11 +61,22 @@ public class Controller : MonoBehaviour
             Debug.Log("Number Already Chosen BOOOOO");
         }
         else chosenDropdownValues.Add(currentDropdown.value);
+
+        optionDependentDiceRolls = randomDiceRolls;
+        for (int i = 0; i < chosenDropdownValues.Count; i++)
+        {
+            optionDependentDiceRolls.RemoveAt(chosenDropdownValues[i]);
+        }
+        foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
+        {
+            GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
+            GetDropdownFromPanel(dicePoolDropdown).AddOptions(optionDependentDiceRolls);
+        }
+
     }
     public void OnDicePoolButton()
     {
         randomDiceRolls = DicePoolRandomizer(randomDiceRolls);
-        optionDependentDiceRolls = randomDiceRolls;
         DicePoolActivator(pointAllotments, dicePoolDropdowns, statButtons, randomDiceRolls);
         RollTextFiller(rollTexts);
     }
@@ -130,6 +145,14 @@ public class Controller : MonoBehaviour
             rollTexts[i].GetComponent<TMP_Text>().text = randomDiceRolls[i+1];
         }
         
+    }
+    public void SetCurrentDropdown (TMP_Dropdown referencedDropdown)
+    {
+        currentDropdown = referencedDropdown;
+    }
+    public TMP_Dropdown GetDropdownFromPanel(GameObject panel)
+    {
+        return panel.GetComponentInChildren<TMP_Dropdown>();
     }
 }
 
