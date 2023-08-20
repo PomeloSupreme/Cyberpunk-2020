@@ -12,6 +12,7 @@ using UnityEngine.UIElements;
 public class DicePoolDropdown : MonoBehaviour
 {
     int previousValue;
+    string previousText;
     string currentText;
     Controller controller;
 
@@ -51,6 +52,15 @@ public class DicePoolDropdown : MonoBehaviour
     {
         return currentText;
     }
+    public string AccessPreviousText()
+    {
+        return previousText;
+    }
+    public void ChangePreviousText(string text)
+    {
+        previousText = text;
+    }
+
     /*public void OnDropdownValueChange()
     {
         int selectedValue = GetComponentInChildren<TMP_Dropdown>().value;
