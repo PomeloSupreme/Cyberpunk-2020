@@ -6,26 +6,32 @@ using UnityEngine.UI;
 
 public class PointsButton : MonoBehaviour
 {
-    GameObject[] dicePoolDropdowns;
+    /*GameObject[] dicePoolDropdowns;
     GameObject[] statButtons;
     GameObject[] rollTexts;
     GameObject dicePoolPanel;
     GameObject[] pointAllotments;
     GameObject pointsPanel;
     GameObject secondaryPointsPanel;
-    int pointValue;
+    int pointValue;*/
+    Controller controller;
 
     private void Start()
     {
-        dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
+        controller = GetComponentInParent<Controller>();
+        /*dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
         statButtons = GameObject.FindGameObjectsWithTag("StatButton");
         rollTexts = GameObject.FindGameObjectsWithTag("RollText");
         dicePoolPanel = GameObject.FindGameObjectWithTag("DicePoolPanel");
         pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
         pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
-        secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
+        secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");*/
     }
-    public void OnPointsButton()
+    public void ReportDropdownToController()
+    {
+        controller.SetCurrentDropdown(GetComponent<TMP_Dropdown>());
+    }
+    /*public void OnPointsButton()
     {
         
 
@@ -67,6 +73,6 @@ public class PointsButton : MonoBehaviour
         {
             statButton.SetActive(true);
         }
-    }
+    }*/
     
 }
