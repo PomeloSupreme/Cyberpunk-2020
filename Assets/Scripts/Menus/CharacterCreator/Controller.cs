@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -37,7 +38,6 @@ public class Controller : MonoBehaviour
 
     List<int> chosenDropdownValues = new List<int>();
     TMP_Dropdown currentDropdown;
-    List<string> optionDependentDiceRolls = new List<string>();
     DicePoolDropdown currentDicePoolDropdown;
     
 
@@ -49,36 +49,61 @@ public class Controller : MonoBehaviour
     
     public void OnDicePoolDropdown()
     {
+        List<string> optionDependentDiceRolls = new List<string>();
+        string textOfCurrentValue = currentDropdown.options[currentDropdown.value].text;
         currentDicePoolDropdown = currentDropdown.GetComponentInParent<DicePoolDropdown>();
         int previousValue = currentDicePoolDropdown.AccessPreviousValue();
+        Debug.Log("Previous Value is " + previousValue);
         Debug.Log("Dropdown Value is " + currentDropdown.value);
+        Debug.Log("Dropdown Value + Count is " + currentDropdown.value + " " + chosenDropdownValues.Count());
         Debug.Log("Dropdown Chosen List Count is " + chosenDropdownValues.Count);
         if (currentDropdown.options[currentDropdown.value].text == "--")
         {
             chosenDropdownValues.Remove(previousValue);
             Debug.Log("Chose Empty");
         }
-        else if (chosenDropdownValues.Contains(currentDropdown.value))
+        else if (chosenDropdownValues.Contains(currentDropdown.value + chosenDropdownValues.Count()))
         {
             Debug.Log("Number Already Chosen BOOOOO");
         }
+        else if (previousValue == 0)
+        {
+            chosenDropdownValues.Add(currentDropdown.value + chosenDropdownValues.Count());
+        }
         else
         {
-            chosenDropdownValues.Add(currentDropdown.value);
+            chosenDropdownValues.Add(currentDropdown.value + chosenDropdownValues.Count());
             chosenDropdownValues.Remove(previousValue);
         }
 
-        currentDicePoolDropdown.ChangePreviousValue(currentDropdown.value);
-        optionDependentDiceRolls = randomDiceRolls;
+        currentDicePoolDropdown.ChangePreviousValue(currentDropdown.value + chosenDropdownValues.Count - 1);
+        optionDependentDiceRolls.AddRange(randomDiceRolls);
         for (int i = 0; i < chosenDropdownValues.Count; i++)
         {
-            optionDependentDiceRolls.RemoveAt(chosenDropdownValues[i]);
+            optionDependentDiceRolls.RemoveAt((chosenDropdownValues[i]) - i);
         }
         foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
         {
-            GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
-            GetDropdownFromPanel(dicePoolDropdown).AddOptions(optionDependentDiceRolls);
+            if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentText() == "--")
+            {
+                GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
+                GetDropdownFromPanel(dicePoolDropdown).AddOptions(optionDependentDiceRolls);
+
+            }
+            else if(GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentText() != "--")
+            {
+                List<string> specificOptionDependentDiceRolls = new List<string>();
+                specificOptionDependentDiceRolls.AddRange(optionDependentDiceRolls);
+                specificOptionDependentDiceRolls.Insert(0, GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentText());
+                GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
+                GetDropdownFromPanel(dicePoolDropdown).AddOptions(specificOptionDependentDiceRolls);
+            }
         }
+        optionDependentDiceRolls.Insert(0, textOfCurrentValue);
+        currentDropdown.ClearOptions();
+        currentDropdown.AddOptions(optionDependentDiceRolls);
+        currentDicePoolDropdown.ChangeCurrentText(textOfCurrentValue);
+
 
     }
     public void OnDicePoolButton()
