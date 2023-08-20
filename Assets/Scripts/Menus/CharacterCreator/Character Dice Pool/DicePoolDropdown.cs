@@ -11,12 +11,9 @@ using UnityEngine.UIElements;
 
 public class DicePoolDropdown : MonoBehaviour
 {
-    DicePoolButton dicePoolButton;
-    GameObject[] dicePoolDropdowns;
-    string previousSelection;
-    List<string> optionDependentDiceRolls = new List<string>();
-    static List<int> chosenDropdownValues = new List<int>();
+    int previousValue;
     Controller controller;
+
 
     
 
@@ -25,10 +22,7 @@ public class DicePoolDropdown : MonoBehaviour
     public void Start()
     {
         controller = GetComponentInParent<Controller>();
-        dicePoolDropdowns = GameObject.FindGameObjectsWithTag("DicePoolDropdown");
-        dicePoolButton = GameObject.FindGameObjectWithTag("DicePoolButton").GetComponent<DicePoolButton>();
-        previousSelection = "--";
-        Debug.Log("started");
+        previousValue = 0;
     }
 
     public void ReportDropdownToController()
@@ -36,6 +30,15 @@ public class DicePoolDropdown : MonoBehaviour
         controller.SetCurrentDropdown(GetComponent<TMP_Dropdown>());
     }
 
+    public void ChangePreviousValue(int currentValue)
+    {
+        previousValue = currentValue;
+    }
+
+    public int AccessPreviousValue()
+    {
+        return previousValue;
+    }
     /*public void OnDropdownValueChange()
     {
         int selectedValue = GetComponentInChildren<TMP_Dropdown>().value;

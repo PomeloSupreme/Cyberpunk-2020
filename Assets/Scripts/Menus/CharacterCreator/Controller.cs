@@ -38,6 +38,7 @@ public class Controller : MonoBehaviour
     List<int> chosenDropdownValues = new List<int>();
     TMP_Dropdown currentDropdown;
     List<string> optionDependentDiceRolls = new List<string>();
+    DicePoolDropdown currentDicePoolDropdown;
     
 
     // Start is called before the first frame update
@@ -48,20 +49,26 @@ public class Controller : MonoBehaviour
     
     public void OnDicePoolDropdown()
     {
-        
+        currentDicePoolDropdown = currentDropdown.GetComponentInParent<DicePoolDropdown>();
+        int previousValue = currentDicePoolDropdown.AccessPreviousValue();
         Debug.Log("Dropdown Value is " + currentDropdown.value);
         Debug.Log("Dropdown Chosen List Count is " + chosenDropdownValues.Count);
-        if (currentDropdown.value == 0)
+        if (currentDropdown.options[currentDropdown.value].text == "--")
         {
-            chosenDropdownValues.Remove(currentDropdown.value);
+            chosenDropdownValues.Remove(previousValue);
             Debug.Log("Chose Empty");
         }
         else if (chosenDropdownValues.Contains(currentDropdown.value))
         {
             Debug.Log("Number Already Chosen BOOOOO");
         }
-        else chosenDropdownValues.Add(currentDropdown.value);
+        else
+        {
+            chosenDropdownValues.Add(currentDropdown.value);
+            chosenDropdownValues.Remove(previousValue);
+        }
 
+        currentDicePoolDropdown.ChangePreviousValue(currentDropdown.value);
         optionDependentDiceRolls = randomDiceRolls;
         for (int i = 0; i < chosenDropdownValues.Count; i++)
         {
