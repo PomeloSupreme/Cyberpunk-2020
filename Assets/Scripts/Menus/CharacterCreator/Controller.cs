@@ -67,7 +67,7 @@ public class Controller : MonoBehaviour
 
         DropdownChoice(currentDropdown, chosenDropdownValues, previousValue);
 
-        currentDicePoolDropdown.ChangePreviousValue(currentDropdown.value + chosenDropdownValues.Count - 1);
+        currentDicePoolDropdown.ChangePreviousValue(currentDropdown.value + chosenDropdownValues.Count);
         optionDependentDiceRolls.AddRange(randomDiceRolls);
 
         optionDependentDiceRolls = RemoveSelectedDropdownOptions(optionDependentDiceRolls, chosenDropdownValues);
@@ -90,6 +90,11 @@ public class Controller : MonoBehaviour
     }
         private void DropdownChoice(TMP_Dropdown dropdown, List<int> chosenValues, int previousValue)
     {
+        /*The Problem is in this code. If you pull from the top of the dropdown list there isnt an issue
+         * because we shift the values on the objectList +1 to account for everything sliding up, 
+         * but in the event you pull from the bottom of the dropdown list, the +1 shift still occurs even though
+         * no such shift as occurred*/
+      
         if (dropdown.options[dropdown.value].text == "--")
         {
             chosenValues.Remove(previousValue);
@@ -145,7 +150,7 @@ public class Controller : MonoBehaviour
         }
     }
         private List<string> RemoveSelectedDropdownOptions(List<string> optionList, List<int> chosenList)
-    {
+    {//Double Checked, Should Be Good
         for (int i = 0; i < chosenDropdownValues.Count; i++)
         {
             optionList.RemoveAt((chosenList[i]) - i);
