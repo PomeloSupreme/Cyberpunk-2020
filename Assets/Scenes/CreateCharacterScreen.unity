@@ -2629,6 +2629,7 @@ GameObject:
   - component: {fileID: 147448756}
   - component: {fileID: 147448758}
   - component: {fileID: 147448757}
+  - component: {fileID: 147448759}
   m_Layer: 0
   m_Name: PointPool
   m_TagString: Untagged
@@ -2753,6 +2754,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147448755}
   m_CullTransparentMesh: 1
+--- !u!114 &147448759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147448755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0b3c38e71c1284fa462bc7688f0b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &148726619
 GameObject:
   m_ObjectHideFlags: 0
@@ -22817,7 +22830,7 @@ GameObject:
   - component: {fileID: 1717427607}
   - component: {fileID: 1717427606}
   m_Layer: 0
-  m_Name: Text (CareerSkillPointsTxt) (1)
+  m_Name: Text (PickupSkillsTxt)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25969,6 +25982,7 @@ GameObject:
   - component: {fileID: 1868682804}
   - component: {fileID: 1868682806}
   - component: {fileID: 1868682805}
+  - component: {fileID: 1868682807}
   m_Layer: 0
   m_Name: PointPool
   m_TagString: Untagged
@@ -26093,6 +26107,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868682803}
   m_CullTransparentMesh: 1
+--- !u!114 &1868682807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868682803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f762823805d25b4aaa28feef3f74882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1869271030
 GameObject:
   m_ObjectHideFlags: 0

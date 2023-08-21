@@ -22,7 +22,10 @@ public class Controller : MonoBehaviour
     int luck;
     int movementAllowance;
     int bodyType;
-    int empathy; 
+    int empathy;
+
+    TMP_Text careerSkillPoints;
+    TMP_Text pickupSkillPoints;
         
     //OnDicePoolButton() Variables
     
@@ -466,6 +469,14 @@ public class Controller : MonoBehaviour
             pointAllotment.SetActive(true);
             pointAllotment.GetComponent<TMP_Text>().text = "02";
         }
+    }
+    public void SetCareerSkillPoints(TMP_Text tMP_Text)
+    {
+        careerSkillPoints = tMP_Text;
+    }
+    public void SetPickupSkillPoints(TMP_Text tMP_Text)
+    {
+        pickupSkillPoints = tMP_Text;
     }
 
 }
