@@ -23,9 +23,7 @@ public class Controller : MonoBehaviour
     int movementAllowance;
     int bodyType;
     int empathy; 
-
-
-
+        
     //OnDicePoolButton() Variables
     GameObject[] dicePoolDropdowns;
     GameObject[] statButtons;
@@ -259,7 +257,7 @@ public class Controller : MonoBehaviour
         dicePoolPanel = GameObject.FindGameObjectWithTag("DicePoolPanel");
         pointAllotments = GameObject.FindGameObjectsWithTag("PointAllotment");
         pointsPanel = GameObject.FindGameObjectWithTag("PointPanel");
-        coroutine = LateStart(0.1f);
+        coroutine = LateStart(0.001f);
         StartCoroutine(coroutine);
         secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
     }
@@ -366,7 +364,6 @@ public class Controller : MonoBehaviour
         }
         SetStatForButton(statValue);
     }
-
     public void OnMinusStatButton()
     {
         TMP_Text pointPool = pointsPanel.GetComponentInChildren<TMP_Text>();
@@ -388,7 +385,6 @@ public class Controller : MonoBehaviour
         }
         SetStatForButton(statValue);
     }
-
     private void SetStatForButton(TMP_Text statValue)
     {
         int currentStatValue = int.Parse(statValue.text.TrimEnd('\r', '\n'));
@@ -431,7 +427,43 @@ public class Controller : MonoBehaviour
         }
 
     }
+    public void OnRandomeButton()
+    {
+        pointsPanel.SetActive(true);
+        secondaryPointsPanel.SetActive(false);
+        dicePoolPanel.SetActive(false);
+        //  pointsPanel.
+        foreach (GameObject pointAllotment in pointAllotments)
+        {
+            pointAllotment.SetActive(true);
+        }
+        foreach (GameObject dicepooldropdown in dicePoolDropdowns)
+        {
+            dicepooldropdown.SetActive(false);
+        }
+        foreach (GameObject statButton in statButtons)
+        {
+            statButton.SetActive(true);
+        }
+
+        int pointValue = 0;
+
+        for (int i = 0; i <= 8; i++)
+        {
+            pointValue += UnityEngine.Random.Range(1, 11);
+        }
+
+        pointsPanel.GetComponentInChildren<TMP_Text>().text = (pointValue - 18).ToString();
+
+        foreach (GameObject pointAllotment in pointAllotments)
+        {
+            pointAllotment.SetActive(true);
+            pointAllotment.GetComponent<TMP_Text>().text = "02";
+        }
+    }
+
 }
+
     
 
     

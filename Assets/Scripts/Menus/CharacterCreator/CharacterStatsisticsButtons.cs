@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PointsButton : MonoBehaviour
+public class CharacterStatsisticsButtons : MonoBehaviour
 {
-    
+   
     Controller controller;
 
-    private void Start()
+    public void Start()
     {
         controller = GetComponentInParent<Controller>();
-   
     }
-    public void ReportDropdownToController()
+
+    public void ReportButton()
     {
-        controller.SetCurrentDropdown(GetComponent<TMP_Dropdown>());
+        controller.SetCurrentButton(GetComponent<UnityEngine.UI.Button>());
     }
-    
+
 }
