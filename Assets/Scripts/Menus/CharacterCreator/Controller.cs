@@ -365,6 +365,27 @@ public class Controller : MonoBehaviour
             else Debug.Log("No Points Left");
         }
     }
+
+    public void OnMinusStatButton()
+    {
+        TMP_Text pointPool = pointsPanel.GetComponentInChildren<TMP_Text>();
+        TMP_Text statValue = currentButton.GetComponentInParent<TMP_Text>();
+        if (int.Parse(statValue.text.TrimEnd('\r', '\n')) > 2)
+        {
+            if (int.Parse(pointPool.text.TrimEnd('\r', '\n')) <= 9)
+            {
+                statValue.text = "0" + (int.Parse(statValue.text.TrimEnd('\r', '\n')) - 1).ToString();
+                pointPool.text = "0" + (int.Parse(pointPool.text.TrimEnd('\r', '\n')) + 1).ToString();
+            }
+            else if (int.Parse(pointPool.text.TrimEnd('\r', '\n')) > 9)
+            {
+                statValue.text = "0" + (int.Parse(statValue.text.TrimEnd('\r', '\n')) - 1).ToString();
+                pointPool.text = (int.Parse(pointPool.text.TrimEnd('\r', '\n')) + 1).ToString();
+
+            }
+            else Debug.Log("Stat Cant Go Lower");
+        }
+    }
 }
     
 

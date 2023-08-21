@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class CharacterStatsisticsButtons : MonoBehaviour
 {
-    public TMP_Text pointPool;
-    public TMP_Text statValue;
+    //public TMP_Text pointPool;
+    //public TMP_Text statValue;
     Controller controller;
 
     public void Start()
@@ -17,7 +17,7 @@ public class CharacterStatsisticsButtons : MonoBehaviour
     }
 
     
-    public void plusButton()
+    /*public void plusButton()
     {
         if (int.Parse(pointPool.text.TrimEnd('\r', '\n')) > 0)
         {
@@ -62,7 +62,7 @@ public class CharacterStatsisticsButtons : MonoBehaviour
             }
             else Debug.Log("Stat Cant Go Lower");
         }
-    }
+    }*/
     public void ReportButton()
     {
         controller.SetCurrentButton(GetComponent<UnityEngine.UI.Button>());
