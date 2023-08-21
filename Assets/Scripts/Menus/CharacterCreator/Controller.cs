@@ -364,6 +364,7 @@ public class Controller : MonoBehaviour
             }
             else Debug.Log("No Points Left");
         }
+        SetStatForButton(statValue);
     }
 
     public void OnMinusStatButton()
@@ -385,6 +386,50 @@ public class Controller : MonoBehaviour
             }
             else Debug.Log("Stat Cant Go Lower");
         }
+        SetStatForButton(statValue);
+    }
+
+    private void SetStatForButton(TMP_Text statValue)
+    {
+        int currentStatValue = int.Parse(statValue.text.TrimEnd('\r', '\n'));
+        string currentText = currentButton.transform.parent.parent.parent.GetComponent<TMP_Text>().text;
+        if (currentText == "Intelligence:")
+        {
+            intelligence = currentStatValue;
+        }
+        else if (currentText == "Reflex:")
+        {
+            reflex = currentStatValue;
+        }
+        else if (currentText == "Technical Ability:")
+        {
+            technicalAbility = currentStatValue;
+        }
+        else if (currentText == "Cool:")
+        {
+            cool = currentStatValue;
+        }
+        else if (currentText == "Attractiveness:")
+        {
+            attractiveness = currentStatValue;
+        }
+        else if (currentText == "Luck:")
+        {
+            luck = currentStatValue;
+        }
+        else if (currentText == "Movement Allowance:")
+        {
+            movementAllowance = currentStatValue;
+        }
+        else if (currentText == "Body Type:")
+        {
+            bodyType = currentStatValue;
+        }
+        else if (currentText == "Empathy:")
+        {
+            empathy = currentStatValue;
+        }
+
     }
 }
     
