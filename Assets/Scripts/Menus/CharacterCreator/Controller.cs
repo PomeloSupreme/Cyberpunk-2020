@@ -25,6 +25,7 @@ public class Controller : MonoBehaviour
     int empathy; 
         
     //OnDicePoolButton() Variables
+    
     GameObject[] dicePoolDropdowns;
     GameObject[] statButtons;
     GameObject[] rollTexts;
