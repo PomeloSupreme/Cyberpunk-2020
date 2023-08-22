@@ -11632,6 +11632,7 @@ GameObject:
   - component: {fileID: 805794189}
   - component: {fileID: 805794188}
   - component: {fileID: 805794191}
+  - component: {fileID: 805794192}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -11758,6 +11759,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b803be7d49f8c449f6b25591e5ef8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  careerSkillPointsCount: 0
+  pickupSkillPointsCount: 0
+  careerSkillPoints: {fileID: 0}
+  pickupSkillPoints: {fileID: 0}
+--- !u!114 &805794192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805794186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9308562fddacbf041886667bd8427dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillPointsMatchController: 0
 --- !u!1 &813296213
 GameObject:
   m_ObjectHideFlags: 0

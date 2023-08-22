@@ -24,11 +24,11 @@ public class Controller : MonoBehaviour
     int bodyType;
     int empathy;
 
-    int careerSkillPointsCount;
-    int pickupSkillPointsCount;
+    public int careerSkillPointsCount;
+    public int pickupSkillPointsCount;
 
-    TMP_Text careerSkillPoints;
-    TMP_Text pickupSkillPoints;
+    public TMP_Text careerSkillPoints;
+    public TMP_Text pickupSkillPoints;
         
     //OnDicePoolButton() Variables
     
@@ -51,6 +51,9 @@ public class Controller : MonoBehaviour
     GameObject secondaryPointsPanel;
     int pointValue;
     UnityEngine.UI.Button currentButton;
+
+    //Information To Update StatAlotter
+    StatAlotter statAlloter;
 
     void Start()
     {
@@ -303,6 +306,9 @@ public class Controller : MonoBehaviour
         secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
         careerSkillPointsCount = 40;
         pickupSkillPointsCount = 4;
+        intelligence = 2;
+        reflex = 2;
+        statAlloter = GetComponent<StatAlotter>();
     }
     IEnumerator LateStart(float waitTime)
     {
@@ -345,6 +351,8 @@ public class Controller : MonoBehaviour
             pointsPanel.SetActive(true);
             pickupSkillPoints.text = "04";
             pickupSkillPointsCount = 4;
+            intelligence = 2;
+            reflex = 2;
     }
         private int PointValueSetter(TMP_Dropdown dropdown)
     {
@@ -438,11 +446,17 @@ public class Controller : MonoBehaviour
         string currentText = currentButton.transform.parent.parent.parent.GetComponent<TMP_Text>().text;
         if (currentText == "Intelligence:")
         {
+            pickupSkillPointsCount -= intelligence;
             intelligence = currentStatValue;
+            pickupSkillPointsCount += intelligence;
+            pickupSkillPoints.text = pickupSkillPointsCount.ToString();
         }
         else if (currentText == "Reflex:")
         {
+            pickupSkillPointsCount -= reflex;
             reflex = currentStatValue;
+            pickupSkillPointsCount += reflex;
+            pickupSkillPoints.text = pickupSkillPointsCount.ToString();
         }
         else if (currentText == "Technical Ability:")
         {
@@ -479,6 +493,8 @@ public class Controller : MonoBehaviour
         pointsPanel.SetActive(true);
         secondaryPointsPanel.SetActive(false);
         dicePoolPanel.SetActive(false);
+        intelligence = 2;
+        reflex = 2;
         //  pointsPanel.
         foreach (GameObject pointAllotment in pointAllotments)
         {
