@@ -174,15 +174,28 @@ public class Controller : MonoBehaviour
     }
         private void SetStatForDropdown(DicePoolDropdown dicePoolDropdown, TMP_Dropdown dropdown)
     {
-        int currentStatValue = int.Parse(dropdown.options[dropdown.value].text);
-        string currentText = dicePoolDropdown.GetComponentInParent<TMP_Text>().text;
+        int currentStatValue;
+        string currentText;
+        if (dropdown.options[dropdown.value].text == "--")
+        {
+            currentStatValue = 0;
+            currentText = dicePoolDropdown.GetComponentInParent<TMP_Text>().text;
+        }
+        else
+        {
+            currentStatValue = int.Parse(dropdown.options[dropdown.value].text);
+            currentText = dicePoolDropdown.GetComponentInParent<TMP_Text>().text;
+        }
+        
         if (currentText == "Intelligence:")
         {
             if (currentDicePoolDropdown.AccessPreviousText() == "--")
             {
+                pickupSkillPointsCount -= intelligence;
                 intelligence = currentStatValue;
                 pickupSkillPointsCount += intelligence;
                 pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+                statAlloter.SkillPointsMatchController = false;
             }
             else
             {
@@ -190,6 +203,7 @@ public class Controller : MonoBehaviour
                 intelligence = currentStatValue;
                 pickupSkillPointsCount += intelligence;
                 pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+                statAlloter.SkillPointsMatchController = false;
             }
 
         }
@@ -240,13 +254,15 @@ public class Controller : MonoBehaviour
 
     }
 
-    public void OnDicePoolButton()
+    public void OnDicePoolButton()  
     {
         randomDiceRolls = DicePoolRandomizer(randomDiceRolls);
         DicePoolActivator(pointAllotments, dicePoolDropdowns, statButtons, randomDiceRolls);
         RollTextFiller(rollTexts);
         pickupSkillPoints.text = "00";
         pickupSkillPointsCount = 0;
+        intelligence = 0;
+        reflex = 0;
     }
         private List<string> DicePoolRandomizer(List<string> randomDiceRolls)
         {
