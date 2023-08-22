@@ -24,6 +24,9 @@ public class Controller : MonoBehaviour
     int bodyType;
     int empathy;
 
+    int careerSkillPointsCount;
+    int pickupSkillPointsCount;
+
     TMP_Text careerSkillPoints;
     TMP_Text pickupSkillPoints;
         
@@ -62,6 +65,7 @@ public class Controller : MonoBehaviour
         string textOfCurrentValue = currentDropdown.options[currentDropdown.value].text;
         currentDicePoolDropdown = currentDropdown.GetComponentInParent<DicePoolDropdown>();
         int previousValue = currentDicePoolDropdown.AccessPreviousValue();
+        
 
         /*Debug.Log("Previous Value is " + previousValue);
         Debug.Log("Dropdown Value is " + currentDropdown.value);
@@ -107,6 +111,7 @@ public class Controller : MonoBehaviour
         {
             Debug.Log("Number Already Chosen");
         }
+        //This might also be wrong below
         else if (previousValue == 0)
         {
             chosenValues.Add(dropdown.value + chosenValues.Count());
@@ -170,37 +175,62 @@ public class Controller : MonoBehaviour
         string currentText = dicePoolDropdown.GetComponentInParent<TMP_Text>().text;
         if (currentText == "Intelligence:")
         {
-            intelligence = currentStatValue;
+            if (currentDicePoolDropdown.AccessPreviousText() == "--")
+            {
+                intelligence = currentStatValue;
+                pickupSkillPointsCount += intelligence;
+                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+            }
+            else
+            {
+                pickupSkillPointsCount -= intelligence;
+                intelligence = currentStatValue;
+                pickupSkillPointsCount += intelligence;
+                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+            }
+
         }
-        else if(currentText == "Reflex:")
+        else if (currentText == "Reflex:")
         {
-            reflex = currentStatValue;
+            if (currentDicePoolDropdown.AccessPreviousText() == "--")
+            {
+                reflex = currentStatValue;
+                pickupSkillPointsCount += reflex;
+                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+            }
+            else
+            {
+                pickupSkillPointsCount -= reflex;
+                reflex = currentStatValue;
+                pickupSkillPointsCount += reflex;
+                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+            }
         }
-        else if(currentText == "Technical Ability:")
+        else if (currentText == "Technical Ability:")
         {
             technicalAbility = currentStatValue;
         }
-        else if(currentText == "Cool:")
+        else if (currentText == "Cool:")
         {
             cool = currentStatValue;
         }
-        else if(currentText == "Attractiveness:")
+        else if (currentText == "Attractiveness:")
         {
             attractiveness = currentStatValue;
         }
-        else if(currentText == "Luck:")
+        else if (currentText == "Luck:")
         {
             luck = currentStatValue;
         }
-        else if(currentText == "Movement Allowance:")
+        else if (currentText == "Movement Allowance:")
         {
             movementAllowance = currentStatValue;
         }
-        else if(currentText == "Body Type:")
+        else if (currentText == "Body Type:")
         {
             bodyType = currentStatValue;
         }
-        else if(currentText == "Empathy:")
+        else if (currentText == "Empathy:")
         {
             empathy = currentStatValue;
         }
@@ -212,6 +242,8 @@ public class Controller : MonoBehaviour
         randomDiceRolls = DicePoolRandomizer(randomDiceRolls);
         DicePoolActivator(pointAllotments, dicePoolDropdowns, statButtons, randomDiceRolls);
         RollTextFiller(rollTexts);
+        pickupSkillPoints.text = "00";
+        pickupSkillPointsCount = 0;
     }
         private List<string> DicePoolRandomizer(List<string> randomDiceRolls)
         {
@@ -269,6 +301,8 @@ public class Controller : MonoBehaviour
         coroutine = LateStart(0.001f);
         StartCoroutine(coroutine);
         secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
+        careerSkillPointsCount = 40;
+        pickupSkillPointsCount = 4;
     }
     IEnumerator LateStart(float waitTime)
     {
@@ -279,6 +313,8 @@ public class Controller : MonoBehaviour
         {
             dicepooldropdown.SetActive(false);
         }
+        careerSkillPoints.text = ("40");
+        pickupSkillPoints.text = ("04");    
     }
     public void SetCurrentDropdown (TMP_Dropdown referencedDropdown)
     {
@@ -307,7 +343,9 @@ public class Controller : MonoBehaviour
             secondaryPointsPanel.SetActive(true);
             dicePoolPanel.SetActive(false);
             pointsPanel.SetActive(true);
-        }
+            pickupSkillPoints.text = "04";
+            pickupSkillPointsCount = 4;
+    }
         private int PointValueSetter(TMP_Dropdown dropdown)
     {
         switch (pointsPanel.GetComponentInChildren<TMP_Dropdown>().value)
@@ -478,7 +516,7 @@ public class Controller : MonoBehaviour
     {
         pickupSkillPoints = tMP_Text;
     }
-
+    
 }
 
     
