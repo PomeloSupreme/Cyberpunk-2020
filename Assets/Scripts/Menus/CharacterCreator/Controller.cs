@@ -194,7 +194,6 @@ public class Controller : MonoBehaviour
                 pickupSkillPointsCount -= intelligence;
                 intelligence = currentStatValue;
                 pickupSkillPointsCount += intelligence;
-                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
                 statAlloter.SkillPointsMatchController = false;
             }
             else
@@ -202,7 +201,6 @@ public class Controller : MonoBehaviour
                 pickupSkillPointsCount -= intelligence;
                 intelligence = currentStatValue;
                 pickupSkillPointsCount += intelligence;
-                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
                 statAlloter.SkillPointsMatchController = false;
             }
 
