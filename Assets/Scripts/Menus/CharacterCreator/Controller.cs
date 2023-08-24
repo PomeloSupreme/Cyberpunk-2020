@@ -24,8 +24,8 @@ public class Controller : MonoBehaviour
     int bodyType;
     int empathy;
 
-    public int careerSkillPointsCount;
-    public int pickupSkillPointsCount;
+    /*public int careerSkillPointsCount;
+    public int pickupSkillPointsCount;*/
 
     public TMP_Text careerSkillPoints;
     public TMP_Text pickupSkillPoints;
@@ -196,7 +196,7 @@ public class Controller : MonoBehaviour
             }
             else
             {
-                pickupSkillPointsCount -= intelligence;
+                //pickupSkillPointsCount -= intelligence;
                 intelligence = currentStatValue;
                 statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
             }
@@ -211,7 +211,7 @@ public class Controller : MonoBehaviour
             }
             else
             {
-                pickupSkillPointsCount -= reflex;
+                //pickupSkillPointsCount -= reflex;
                 reflex = currentStatValue;
                 statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
             }
@@ -253,7 +253,7 @@ public class Controller : MonoBehaviour
         DicePoolActivator(pointAllotments, dicePoolDropdowns, statButtons, randomDiceRolls);
         RollTextFiller(rollTexts);
         pickupSkillPoints.text = "00";
-        pickupSkillPointsCount = 0;
+        statAlloter.AddReflexOrIntToPointPool(0, 0);
         intelligence = 0;
         reflex = 0;
     }
@@ -313,8 +313,7 @@ public class Controller : MonoBehaviour
         coroutine = LateStart(0.001f);
         StartCoroutine(coroutine);
         secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
-        careerSkillPointsCount = 40;
-        pickupSkillPointsCount = 4;
+        statAlloter.AddReflexOrIntToPointPool(2, 2);
         intelligence = 2;
         reflex = 2;
         statAlloter = GetComponent<StatAlotter>();
@@ -359,7 +358,7 @@ public class Controller : MonoBehaviour
             dicePoolPanel.SetActive(false);
             pointsPanel.SetActive(true);
             pickupSkillPoints.text = "04";
-            pickupSkillPointsCount = 4;
+        statAlloter.AddReflexOrIntToPointPool(2, 2);
             intelligence = 2;
             reflex = 2;
     }
@@ -454,18 +453,15 @@ public class Controller : MonoBehaviour
         int currentStatValue = int.Parse(statValue.text.TrimEnd('\r', '\n'));
         string currentText = currentButton.transform.parent.parent.parent.GetComponent<TMP_Text>().text;
         if (currentText == "Intelligence:")
-        {
-            pickupSkillPointsCount -= intelligence;
+        {   
             intelligence = currentStatValue;
-            pickupSkillPointsCount += intelligence;
-            pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+            statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
         }
         else if (currentText == "Reflex:")
         {
-            pickupSkillPointsCount -= reflex;
+            
             reflex = currentStatValue;
-            pickupSkillPointsCount += reflex;
-            pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+            statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
         }
         else if (currentText == "Technical Ability:")
         {

@@ -39,12 +39,11 @@ public class StatAlotter : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller>();
-        pickupSkillsCount = controller.pickupSkillPointsCount;
-        careerSkillsCount = controller.careerSkillPointsCount;
         careerSkills = controller.careerSkillPoints;
         pickupSkills = controller.pickupSkillPoints;
         SkillPointsMatchController= true;
         pickupSkillsChangeCounter = 0;
+        careerSkillsCount = 40;
     }
 
    /* private void DoSkillPointsMatch(bool skillPointsMatch)
@@ -252,4 +251,5 @@ public class StatAlotter : MonoBehaviour
     {
         return button.GetComponentInParent<TMP_Text>();
     }
+    
 }
