@@ -191,17 +191,14 @@ public class Controller : MonoBehaviour
         {
             if (currentDicePoolDropdown.AccessPreviousText() == "--")
             {
-                pickupSkillPointsCount -= intelligence;
                 intelligence = currentStatValue;
-                pickupSkillPointsCount += intelligence;
-                statAlloter.SkillPointsMatchController = false;
+                statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
             }
             else
             {
                 pickupSkillPointsCount -= intelligence;
                 intelligence = currentStatValue;
-                pickupSkillPointsCount += intelligence;
-                statAlloter.SkillPointsMatchController = false;
+                statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
             }
 
         }
@@ -210,15 +207,13 @@ public class Controller : MonoBehaviour
             if (currentDicePoolDropdown.AccessPreviousText() == "--")
             {
                 reflex = currentStatValue;
-                pickupSkillPointsCount += reflex;
-                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+                statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
             }
             else
             {
                 pickupSkillPointsCount -= reflex;
                 reflex = currentStatValue;
-                pickupSkillPointsCount += reflex;
-                pickupSkillPoints.text = pickupSkillPointsCount.ToString();
+                statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
             }
         }
         else if (currentText == "Technical Ability:")

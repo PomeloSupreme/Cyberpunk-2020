@@ -47,12 +47,7 @@ public class StatAlotter : MonoBehaviour
         pickupSkillsChangeCounter = 0;
     }
 
-    private void Update()
-    {
-        DoSkillPointsMatch(SkillPointsMatchController);
-    }
-
-    private void DoSkillPointsMatch(bool skillPointsMatch)
+   /* private void DoSkillPointsMatch(bool skillPointsMatch)
     {
         if (skillPointsMatch == false)
         {
@@ -61,6 +56,11 @@ public class StatAlotter : MonoBehaviour
             skillPointsMatch = true;
             Debug.Log("Points Match Check| controller pickupCount" + controller.pickupSkillPointsCount + " | change counter " + pickupSkillsChangeCounter);
         }
+    }*/
+   public void AddReflexOrIntToPointPool(int reflexStat, int intelligenceStat)
+    {
+        pickupSkillsCount = (reflexStat + intelligenceStat + pickupSkillsChangeCounter);
+        pickupSkills.text = IfAddZeroToFront(pickupSkillsCount);
     }
     public void SetCurrentButton(UnityEngine.UI.Button button)
     {
