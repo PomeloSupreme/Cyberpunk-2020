@@ -100,26 +100,53 @@ public class Controller : MonoBehaviour
          * because we shift the values on the objectList +1 to account for everything sliding up, 
          * but in the event you pull from the bottom of the dropdown list, the +1 shift still occurs even though
          * no such shift as occurred*/
-      
+        int trueValue = dropdown.value;
+        for (int i = 0; i < chosenValues.Count(); i++)
+        {
+            if (trueValue == chosenValues[i])
+            {
+                trueValue++;
+            }
+        }
         if (dropdown.options[dropdown.value].text == "--")
         {
             chosenValues.Remove(previousValue);
             Debug.Log("Chose Empty");
         }
-        else if (chosenValues.Contains(dropdown.value + chosenValues.Count()))
+        //I suspect the last of the issue lies in this else if
+        else if (chosenValues.Contains(dropdown.value))
         {
             Debug.Log("Number Already Chosen");
         }
         //This might also be wrong below
         else if (previousValue == 0)
         {
-            chosenValues.Add(dropdown.value + chosenValues.Count());
+            /*int trueValue = dropdown.value;
+            for(int i = 0; i < chosenValues.Count(); i++)
+            {
+                if (trueValue == chosenValues[i])
+                {
+                    trueValue++;
+                }
+            }*/
+            chosenValues.Add(trueValue);
+            //chosenValues.Add(dropdown.value + chosenValues.Count());
         }
         else
         {
-            chosenValues.Add(dropdown.value + chosenValues.Count());
+            /*int trueValue = dropdown.value;
+            for (int i = 0; i < chosenValues.Count(); i++)
+            {
+                if (trueValue == chosenValues[i])
+                {
+                    trueValue++;
+                }
+            }*/
+            chosenValues.Add(trueValue);
+            //chosenValues.Add(dropdown.value + chosenValues.Count());
             chosenValues.Remove(previousValue);
         }
+        Debug.Log(trueValue);
     }
         private void CorrectSelfDropdownOptions(TMP_Dropdown currentDropdown, DicePoolDropdown currentDicePoolDropdown, string textOfCurrentValue, List<string> optionDependentDiceRolls)
     {
@@ -160,7 +187,7 @@ public class Controller : MonoBehaviour
     {//Double Checked, Should Be Good
         for (int i = 0; i < chosenDropdownValues.Count; i++)
         {
-            optionList.RemoveAt((chosenList[i]) - i);
+            optionList.RemoveAt(chosenList[i]);
         }
         return optionList;
     }

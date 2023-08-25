@@ -242,10 +242,16 @@ public class StatAlotter : MonoBehaviour
     }
     private string IfAddZeroToFront(int numberInQuestion)
     {
-        if (numberInQuestion <9)
+        if (numberInQuestion > (-10)
+            && numberInQuestion < 0)
+        {
+            return "-0" + (numberInQuestion * (-1)).ToString();
+        }
+        else if (numberInQuestion <=9)
         {
             return "0" + numberInQuestion.ToString();
         }
+        
         else
         {
             return numberInQuestion.ToString();
