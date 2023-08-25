@@ -6,11 +6,11 @@ using UnityEngine;
 public class PickupSkills : MonoBehaviour
 {
     // Start is called before the first frame update
-    Controller controller;
+    StatAlotter statAlotter;
 
     public void Start()
     {
-        controller = GetComponentInParent<Controller>();
-        controller.SetPickupSkillPoints(GetComponent<TMP_Text>());
+        statAlotter = GetComponentInParent<StatAlotter>();
+        statAlotter.SetPickupSkillPoints(GetComponent<TMP_Text>());
     }
 }

@@ -15030,10 +15030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b803be7d49f8c449f6b25591e5ef8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  careerSkillPointsCount: 0
-  pickupSkillPointsCount: 0
-  careerSkillPoints: {fileID: 0}
-  pickupSkillPoints: {fileID: 0}
 --- !u!114 &805794192
 MonoBehaviour:
   m_ObjectHideFlags: 0

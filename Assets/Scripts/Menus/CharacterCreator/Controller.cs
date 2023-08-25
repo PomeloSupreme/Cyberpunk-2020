@@ -14,21 +14,18 @@ public class Controller : MonoBehaviour
 {
     //Statistic & Skill variables
 
-    int intelligence;
-    int reflex;
-    int technicalAbility;
-    int cool;
-    int attractiveness;
-    int luck;
-    int movementAllowance;
-    int bodyType;
-    int empathy;
+    int intelligence =2;
+    int reflex = 2;
+    int technicalAbility = 2;
+    int cool = 2;
+    int attractiveness = 2;
+    int luck = 2;
+    int movementAllowance = 2;
+    int bodyType = 2;
+    int empathy = 2;
 
     /*public int careerSkillPointsCount;
     public int pickupSkillPointsCount;*/
-
-    public TMP_Text careerSkillPoints;
-    public TMP_Text pickupSkillPoints;
         
     //OnDicePoolButton() Variables
     
@@ -68,7 +65,6 @@ public class Controller : MonoBehaviour
         string textOfCurrentValue = currentDropdown.options[currentDropdown.value].text;
         currentDicePoolDropdown = currentDropdown.GetComponentInParent<DicePoolDropdown>();
         int previousValue = currentDicePoolDropdown.AccessPreviousValue();
-        
 
         /*Debug.Log("Previous Value is " + previousValue);
         Debug.Log("Dropdown Value is " + currentDropdown.value);
@@ -252,8 +248,7 @@ public class Controller : MonoBehaviour
         randomDiceRolls = DicePoolRandomizer(randomDiceRolls);
         DicePoolActivator(pointAllotments, dicePoolDropdowns, statButtons, randomDiceRolls);
         RollTextFiller(rollTexts);
-        pickupSkillPoints.text = "00";
-        statAlloter.AddReflexOrIntToPointPool(0, 0);
+        statAlloter.AddReflexOrIntToPointPool(0, 0, 0);
         intelligence = 0;
         reflex = 0;
     }
@@ -313,10 +308,10 @@ public class Controller : MonoBehaviour
         coroutine = LateStart(0.001f);
         StartCoroutine(coroutine);
         secondaryPointsPanel = GameObject.FindGameObjectWithTag("SecondaryPointsPool");
-        statAlloter.AddReflexOrIntToPointPool(2, 2);
-        intelligence = 2;
-        reflex = 2;
         statAlloter = GetComponent<StatAlotter>();
+        statAlloter.AddReflexOrIntToPointPool(2, 2);
+        /*intelligence = 2;
+        reflex = 2;*/
     }
     IEnumerator LateStart(float waitTime)
     {
@@ -326,9 +321,7 @@ public class Controller : MonoBehaviour
         foreach (GameObject dicepooldropdown in dicePoolDropdowns)
         {
             dicepooldropdown.SetActive(false);
-        }
-        careerSkillPoints.text = ("40");
-        pickupSkillPoints.text = ("04");    
+        }   
     }
     public void SetCurrentDropdown (TMP_Dropdown referencedDropdown)
     {
@@ -357,8 +350,8 @@ public class Controller : MonoBehaviour
             secondaryPointsPanel.SetActive(true);
             dicePoolPanel.SetActive(false);
             pointsPanel.SetActive(true);
-            pickupSkillPoints.text = "04";
-        statAlloter.AddReflexOrIntToPointPool(2, 2);
+            statAlloter.AddReflexOrIntToPointPool(2, 2, 0);
+            statAlloter.AddReflexOrIntToPointPool(2, 2);
             intelligence = 2;
             reflex = 2;
     }
@@ -459,7 +452,6 @@ public class Controller : MonoBehaviour
         }
         else if (currentText == "Reflex:")
         {
-            
             reflex = currentStatValue;
             statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
         }
@@ -528,14 +520,6 @@ public class Controller : MonoBehaviour
             pointAllotment.SetActive(true);
             pointAllotment.GetComponent<TMP_Text>().text = "02";
         }
-    }
-    public void SetCareerSkillPoints(TMP_Text tMP_Text)
-    {
-        careerSkillPoints = tMP_Text;
-    }
-    public void SetPickupSkillPoints(TMP_Text tMP_Text)
-    {
-        pickupSkillPoints = tMP_Text;
     }
     
 }

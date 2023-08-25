@@ -39,13 +39,11 @@ public class StatAlotter : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller>();
-        careerSkills = controller.careerSkillPoints;
-        pickupSkills = controller.pickupSkillPoints;
-        SkillPointsMatchController= true;
         pickupSkillsChangeCounter = 0;
+        pickupSkillsCount = 4;
+        pickupSkills.text = "04";
         careerSkillsCount = 40;
     }
-
    /* private void DoSkillPointsMatch(bool skillPointsMatch)
     {
         if (skillPointsMatch == false)
@@ -56,8 +54,14 @@ public class StatAlotter : MonoBehaviour
             Debug.Log("Points Match Check| controller pickupCount" + controller.pickupSkillPointsCount + " | change counter " + pickupSkillsChangeCounter);
         }
     }*/
-   public void AddReflexOrIntToPointPool(int reflexStat, int intelligenceStat)
+    public void AddReflexOrIntToPointPool(int reflexStat, int intelligenceStat)
     {
+        pickupSkillsCount = (reflexStat + intelligenceStat + pickupSkillsChangeCounter);
+        pickupSkills.text = IfAddZeroToFront(pickupSkillsCount);
+    }
+    public void AddReflexOrIntToPointPool(int reflexStat, int intelligenceStat, int pointCounter)
+    {
+        pickupSkillsChangeCounter = 0;
         pickupSkillsCount = (reflexStat + intelligenceStat + pickupSkillsChangeCounter);
         pickupSkills.text = IfAddZeroToFront(pickupSkillsCount);
     }
@@ -251,5 +255,12 @@ public class StatAlotter : MonoBehaviour
     {
         return button.GetComponentInParent<TMP_Text>();
     }
-    
+    public void SetPickupSkillPoints (TMP_Text tmpText)
+    {
+        pickupSkills = tmpText;
+    }
+    public void SetCareerSkillPoints(TMP_Text tmpText)
+    {
+        careerSkills = tmpText;
+    }
 }

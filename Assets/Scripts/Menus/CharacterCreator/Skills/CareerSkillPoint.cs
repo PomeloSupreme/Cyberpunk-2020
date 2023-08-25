@@ -5,16 +5,12 @@ using UnityEngine;
 
 public class CareerSkillPoint : MonoBehaviour
 {
-    Controller controller;
+    StatAlotter statAlotter;
 
     public void Start()
     {
-        controller = GetComponentInParent<Controller>();
-        controller.SetCareerSkillPoints(GetComponent<TMP_Text>());
-    }
-
-    public void ReportButton()
-    {
-        controller.SetCurrentButton(GetComponent<UnityEngine.UI.Button>());
+        statAlotter = GetComponentInParent<StatAlotter>();
+        statAlotter.SetCareerSkillPoints(GetComponent<TMP_Text>());
+        GetComponent<TMP_Text>().text = "40";
     }
 }
