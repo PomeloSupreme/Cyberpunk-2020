@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,54 +12,48 @@ using UnityEngine.UIElements;
 
 public class DicePoolDropdown : MonoBehaviour
 {
-    int previousValue;
-    string previousText;
-    string currentText;
+    Tuple<int, string> previousSelectedTuple;
+    Tuple<int, string> currentSelectedTuple = new Tuple <int, string>(0, "--");
     Controller controller;
-
-
-    
-
-
+    List<Tuple<int, string>> currentList = new List<Tuple<int, string>>();
 
     public void Start()
     {
         controller = GetComponentInParent<Controller>();
-        previousValue = 0;
-        currentText = "--";
     }
 
+    public Tuple<int, string> ConvertOptionValueToTuple(int optionValue)
+    {
+        Tuple<int, string> dropdownSelectedTuple = currentList[optionValue];
+        return dropdownSelectedTuple;
+    }
     public void ReportDropdownToController()
     {
         controller.SetCurrentDropdown(GetComponent<TMP_Dropdown>());
     }
 
-    public void ChangePreviousValue(int currentValue)
+    public void ChangePreviousSelectedTuple()
     {
-        previousValue = currentValue;
+        previousSelectedTuple = currentSelectedTuple;
     }
 
-    public int AccessPreviousValue()
+    public Tuple<int, string> AccessPreviousTuple()
     {
-        return previousValue;
+        return previousSelectedTuple;
     }
 
-    public void ChangeCurrentText(string text)
+    public void ChangeCurrentSelectedTuple(Tuple<int, string> currentTuple)
     {
-        currentText = text;
+        currentSelectedTuple = currentTuple;
     }
 
     public string AccessCurrentText()
     {
-        return currentText;
+        return currentSelectedTuple.Item2;
     }
     public string AccessPreviousText()
     {
-        return previousText;
-    }
-    public void ChangePreviousText(string text)
-    {
-        previousText = text;
+        return previousSelectedTuple.Item2;
     }
 
     
