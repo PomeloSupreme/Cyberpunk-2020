@@ -70,19 +70,24 @@ public class Controller : MonoBehaviour
         Debug.Log("Dropdown Value is " + currentDropdown.value);
         Debug.Log("Dropdown Value + Count is " + currentDropdown.value + " " + chosenDropdownValues.Count());
         Debug.Log("Dropdown Chosen List Count is " + chosenDropdownValues.Count);*/
-        //Takes the value from the selected dropdown option and correspsonds it to the currentList
-        //Checks whether the option was empty or for a new value and sets that value to the currentSelectedTuple
-        //and the previous currentSellectedTuple to the previousSelectedTuple
+        //--Takes the value from the selected dropdown option and correspsonds it to the currentList
+        //--Checks whether the option was empty or for a new value and sets that value to the currentSelectedTuple
+        //--and the previous currentSellectedTuple to the previousSelectedTuple
+
         DropdownChoice(currentDicePoolDropdown, currentDropdown, chosenDropdownValues);
-        //Generates a list of tuples that are currently available after a new value has been selected
-        availableOptionsList.AddRange(AvailableOptionsList(randomDiceRolls));
-        //Generates a list of strings that is going to be fed into the optionData of the TMP_Dropdown
+
+        //--Generates a list of tuples that are currently available after a new value has been selected
+
+        availableOptionsList.AddRange(GenerateAvailableOptionsList(randomDiceRolls));
+
+        //--Generates a list of strings that is going to be fed into the optionData of the TMP_Dropdown
+
         List<string> availableOptionsListStrings = new List<string>();
         availableOptionsListStrings.AddRange(GenerateOptionListFromRandomDiceRolls(availableOptionsList));
 
         PopulateDropdownOptions(dicePoolDropdowns, availableOptionsListStrings);
 
-        //CorrectSelfDropdownOptions(currentDropdown, currentDicePoolDropdown, availableOptionsListStrings);
+        //--CorrectSelfDropdownOptions(currentDropdown, currentDicePoolDropdown, availableOptionsListStrings);
 
         SetStatForDropdown(currentDicePoolDropdown, currentDropdown);
 
@@ -140,12 +145,13 @@ public class Controller : MonoBehaviour
         currentDicePoolDropdown.ChangePreviousSelectedTupleToCurrent();
         currentDicePoolDropdown.ChangeCurrentSelectedTuple(currentSelectedTuple);
     }
-        public List<Tuple<int,string>> AvailableOptionsList(List<Tuple<int, string>> randomDiceRolls)
+        public List<Tuple<int,string>> GenerateAvailableOptionsList(List<Tuple<int, string>> randomDiceRolls)
     { 
         List<Tuple<int, string>> availableOptionsList = new List<Tuple<int, string>>();
+        availableOptionsList.AddRange(randomDiceRolls);
         foreach(GameObject dicePoolDropdown in dicePoolDropdowns)
         {
-            for(int i = 0; i < availableOptionsList.Count(); i++)
+            for(int i = 1; i < availableOptionsList.Count(); i++)
             {
                 if (availableOptionsList[i] == GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple())
                 {
@@ -156,7 +162,7 @@ public class Controller : MonoBehaviour
         }
         return availableOptionsList;
     }
-        //I suspect the last of the issue lies in this else if
+        //--I suspect the last of the issue lies in this else if
         /*else if (chosenValues.Contains(dropdown.value))
         {
             Debug.Log("Number Already Chosen");
@@ -323,7 +329,7 @@ public class Controller : MonoBehaviour
         intelligence = 0;
         reflex = 0;
     }
-    private List<Tuple<int, string>> DicePoolRandomizer(List<Tuple<int, string>> randomDiceRolls)
+        private List<Tuple<int, string>> DicePoolRandomizer(List<Tuple<int, string>> randomDiceRolls)
     {
         Tuple<int, string> startTuple = new Tuple<int, string>(0, "--");
         randomDiceRolls.Clear();
