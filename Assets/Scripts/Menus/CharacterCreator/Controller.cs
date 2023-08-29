@@ -41,7 +41,7 @@ public class Controller : MonoBehaviour
 
     //OnDicePoolDropDown() Variables
 
-    List<Tuple<int, string>> chosenDropdownValues = new List<Tuple<int, string>>();
+    //List<Tuple<int, string>> chosenDropdownValues = new List<Tuple<int, string>>();
     TMP_Dropdown currentDropdown;
     DicePoolDropdown currentDicePoolDropdown;
 
@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour
         //--Checks whether the option was empty or for a new value and sets that value to the currentSelectedTuple
         //--and the previous currentSellectedTuple to the previousSelectedTuple
 
-        DropdownChoice(currentDicePoolDropdown, currentDropdown, chosenDropdownValues);
+        DropdownChoice(currentDicePoolDropdown, currentDropdown);
 
         //--Generates a list of tuples that are currently available after a new value has been selected
 
@@ -85,7 +85,7 @@ public class Controller : MonoBehaviour
         List<string> availableOptionsListStrings = new List<string>();
         availableOptionsListStrings.AddRange(GenerateOptionListFromRandomDiceRolls(availableOptionsList));
 
-        PopulateDropdownOptions(dicePoolDropdowns, availableOptionsListStrings);
+        PopulateDropdownOptions(dicePoolDropdowns, availableOptionsListStrings, availableOptionsList);
 
         //--CorrectSelfDropdownOptions(currentDropdown, currentDicePoolDropdown, availableOptionsListStrings);
 
@@ -101,7 +101,7 @@ public class Controller : MonoBehaviour
         Debug.Log("BT" + bodyType);
         Debug.Log("Emp" + empathy);*/
     }
-        private void DropdownChoice(DicePoolDropdown currentDicePoolDropdown, TMP_Dropdown dropdown, List<Tuple<int, string>> chosenValues)
+        private void DropdownChoice(DicePoolDropdown currentDicePoolDropdown, TMP_Dropdown dropdown)
     {
         /*The Problem is in this code. If you pull from the top of the dropdown list there isnt an issue
          * because we shift the values on the objectList +1 to account for everything sliding up, 
@@ -109,22 +109,42 @@ public class Controller : MonoBehaviour
          * no such shift as occurred*/
         bool dropdownHasNotChanged = false;
         Tuple<int, string> previousSelectedTuple = currentDicePoolDropdown.AccessCurrentTuple();
-        Tuple<int, string> currentSelectedTuple = currentDicePoolDropdown.AccessCurrentList()[dropdown.value];
-        Debug.Log("Current Selected Tuple = " + currentSelectedTuple);
+        Tuple<int, string> currentSelectedTuple = null;
+        Debug.Log("Current dropdown value " + dropdown.value);
+
+        if (currentDicePoolDropdown.AccessCurrentList().Count() == 1)
+        {
+            if (dropdown.value == 0)
+            {
+                Debug.Log("No Change Has Been Made");
+            }
+            else if (dropdown.value == 1)
+            {
+                currentSelectedTuple = new Tuple<int, string>(0, "--");
+            }
+            else
+            {
+                Debug.Log("Error at If 115");
+            }
+        }
+        else
+        {
+            currentSelectedTuple = currentDicePoolDropdown.AccessCurrentList()[dropdown.value];
+        }
+
+        //Debug.Log("Current Selected Tuple = " + currentSelectedTuple);
+        Debug.Log("List Count " + currentDicePoolDropdown.AccessCurrentList().Count);
+        Tuple<int, string> choseEmptyTuple = new Tuple<int, string>(0, "--");
+
         if (dropdown.options[dropdown.value].text == "--")
         {
-            for (int i = 0; i < chosenValues.Count; i++)
-            {
-                if (chosenValues[i] == previousSelectedTuple)
-                {
-                    chosenValues.RemoveAt(i);
-                }
-            }
+            currentDicePoolDropdown.ChangePreviousSelectedTupleToCurrent();
+            currentDicePoolDropdown.ChangeCurrentSelectedTuple(choseEmptyTuple);
             Debug.Log("Chose Empty");
         }
         else
         {
-            for (int i = 0; i < chosenValues.Count(); i++)
+           /* for (int i = 0; i < chosenValues.Count(); i++)
             {
                 if (chosenValues[i] == previousSelectedTuple)
                 {
@@ -140,10 +160,11 @@ public class Controller : MonoBehaviour
             if (!dropdownHasNotChanged)
             {
 
-            }
+            }*/
+
+            currentDicePoolDropdown.ChangePreviousSelectedTupleToCurrent();
+            currentDicePoolDropdown.ChangeCurrentSelectedTuple(currentSelectedTuple);
         }
-        currentDicePoolDropdown.ChangePreviousSelectedTupleToCurrent();
-        currentDicePoolDropdown.ChangeCurrentSelectedTuple(currentSelectedTuple);
     }
         public List<Tuple<int,string>> GenerateAvailableOptionsList(List<Tuple<int, string>> randomDiceRolls)
     { 
@@ -213,10 +234,11 @@ public class Controller : MonoBehaviour
             currentDicePoolDropdown.ChangeCurrentSelectedTuple(currentTuple);
         }
     }*/
-        private void PopulateDropdownOptions(GameObject[] dicePoolDropdowns, List<string> optionList)
+        private void PopulateDropdownOptions(GameObject[] dicePoolDropdowns, List<string> optionList, List<Tuple<int, string>> currentList)
     {
         foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
         {
+            GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().ChangeCurrentListToNewList(currentList);
             List<string> specificOptionDependentDiceRolls = new List<string>();
             if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item1 == 0)
             {
@@ -232,14 +254,14 @@ public class Controller : MonoBehaviour
             }
         }
     }
-        private List<string> RemoveSelectedDropdownOptions(List<string> optionList, List<int> chosenList)
+       /* private List<string> RemoveSelectedDropdownOptions(List<string> optionList, List<int> chosenList)
     {//Double Checked, Should Be Good
         for (int i = 0; i < chosenDropdownValues.Count; i++)
         {
             optionList.RemoveAt(chosenList[i]);
         }
         return optionList;
-    }
+    }*/
         private TMP_Dropdown GetDropdownFromPanel(GameObject panel)
     {
         return panel.GetComponentInChildren<TMP_Dropdown>();
@@ -394,9 +416,11 @@ public class Controller : MonoBehaviour
     }
         private void SetInitialCurrentList(List<Tuple<int, string>> randomDiceRolls)
     {
+        Tuple<int, string> intialCurrentTuple = new Tuple<int, string>(0, "--");
         foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
         {
-            GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().ChangeCurrentListToNewList(randomDiceRolls);  
+            GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().ChangeCurrentListToNewList(randomDiceRolls);
+            GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().ChangeCurrentSelectedTuple(intialCurrentTuple);
         }
     }
     private void Intialization()

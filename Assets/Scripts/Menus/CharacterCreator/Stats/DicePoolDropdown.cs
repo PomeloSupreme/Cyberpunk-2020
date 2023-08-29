@@ -16,6 +16,7 @@ public class DicePoolDropdown : MonoBehaviour
     Tuple<int, string> currentSelectedTuple = new Tuple <int, string>(0, "--");
     Controller controller;
     List<Tuple<int, string>> currentList = new List<Tuple<int, string>>();
+    Tuple<int, string> choseEmptyTuple = new Tuple<int, string>(0, "--");
 
     public void Start()
     {
@@ -24,8 +25,16 @@ public class DicePoolDropdown : MonoBehaviour
 
     public Tuple<int, string> ConvertOptionValueToTuple(int optionValue)
     {
-        Tuple<int, string> dropdownSelectedTuple = currentList[optionValue];
-        return dropdownSelectedTuple;
+        if (currentList.Count <= 2
+            && optionValue == 1)
+        {
+            return choseEmptyTuple;
+        }
+        else
+        {
+            Tuple<int, string> dropdownSelectedTuple = currentList[optionValue];
+            return dropdownSelectedTuple;
+        }
     }
     public void ReportDropdownToController()
     {
@@ -52,6 +61,7 @@ public class DicePoolDropdown : MonoBehaviour
     }
     public List<Tuple<int, string>> AccessCurrentList()
     {
+
         return currentList;
     }
     public void ChangeCurrentListToNewList(List<Tuple<int, string>> tupleList)
