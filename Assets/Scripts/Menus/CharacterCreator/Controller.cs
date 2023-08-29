@@ -61,25 +61,28 @@ public class Controller : MonoBehaviour
 
     public void OnDicePoolDropdown()
     {
+        currentDicePoolDropdown = currentDropdown.GetComponent<DicePoolDropdown>();
+        List<Tuple<int, string>> availableOptionsList = new List<Tuple<int, string>>();
         Tuple <int, string> currentTuple = currentDicePoolDropdown.ConvertOptionValueToTuple(currentDropdown.value);
         currentDicePoolDropdown = currentDropdown.GetComponentInParent<DicePoolDropdown>();
-        int previousValue = currentDicePoolDropdown.AccessPreviousTuple().Item1;
 
         /*Debug.Log("Previous Value is " + previousValue);
         Debug.Log("Dropdown Value is " + currentDropdown.value);
         Debug.Log("Dropdown Value + Count is " + currentDropdown.value + " " + chosenDropdownValues.Count());
         Debug.Log("Dropdown Chosen List Count is " + chosenDropdownValues.Count);*/
-
+        //Takes the value from the selected dropdown option and correspsonds it to the currentList
+        //Checks whether the option was empty or for a new value and sets that value to the currentSelectedTuple
+        //and the previous currentSellectedTuple to the previousSelectedTuple
         DropdownChoice(currentDicePoolDropdown, currentDropdown, chosenDropdownValues);
+        //Generates a list of tuples that are currently available after a new value has been selected
+        availableOptionsList.AddRange(AvailableOptionsList(randomDiceRolls));
+        //Generates a list of strings that is going to be fed into the optionData of the TMP_Dropdown
+        List<string> availableOptionsListStrings = new List<string>();
+        availableOptionsListStrings.AddRange(GenerateOptionListFromRandomDiceRolls(availableOptionsList));
 
-        currentDicePoolDropdown.ChangePreviousSelectedTuple();
-        optionDependentDiceRolls.AddRange(randomDiceRolls);
+        PopulateDropdownOptions(dicePoolDropdowns, availableOptionsListStrings);
 
-        optionDependentDiceRolls = RemoveSelectedDropdownOptions(optionDependentDiceRolls, chosenDropdownValues);
-
-        PopulateDropdownOptions(dicePoolDropdowns, optionDependentDiceRolls);
-
-        CorrectSelfDropdownOptions(currentDropdown, currentDicePoolDropdown, textOfCurrentValue, optionDependentDiceRolls);
+        //CorrectSelfDropdownOptions(currentDropdown, currentDicePoolDropdown, availableOptionsListStrings);
 
         SetStatForDropdown(currentDicePoolDropdown, currentDropdown);
 
@@ -93,15 +96,16 @@ public class Controller : MonoBehaviour
         Debug.Log("BT" + bodyType);
         Debug.Log("Emp" + empathy);*/
     }
-    private void DropdownChoice(DicePoolDropdown currentDicePoolDropdown, TMP_Dropdown dropdown, List<Tuple<int, string>> chosenValues)
+        private void DropdownChoice(DicePoolDropdown currentDicePoolDropdown, TMP_Dropdown dropdown, List<Tuple<int, string>> chosenValues)
     {
         /*The Problem is in this code. If you pull from the top of the dropdown list there isnt an issue
          * because we shift the values on the objectList +1 to account for everything sliding up, 
          * but in the event you pull from the bottom of the dropdown list, the +1 shift still occurs even though
          * no such shift as occurred*/
         bool dropdownHasNotChanged = false;
-        currentDicePoolDropdown.ChangePreviousSelectedTuple(currentDicePoolDropdown.
-
+        Tuple<int, string> previousSelectedTuple = currentDicePoolDropdown.AccessCurrentTuple();
+        Tuple<int, string> currentSelectedTuple = currentDicePoolDropdown.AccessCurrentList()[dropdown.value];
+        Debug.Log("Current Selected Tuple = " + currentSelectedTuple);
         if (dropdown.options[dropdown.value].text == "--")
         {
             for (int i = 0; i < chosenValues.Count; i++)
@@ -133,8 +137,25 @@ public class Controller : MonoBehaviour
 
             }
         }
+        currentDicePoolDropdown.ChangePreviousSelectedTupleToCurrent();
+        currentDicePoolDropdown.ChangeCurrentSelectedTuple(currentSelectedTuple);
     }
-        
+        public List<Tuple<int,string>> AvailableOptionsList(List<Tuple<int, string>> randomDiceRolls)
+    { 
+        List<Tuple<int, string>> availableOptionsList = new List<Tuple<int, string>>();
+        foreach(GameObject dicePoolDropdown in dicePoolDropdowns)
+        {
+            for(int i = 0; i < availableOptionsList.Count(); i++)
+            {
+                if (availableOptionsList[i] == GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple())
+                {
+                    availableOptionsList.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        return availableOptionsList;
+    }
         //I suspect the last of the issue lies in this else if
         /*else if (chosenValues.Contains(dropdown.value))
         {
@@ -170,9 +191,9 @@ public class Controller : MonoBehaviour
         }
         Debug.Log(trueValue);
     }*/
-    private void CorrectSelfDropdownOptions(TMP_Dropdown currentDropdown, DicePoolDropdown currentDicePoolDropdown, Tuple<int, string> currentTuple, List<string> optionDependentDiceRolls)
+    /*private void CorrectSelfDropdownOptions(TMP_Dropdown currentDropdown, DicePoolDropdown currentDicePoolDropdown, List<string> optionDependentDiceRolls)
     {
-        if (currentTuple.Item2 == "--")
+        if (currentTuple.Item1 == 0)
         {
             currentDropdown.ClearOptions();
             currentDropdown.AddOptions(optionDependentDiceRolls);
@@ -185,27 +206,27 @@ public class Controller : MonoBehaviour
             currentDropdown.AddOptions(optionDependentDiceRolls);
             currentDicePoolDropdown.ChangeCurrentSelectedTuple(currentTuple);
         }
-    }
-    private void PopulateDropdownOptions(GameObject[] dicePoolDropdowns, List<string> optionList)
+    }*/
+        private void PopulateDropdownOptions(GameObject[] dicePoolDropdowns, List<string> optionList)
     {
         foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
         {
             List<string> specificOptionDependentDiceRolls = new List<string>();
-            if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentText() == "--")
+            if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item1 == 0)
             {
                 GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
                 GetDropdownFromPanel(dicePoolDropdown).AddOptions(optionList);
             }
-            else if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentText() != "--")
+            else if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item1 != 0)
             {
                 specificOptionDependentDiceRolls.AddRange(optionList);
-                specificOptionDependentDiceRolls.Insert(0, GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentText());
+                specificOptionDependentDiceRolls.Insert(0, GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item2);
                 GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
                 GetDropdownFromPanel(dicePoolDropdown).AddOptions(specificOptionDependentDiceRolls);
             }
         }
     }
-    private List<string> RemoveSelectedDropdownOptions(List<string> optionList, List<int> chosenList)
+        private List<string> RemoveSelectedDropdownOptions(List<string> optionList, List<int> chosenList)
     {//Double Checked, Should Be Good
         for (int i = 0; i < chosenDropdownValues.Count; i++)
         {
@@ -213,11 +234,11 @@ public class Controller : MonoBehaviour
         }
         return optionList;
     }
-    private TMP_Dropdown GetDropdownFromPanel(GameObject panel)
+        private TMP_Dropdown GetDropdownFromPanel(GameObject panel)
     {
         return panel.GetComponentInChildren<TMP_Dropdown>();
     }
-    private void SetStatForDropdown(DicePoolDropdown dicePoolDropdown, TMP_Dropdown dropdown)
+        private void SetStatForDropdown(DicePoolDropdown dicePoolDropdown, TMP_Dropdown dropdown)
     {
         int currentStatValue;
         string currentText;
@@ -234,7 +255,7 @@ public class Controller : MonoBehaviour
 
         if (currentText == "Intelligence:")
         {
-            if (currentDicePoolDropdown.AccessPreviousText() == "--")
+            if (currentDicePoolDropdown.AccessCurrentTuple().Item1 == 0)
             {
                 intelligence = currentStatValue;
                 statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
@@ -249,7 +270,7 @@ public class Controller : MonoBehaviour
         }
         else if (currentText == "Reflex:")
         {
-            if (currentDicePoolDropdown.AccessPreviousText() == "--")
+            if (currentDicePoolDropdown.AccessCurrentTuple().Item1 == 0)
             {
                 reflex = currentStatValue;
                 statAlloter.AddReflexOrIntToPointPool(reflex, intelligence);
@@ -296,6 +317,7 @@ public class Controller : MonoBehaviour
     {
         randomDiceRolls = DicePoolRandomizer(randomDiceRolls);
         DicePoolActivator(pointAllotments, dicePoolDropdowns, statButtons, randomDiceRolls);
+        SetInitialCurrentList(randomDiceRolls);
         RollTextFiller(rollTexts);
         statAlloter.AddReflexOrIntToPointPool(0, 0, 0);
         intelligence = 0;
@@ -363,6 +385,13 @@ public class Controller : MonoBehaviour
             optionList.Add(randomDiceRolls[i].Item2);
         }
         return optionList;
+    }
+        private void SetInitialCurrentList(List<Tuple<int, string>> randomDiceRolls)
+    {
+        foreach (GameObject dicePoolDropdown in dicePoolDropdowns)
+        {
+            GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().ChangeCurrentListToNewList(randomDiceRolls);  
+        }
     }
     private void Intialization()
     {

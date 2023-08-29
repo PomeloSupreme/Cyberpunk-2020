@@ -32,7 +32,7 @@ public class DicePoolDropdown : MonoBehaviour
         controller.SetCurrentDropdown(GetComponent<TMP_Dropdown>());
     }
 
-    public void ChangePreviousSelectedTuple()
+    public void ChangePreviousSelectedTupleToCurrent()
     {
         previousSelectedTuple = currentSelectedTuple;
     }
@@ -46,15 +46,17 @@ public class DicePoolDropdown : MonoBehaviour
     {
         currentSelectedTuple = currentTuple;
     }
-
-    public string AccessCurrentText()
+    public Tuple<int, string> AccessCurrentTuple()
     {
-        return currentSelectedTuple.Item2;
+        return currentSelectedTuple;
     }
-    public string AccessPreviousText()
+    public List<Tuple<int, string>> AccessCurrentList()
     {
-        return previousSelectedTuple.Item2;
+        return currentList;
     }
-
-    
+    public void ChangeCurrentListToNewList(List<Tuple<int, string>> tupleList)
+    {
+        currentList.Clear();
+        currentList.AddRange(tupleList);
+    }    
 }
