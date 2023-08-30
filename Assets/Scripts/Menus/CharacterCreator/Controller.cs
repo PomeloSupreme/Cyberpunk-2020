@@ -338,7 +338,7 @@ public class Controller : MonoBehaviour
         {
             empathy = currentStatValue;
         }
-
+        Debug.Log(intelligence);
     }
 
     public void OnDicePoolButton()

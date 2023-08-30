@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -28,7 +29,8 @@ public class StatAlotter : MonoBehaviour
     int medicalTech;
     int resources;
     int streetdeal;
-
+    
+    
     
 
 
@@ -268,5 +270,24 @@ public class StatAlotter : MonoBehaviour
     public void SetCareerSkillPoints(TMP_Text tmpText)
     {
         careerSkills = tmpText;
+    }
+    public List<Skill> MakeSkills()
+    {
+        List<Skill> list = new List<Skill>();
+        list.Add(new Skill("Authority"));
+        list.Add(new Skill("Charisma"));
+
+        return list;
+    }
+}
+
+public class Skill : MonoBehaviour
+{
+    string skillName;
+    int skillValue;
+
+    public Skill(string name)
+    {
+        skillName = name;
     }
 }
