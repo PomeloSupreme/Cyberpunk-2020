@@ -127,13 +127,15 @@ public class Controller : MonoBehaviour
                 Debug.Log("Error at If 115");
             }
         }
+        else if (currentDicePoolDropdown.AccessCurrentTuple().Item1 != 0)
+        {
+            currentSelectedTuple = currentDicePoolDropdown.AccessCurrentList()[dropdown.value - 1];
+        }
         else
         {
             currentSelectedTuple = currentDicePoolDropdown.AccessCurrentList()[dropdown.value];
         }
 
-        //Debug.Log("Current Selected Tuple = " + currentSelectedTuple);
-        Debug.Log("List Count " + currentDicePoolDropdown.AccessCurrentList().Count);
         Tuple<int, string> choseEmptyTuple = new Tuple<int, string>(0, "--");
 
         if (dropdown.options[dropdown.value].text == "--")

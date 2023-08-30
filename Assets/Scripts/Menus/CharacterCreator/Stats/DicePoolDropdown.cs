@@ -22,7 +22,7 @@ public class DicePoolDropdown : MonoBehaviour
     {
         controller = GetComponentInParent<Controller>();
     }
-
+    //Problem lies Here
     public Tuple<int, string> ConvertOptionValueToTuple(int optionValue)
     {
         if (currentList.Count <= 2
