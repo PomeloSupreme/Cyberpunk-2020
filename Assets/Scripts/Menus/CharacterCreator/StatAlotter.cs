@@ -19,16 +19,9 @@ public class StatAlotter : MonoBehaviour
     TMP_Text careerSkills;
     TMP_Text pickupSkills;
 
-    int authority;
-    int charismaticLeadership;
-    int combatSense;
-    int credibility;
-    int family;
-    int interfaceSkill;
-    int juryRig;
-    int medicalTech;
-    int resources;
-    int streetdeal;
+    GameObject[] skillPointToggles;
+
+    public TMP_Dropdown roleDropdown;
     
     
     
@@ -45,6 +38,7 @@ public class StatAlotter : MonoBehaviour
         pickupSkillsCount = 4;
         pickupSkills.text = "04";
         careerSkillsCount = 40;
+        skillPointToggles = GameObject.FindGameObjectsWithTag("SkillPointToggle");
     }
    /* private void DoSkillPointsMatch(bool skillPointsMatch)
     {
@@ -74,13 +68,21 @@ public class StatAlotter : MonoBehaviour
     public void OnSkillPlusButton()
     {
         bool isPlus = true;
-        if (currentButton.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == false)
+        if (currentButton.GetComponentInParent<Skill>().IsSpecialAbility
+            && currentButton.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == false)
+        {
+            Debug.Log("Special Ability Is Not Available For This Role");
+        }
+        else if (currentButton.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == false)
         {
             if (pickupSkillsCount == 0)
             {
                 Debug.Log("pickup skills at zero");
             }
-            
+            else if (currentButton.GetComponentInParent<Skill>().GetSkillLevel() >= 10)
+            {
+                Debug.Log("Skill cannot be greater than 10");
+            }
             else
             {
                 pickupSkillsCount--;
@@ -102,6 +104,10 @@ public class StatAlotter : MonoBehaviour
             {
                 Debug.Log("career skills at zero");
             }
+            else if(currentButton.GetComponentInParent<Skill>().GetSkillLevel() >= 10)
+            {
+                Debug.Log("Skill cannot be greater than 10");
+            }
             else
             {
                 careerSkillsCount--;
@@ -122,7 +128,12 @@ public class StatAlotter : MonoBehaviour
     public void OnSkillMinusButton()
     {
         bool isPlus = false;
-        if (currentButton.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == false)
+        if (currentButton.GetComponentInParent<Skill>().IsSpecialAbility
+            && currentButton.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == false)
+        {
+            Debug.Log("Special Ability Is Not Available For This Role");
+        }
+        else if (currentButton.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == false)
         {
             TMP_Text pointPool = currentButton.GetComponentInParent<TMP_Text>();
                 if (pointPool.text == "00")
@@ -182,10 +193,9 @@ public class StatAlotter : MonoBehaviour
             pickupSkillsChangeCounter++;
         }
         Debug.Log("pickupSkillsChangeCounter = " + pickupSkillsChangeCounter);
-        if (ToggleText == "Authority")
-        {
-            authority += changeValue;
-            button.GetComponentInParent<TMP_Text>().text = IfAddZeroToFront(authority);
+
+        button.GetComponentInParent<Skill>().SetSkillLevel((button.GetComponentInParent<Skill>().GetSkillLevel()) + changeValue);
+        button.GetComponentInParent<TMP_Text>().text = IfAddZeroToFront(button.GetComponentInParent<Skill>().GetSkillLevel());
             /*if (authority < 9)
             {
                 button.GetComponentInParent<TMP_Text>().text = "0" + authority.ToString();
@@ -194,53 +204,7 @@ public class StatAlotter : MonoBehaviour
             {
                 button.GetComponentInParent<TMP_Text>().text = authority.ToString();
             }*/
-        }
-        if (ToggleText == "Charisma")
-        {
-            charismaticLeadership += changeValue;
-            button.GetComponentInParent<TMP_Text>().text = IfAddZeroToFront(charismaticLeadership);
-        }
-        if (ToggleText == "Combat Sense")
-        {
-            combatSense += changeValue;
-            button.GetComponentInParent<TMP_Text>().text = IfAddZeroToFront(combatSense);
-        }
-        if (ToggleText == "Credibility")
-        {
-            credibility += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(credibility);
-        }
-        if (ToggleText == "Family")
-        {
-            family += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(family);
-        }
-        if (ToggleText == "Interface")
-        {
-            interfaceSkill += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(interfaceSkill); 
-        }
-        if (ToggleText == "Jury Rig")
-        {
-            juryRig += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(juryRig);
-        }
-        if (ToggleText == "Medical Tech")
-        {
-            medicalTech += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(medicalTech);
-        }
-        if (ToggleText == "Resources")
-        {
-            resources += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(resources);
-        }
-        if (ToggleText == "Streetdeal")
-        {
-            streetdeal += changeValue;
-            TMPTextTextFromButton(button).text = IfAddZeroToFront(streetdeal);
-        }
-
+        
     }
     private string IfAddZeroToFront(int numberInQuestion)
     {
@@ -271,23 +235,73 @@ public class StatAlotter : MonoBehaviour
     {
         careerSkills = tmpText;
     }
-    public List<Skill> MakeSkills()
+    public void OnRoleDropdown()
     {
-        List<Skill> list = new List<Skill>();
-        list.Add(new Skill("Authority"));
-        list.Add(new Skill("Charisma"));
+        foreach (GameObject skillPointToggle in skillPointToggles)
+        {
+            skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
+        }
+        int selectedRole = roleDropdown.value;
+        List<string> careerSkills = new List<string>();
 
-        return list;
+        switch(selectedRole)
+        {
+            case 0:
+                string[] copSkills = { "Authority", "Awareness", "Handgun", "Insight", "Athletics", "Education", "Brawling", "Melee", "Interrogation", "Streetwise" };
+                careerSkills.AddRange(copSkills); 
+                break;
+            case 1:
+                string[] corpSkills = { "Resources", "Awareness", "Insight", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Style", "Grooming" };
+                careerSkills.AddRange(corpSkills);
+                break;
+            case 2:
+                string[] fixerSkills = { "Streetdeal", "Awareness", "Forgery", "Handgun", "Brawling", "Melee", "Pick Lock", "Pick Pocket", "Intimidate", "Persuasion" };
+                careerSkills.AddRange(fixerSkills);
+                break;
+            case 3:
+                string[] mediaSkills = { "Credibility", "Awareness", "Insight", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Style", "Grooming" };
+                careerSkills.AddRange(mediaSkills);
+                break;
+            case 4:
+                string[] medTechSkills = { "Medical Tech", "Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Op", "Library Search", "Medicine", "Zoology", "Insight" };
+                careerSkills.AddRange(medTechSkills);
+                break;
+            case 5:
+                string[] netrunnerSkills = { "Interface", "Awareness", "Basic Tech", "Education", "System Know.", "CyberTech", "C-Deck Design", "Composition", "Electronics", "Programming" };
+                careerSkills.AddRange(netrunnerSkills);
+                break;
+            case 6:
+                string[] nomadSkills = { "Family", "Awareness", "Endurance", "Melee", "Rifle", "Drive", "Basic Tech", "Survival", "Brawling", "Athletics" };
+                careerSkills.AddRange(nomadSkills);
+                break;
+            case 7:
+                string[] rockerSkills = { "Charisma", "Awareness", "Perform", "Style", "Composition", "Brawling", "Play Instrument", "Streetwise", "Persuasion", "Seduction" };
+                careerSkills.AddRange(rockerSkills);
+                break;
+            case 8:
+                string[] soloSkills = { "Combat Sense", "Awareness", "Handgun", "Martial Art", "Melee", "Weapons Tech", "Rifle", "Athletics", "SMG", "Stealth" };
+                careerSkills.AddRange(soloSkills);
+                break;
+            case 9:
+                string[] techieSkills = { "Jury Rig", "Awareness", "Basic Tech", "CyberTech", "Teaching", "Education", "Electronics", "Tech Skill", "Tech Skill", "Tech Skill" };
+                careerSkills.AddRange(techieSkills);
+                break;
+        }
+
+        foreach (GameObject skillPointToggle in skillPointToggles)
+        {
+            string skillName = skillPointToggle.GetComponent<Skill>().SkillName;
+            for (int i = 0; i < careerSkills.Count; i++)
+            {
+                if (careerSkills[i] == skillName)
+                {
+                    skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
+                }
+            }
+        }
     }
+    
+
 }
 
-public class Skill : MonoBehaviour
-{
-    string skillName;
-    int skillValue;
 
-    public Skill(string name)
-    {
-        skillName = name;
-    }
-}

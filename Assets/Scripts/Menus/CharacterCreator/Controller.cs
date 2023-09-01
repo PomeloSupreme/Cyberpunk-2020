@@ -81,7 +81,6 @@ public class Controller : MonoBehaviour
         availableOptionsList.AddRange(GenerateAvailableOptionsList(randomDiceRolls));
 
         //--Generates a list of strings that is going to be fed into the optionData of the TMP_Dropdown
-
         List<string> availableOptionsListStrings = new List<string>();
         availableOptionsListStrings.AddRange(GenerateOptionListFromRandomDiceRolls(availableOptionsList));
 
@@ -242,17 +241,19 @@ public class Controller : MonoBehaviour
         {
             GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().ChangeCurrentListToNewList(currentList);
             List<string> specificOptionDependentDiceRolls = new List<string>();
-            if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item1 == 0)
+            Tuple<int, string> currentTuple = GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple();
+            if (currentTuple.Item1 == 0)
             {
                 GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
                 GetDropdownFromPanel(dicePoolDropdown).AddOptions(optionList);
             }
-            else if (GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item1 != 0)
+            else if (currentTuple.Item1 != 0)
             {
                 specificOptionDependentDiceRolls.AddRange(optionList);
                 specificOptionDependentDiceRolls.Insert(0, GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().AccessCurrentTuple().Item2);
                 GetDropdownFromPanel(dicePoolDropdown).ClearOptions();
                 GetDropdownFromPanel(dicePoolDropdown).AddOptions(specificOptionDependentDiceRolls);
+                //GetDropdownFromPanel(dicePoolDropdown).GetComponentInParent<DicePoolDropdown>().InsertCurrentTupleToFrontOfCurrentList(currentTuple);
             }
         }
     }

@@ -69,4 +69,8 @@ public class DicePoolDropdown : MonoBehaviour
         currentList.Clear();
         currentList.AddRange(tupleList);
     }    
+    public void InsertCurrentTupleToFrontOfCurrentList(Tuple<int, string> currentTuple)
+    {
+        currentList.Insert(0, currentTuple);
+    }
 }
