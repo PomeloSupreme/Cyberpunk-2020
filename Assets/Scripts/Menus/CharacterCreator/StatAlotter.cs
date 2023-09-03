@@ -22,6 +22,9 @@ public class StatAlotter : MonoBehaviour
     GameObject[] skillPointToggles;
 
     public TMP_Dropdown roleDropdown;
+
+    public GameObject ADVSkillsPanel;
+    public GameObject CommonSkillsPanel;
     
     
     
