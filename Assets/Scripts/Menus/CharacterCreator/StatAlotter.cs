@@ -68,7 +68,7 @@ public class StatAlotter : MonoBehaviour
     {
         currentButton = button;
     }
-    public void OnSkillPlusButton()
+   /* public void OnSkillPlusButton()
     {
         bool isPlus = true;
         if (currentButton.GetComponentInParent<Skill>().IsSpecialAbility
@@ -179,7 +179,7 @@ public class StatAlotter : MonoBehaviour
             
         }
         
-    }
+    }*/
     public void SetSkill(UnityEngine.UI.Button button, bool isPlus)
     {
         TMP_Text SkillPointValue = button.GetComponentInParent<TMP_Text>();
@@ -197,8 +197,8 @@ public class StatAlotter : MonoBehaviour
         }
         Debug.Log("pickupSkillsChangeCounter = " + pickupSkillsChangeCounter);
 
-        button.GetComponentInParent<Skill>().SetSkillLevel((button.GetComponentInParent<Skill>().GetSkillLevel()) + changeValue);
-        button.GetComponentInParent<TMP_Text>().text = IfAddZeroToFront(button.GetComponentInParent<Skill>().GetSkillLevel());
+        //button.GetComponentInParent<Skill>().SetSkillLevel((button.GetComponentInParent<Skill>().GetSkillLevel()) + changeValue);
+       // button.GetComponentInParent<TMP_Text>().text = IfAddZeroToFront(button.GetComponentInParent<Skill>().GetSkillLevel());
             /*if (authority < 9)
             {
                 button.GetComponentInParent<TMP_Text>().text = "0" + authority.ToString();
@@ -303,8 +303,38 @@ public class StatAlotter : MonoBehaviour
             }
         }
     }
-    
-
+    public int ReportPickUpSkills()
+    {
+        return pickupSkillsCount;
+    }
+    public void IncrementPickUpSkills(int change)
+    {
+        pickupSkillsCount += change;
+        if (pickupSkillsCount <= 9)
+        {
+            pickupSkills.text = "0" + pickupSkillsCount.ToString();
+        }
+        else
+        {
+            pickupSkills.text = pickupSkillsCount.ToString();
+        }
+    }
+    public int ReportCareerSkills()
+    {
+        return careerSkillsCount;
+    }
+    public void IncrementCareerSkills(int change)
+    {
+        careerSkillsCount+= change;
+        if (careerSkillsCount <= 9)
+        {
+            careerSkills.text = "0" + careerSkillsCount.ToString();
+        }
+        else
+        {
+            careerSkills.text = careerSkillsCount.ToString();
+        }
+    }
 }
 
 
