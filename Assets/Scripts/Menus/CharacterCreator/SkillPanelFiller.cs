@@ -10,7 +10,7 @@ public class SkillPanelFiller : MonoBehaviour
     float totalYMoved = 0;
     Vector3 panelPosition;
     float panelHeight;
-    float timesToShiftRight = 1;
+    float timesToShiftRight = 0;
     int objectsToMoveRight;
     float listGeneratorWidth;
 
@@ -18,16 +18,15 @@ public class SkillPanelFiller : MonoBehaviour
     {
         panelPosition = transform.position;
         panelHeight = this.GetComponent<RectTransform>().rect.height;
-        for(int i = 0; i < ListGenerators.Count; i++)
+        for (int i = 0; i < ListGenerators.Count; i++)
         {
-            float yMovement = 0;
             ListGenerator currentListGenerator = ListGenerators[i].GetComponent<ListGenerator>();
             listGeneratorWidth = currentListGenerator.GetComponent<RectTransform>().rect.width;
             Vector3 rightShift = new Vector3(timesToShiftRight, 1, 1);
             Vector3 currentVector = currentListGenerator.transform.position ;
-            currentListGenerator.transform.position = Vector3.Scale(rightShift, currentVector) + new Vector3(0, -totalYMoved, 0);
-            yMovement += ((currentListGenerator.ObjectToBeReplicated.GetComponent<RectTransform>().rect.height * currentListGenerator.SkillNames.Count) + currentListGenerator.HeightOfListGenerator()); 
-            totalYMoved+= yMovement;
+            float distanceToMoveRight = currentListGenerator.GetComponent<RectTransform>().rect.width * timesToShiftRight;
+            currentListGenerator.transform.position = currentVector + new Vector3(0, -totalYMoved, 0) + new Vector3(distanceToMoveRight, 0, 0);
+            totalYMoved += ((currentListGenerator.ObjectToBeReplicated.GetComponent<RectTransform>().rect.height * currentListGenerator.SkillNames.Count) + currentListGenerator.HeightOfListGenerator()); 
             if (totalYMoved > panelHeight)
             {
                 timesToShiftRight++;
@@ -36,13 +35,13 @@ public class SkillPanelFiller : MonoBehaviour
                 totalYMoved = 0;
                 while (objectsToMoveRight> 0)
                 {
-                    currentListGenerator.listOfObjects[listOfObjectSize - objectsToMoveRight].GetComponent<RectTransform>().position = Vector3.Scale(rightShift, currentVector);
+                    currentListGenerator.listOfObjects[listOfObjectSize - objectsToMoveRight].GetComponent<RectTransform>().position = panelPosition + new Vector3(0, -totalYMoved, 0) + new Vector3(distanceToMoveRight, 0, 0);
                     totalYMoved += currentListGenerator.ObjectToBeReplicated.GetComponent<RectTransform>().rect.height;
                     objectsToMoveRight--;
                 }
             }
 
         }
-    }
+    }   
 
 }
