@@ -34,11 +34,12 @@ public class SkillPanelFiller : MonoBehaviour
                 objectsToMoveRight = (int)Math.Ceiling((totalYMoved - panelHeight)/currentListGenerator.ObjectToBeReplicated.GetComponent<RectTransform>().rect.height);
                 int listOfObjectSize = currentListGenerator.listOfObjects.Count;
                 totalYMoved = 0;
-                /*while (objectsToMoveRight> 0)
+                while (objectsToMoveRight> 0)
                 {
                     currentListGenerator.listOfObjects[listOfObjectSize - objectsToMoveRight].GetComponent<RectTransform>().position = Vector3.Scale(rightShift, currentVector);
                     totalYMoved += currentListGenerator.ObjectToBeReplicated.GetComponent<RectTransform>().rect.height;
-                }*/
+                    objectsToMoveRight--;
+                }
             }
 
         }
