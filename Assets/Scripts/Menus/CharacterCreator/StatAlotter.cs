@@ -296,8 +296,25 @@ public class StatAlotter : MonoBehaviour
             string skillName = skillPointToggle.GetComponent<Skill>().SkillName;
             for (int i = 0; i < careerSkills.Count; i++)
             {
+                Skill currentSkill = skillPointToggle.GetComponentInChildren<Skill>();
+                UnityEngine.UI.Toggle currentToggle = skillPointToggle.GetComponentInChildren<UnityEngine.UI.Toggle>();
                 if (careerSkills[i] == skillName)
                 {
+                    if(currentSkill.GetSkillLevel() > 0)
+                    {
+                        if (currentToggle.isOn)
+                        {
+                            IncrementCareerSkills(currentSkill.GetSkillLevel());
+                            currentSkill.SetSkillLevel(0);
+                            currentSkill.SetSkillLevelText();
+                        }
+                        else if (!currentToggle.isOn)
+                        {
+                            IncrementPickUpSkills(currentSkill.GetSkillLevel());
+                            currentSkill.SetSkillLevel(0);
+                            currentSkill.SetSkillLevelText();
+                        }
+                    }
                     skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
                 }
             }

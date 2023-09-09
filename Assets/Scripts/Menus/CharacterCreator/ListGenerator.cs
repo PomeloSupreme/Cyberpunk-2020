@@ -11,7 +11,6 @@ public class ListGenerator : MonoBehaviour
     public string ParentName;
     public GameObject ObjectToBeReplicated;
     public List<GameObject> listOfObjects;
-    public int NumberOfObjectsToMake;
     public List<string> SkillNames;
     public bool AreTheseSpecialAbilities;
     float yValueOfObject;
@@ -40,9 +39,13 @@ public class ListGenerator : MonoBehaviour
         {
             Skill currentSkill = listOfObjects[i].GetComponent<Skill>();
             currentSkill.SkillName = SkillNames[i];
-            if (AreTheseSpecialAbilities)
+            if (AreTheseSpecialAbilities == true)
             {
-                currentSkill.IsSpecialAbility= true;
+                currentSkill.IsSpecialAbility = true;
+            }
+            else if (AreTheseSpecialAbilities == false)
+            {
+                currentSkill.IsSpecialAbility= false;
             }
         }
     }

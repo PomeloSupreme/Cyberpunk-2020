@@ -74,7 +74,8 @@ public class SkillPanelFiller : MonoBehaviour
                 }
             }
         }
-        float scale = 1;
+        //supposed to scale the skills whenever they go past the screen. 
+        /*float scale = 1;
         listGeneratorWidth = 600;
         //float listGeneratorWidth = this.GetComponent<RectTransform>().rect.width;
         //if (timesToShiftRight * listGeneratorWidth > this.GetComponent<RectTransform>().rect.width)
@@ -90,23 +91,7 @@ public class SkillPanelFiller : MonoBehaviour
                     scale -= 0.1f;
                 }
             }
-        }
-    }
-    private void Update()
-    {
-        float scale = 1;
-
-        if(timesToShiftRight*listGeneratorWidth > this.GetComponent<RectTransform>().rect.width)
-        {
-            while(timesToShiftRight * listGeneratorWidth > this.GetComponent<RectTransform>().rect.width)
-            {
-                foreach (Transform transform in transform)
-                {
-                    transform.localScale = (new Vector3(scale, scale, scale));
-                    scale--;
-                }
-            }
-        }
+        }*/
     }
 
 }

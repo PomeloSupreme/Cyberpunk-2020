@@ -52,7 +52,7 @@ public class Skill : MonoBehaviour
             {
                 statAlotter.IncrementPickUpSkills(-1);
                 skillLevel++;
-                SetSkillLevelText(skillLevel);
+                SetSkillLevelText();
             }
         }
         else if (this.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == true)
@@ -69,7 +69,7 @@ public class Skill : MonoBehaviour
             {
                 statAlotter.IncrementCareerSkills(-1);
                 skillLevel++;
-                SetSkillLevelText(skillLevel);
+                SetSkillLevelText();
             }
         }
         if(skillLevel == 10)
@@ -100,7 +100,7 @@ public class Skill : MonoBehaviour
             {
                 statAlotter.IncrementPickUpSkills(1);
                 skillLevel--;
-                SetSkillLevelText(skillLevel);
+                SetSkillLevelText();
             }
         }
         else if (this.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == true)
@@ -114,7 +114,7 @@ public class Skill : MonoBehaviour
             {
                 statAlotter.IncrementCareerSkills(1);
                 skillLevel--;
-                SetSkillLevelText(skillLevel);
+                SetSkillLevelText();
             }
 
         }
@@ -127,7 +127,7 @@ public class Skill : MonoBehaviour
             PlusButton.SetActive(true);
         }
     }
-    public void SetSkillLevelText(int skillLevel)
+    public void SetSkillLevelText()
     {
         if (skillLevel <= 9)
         {

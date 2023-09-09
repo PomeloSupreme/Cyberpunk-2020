@@ -1036,8 +1036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddf3ea1a193ae84bbeccab6852c1611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillName: Authority
-  IsSpecialAbility: 1
+  SkillName: 
+  IsSpecialAbility: 0
   PlusButton: {fileID: 42358113831511444}
   MinusButton: {fileID: 42358112915592128}
 --- !u!114 &5127870605977316986
