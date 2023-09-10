@@ -21,6 +21,7 @@ public class Skill : MonoBehaviour
         this.GetComponentInChildren<Text>().text = SkillName;
         MinusButton.SetActive(false);
         skillLevelText = GetComponentInChildren<TMP_Text>();
+        //SetSkillLevelText();
     }
 
     public void SetSkillLevel(int currentSkillLevel)
@@ -65,6 +66,13 @@ public class Skill : MonoBehaviour
             {
                 Debug.Log("Error: Skill cannot be greater than 10");
             }
+            else if (IsSpecialAbility)
+            {
+                statAlotter.IncrementCareerSkills(-1);
+                skillLevel++;
+                SetSkillLevelText();
+                statAlotter.AdjustCreditsForRoleLevel(skillLevel, SkillName);
+            }
             else
             {
                 statAlotter.IncrementCareerSkills(-1);
@@ -76,7 +84,7 @@ public class Skill : MonoBehaviour
         {
             PlusButton.SetActive(false);
         }
-        if(skillLevel == 1)
+        if(skillLevel > 1)
         {
             MinusButton.SetActive(true);
         }
@@ -101,6 +109,7 @@ public class Skill : MonoBehaviour
                 statAlotter.IncrementPickUpSkills(1);
                 skillLevel--;
                 SetSkillLevelText();
+                statAlotter.AdjustCreditsForRoleLevel(skillLevel, SkillName);
             }
         }
         else if (this.GetComponentInParent<UnityEngine.UI.Toggle>().isOn == true)
@@ -110,6 +119,13 @@ public class Skill : MonoBehaviour
             {
                 Debug.Log("Skill Points Empty");
             }
+            else if (IsSpecialAbility)
+            {
+                statAlotter.IncrementCareerSkills(1);
+                skillLevel--;
+                SetSkillLevelText();
+                statAlotter.AdjustCreditsForRoleLevel(skillLevel, SkillName);
+            }
             else
             {
                 statAlotter.IncrementCareerSkills(1);
@@ -118,13 +134,18 @@ public class Skill : MonoBehaviour
             }
 
         }
+        if (IsSpecialAbility
+            && skillLevel == 1)
+        {
+            ButtonState(false, false);
+        }
         if (skillLevel == 0)
         {
-            MinusButton.SetActive(false);
+            ButtonState(false, false);
         }
         if (skillLevel == 9)
         {
-            PlusButton.SetActive(true);
+            ButtonState(true, true);
         }
     }
     public void SetSkillLevelText()
@@ -138,6 +159,46 @@ public class Skill : MonoBehaviour
             skillLevelText.text = skillLevel.ToString();
         }
     }
+    public void ButtonState(bool isActive, bool isPlus)
+    {
+        if (isPlus)
+        {
+            if (isActive)
+            {
+                PlusButton.SetActive(true);
+            }
+            else if(!isActive)
+            {
+                PlusButton.SetActive(false);
+            }
+        }
+        else if (!isPlus)
+        {
+            if (isActive)
+            {
+                MinusButton.SetActive(true);
+            }
+            else if (!isActive)
+            {
+                MinusButton.SetActive(false);
+            }
+        }
+    }
+    public void ResetSkillToZero()
+    {
+        skillLevel = 0;
+        skillLevelText.text = "00";
+        MinusButton.SetActive(false);
+        PlusButton.SetActive(true);
+    }
+    public void RoleSkillSelected()
+    {
+        skillLevel = 1;
+        skillLevelText.text = "01";
+        MinusButton.SetActive(false);
+        PlusButton.SetActive(true);
+    }
+    
 }
 
 

@@ -45,7 +45,7 @@ public class ListGenerator : MonoBehaviour
             }
             else if (AreTheseSpecialAbilities == false)
             {
-                currentSkill.IsSpecialAbility= false;
+                currentSkill.IsSpecialAbility = false;
             }
         }
     }

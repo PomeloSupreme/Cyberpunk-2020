@@ -12,23 +12,22 @@ public class StatAlotter : MonoBehaviour
 {
     Controller controller;
     
+    
+
+    public TMP_Text careerSkills;
+    public TMP_Text pickupSkills;
+    public TMP_Text credits;
+
     int pickupSkillsCount;
     int careerSkillsCount;
     int pickupSkillsChangeCounter;
+    int creditsCount;
 
-    TMP_Text careerSkills;
-    TMP_Text pickupSkills;
+    private IEnumerator coroutine;
 
     GameObject[] skillPointToggles;
 
     public TMP_Dropdown roleDropdown;
-
-    public GameObject ADVSkillsPanel;
-    public GameObject CommonSkillsPanel;
-    
-    
-    
-
 
     UnityEngine.UI.Button currentButton;
 
@@ -41,18 +40,27 @@ public class StatAlotter : MonoBehaviour
         pickupSkillsCount = 4;
         pickupSkills.text = "04";
         careerSkillsCount = 40;
+        careerSkills.text = "40";
+        credits.text = "00";
         skillPointToggles = GameObject.FindGameObjectsWithTag("SkillPointToggle");
+        coroutine = LateStart(0.001f);
+        StartCoroutine(coroutine);
     }
-   /* private void DoSkillPointsMatch(bool skillPointsMatch)
+    IEnumerator LateStart(float waitTime)
     {
-        if (skillPointsMatch == false)
-        {
-            pickupSkillsCount = (controller.pickupSkillPointsCount + pickupSkillsChangeCounter);
-            pickupSkills.text = IfAddZeroToFront(pickupSkillsCount);
-            skillPointsMatch = true;
-            Debug.Log("Points Match Check| controller pickupCount" + controller.pickupSkillPointsCount + " | change counter " + pickupSkillsChangeCounter);
-        }
-    }*/
+        yield return new WaitForSeconds(waitTime);
+        OnRoleDropdown();
+    }
+    /* private void DoSkillPointsMatch(bool skillPointsMatch)
+     {
+         if (skillPointsMatch == false)
+         {
+             pickupSkillsCount = (controller.pickupSkillPointsCount + pickupSkillsChangeCounter);
+             pickupSkills.text = IfAddZeroToFront(pickupSkillsCount);
+             skillPointsMatch = true;
+             Debug.Log("Points Match Check| controller pickupCount" + controller.pickupSkillPointsCount + " | change counter " + pickupSkillsChangeCounter);
+         }
+     }*/
     public void AddReflexOrIntToPointPool(int reflexStat, int intelligenceStat)
     {
         pickupSkillsCount = (reflexStat + intelligenceStat + pickupSkillsChangeCounter);
@@ -240,10 +248,10 @@ public class StatAlotter : MonoBehaviour
     }
     public void OnRoleDropdown()
     {
-        foreach (GameObject skillPointToggle in skillPointToggles)
+        /*foreach (GameObject skillPointToggle in skillPointToggles)
         {
             skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
-        }
+        }*/
         int selectedRole = roleDropdown.value;
         List<string> careerSkills = new List<string>();
 
@@ -266,7 +274,7 @@ public class StatAlotter : MonoBehaviour
                 careerSkills.AddRange(mediaSkills);
                 break;
             case 4:
-                string[] medTechSkills = { "Medical Tech", "Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Op", "Library Search", "Medicine", "Zoology", "Insight" };
+                string[] medTechSkills = { "Med Tech", "Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Op", "Library Search", "Medicine", "Zoology", "Insight" };
                 careerSkills.AddRange(medTechSkills);
                 break;
             case 5:
@@ -293,29 +301,46 @@ public class StatAlotter : MonoBehaviour
 
         foreach (GameObject skillPointToggle in skillPointToggles)
         {
-            string skillName = skillPointToggle.GetComponent<Skill>().SkillName;
+            Skill currentSkill = skillPointToggle.GetComponent<Skill>();
+            UnityEngine.UI.Toggle currentToggle = skillPointToggle.GetComponentInChildren<UnityEngine.UI.Toggle>();
+            string skillName = currentSkill.SkillName;
+            bool isToggleOn = skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn;
+            bool nameMatch = false;
             for (int i = 0; i < careerSkills.Count; i++)
             {
-                Skill currentSkill = skillPointToggle.GetComponentInChildren<Skill>();
-                UnityEngine.UI.Toggle currentToggle = skillPointToggle.GetComponentInChildren<UnityEngine.UI.Toggle>();
                 if (careerSkills[i] == skillName)
                 {
-                    if(currentSkill.GetSkillLevel() > 0)
+                    nameMatch = true;
+                    if (currentSkill.GetSkillLevel() > 0)
                     {
-                        if (currentToggle.isOn)
+                        /*if (currentToggle.isOn)
                         {
-                            IncrementCareerSkills(currentSkill.GetSkillLevel());
+                            /*IncrementCareerSkills(currentSkill.GetSkillLevel());
                             currentSkill.SetSkillLevel(0);
                             currentSkill.SetSkillLevelText();
-                        }
-                        else if (!currentToggle.isOn)
+                        }*/
+                        if (!currentToggle.isOn)
                         {
                             IncrementPickUpSkills(currentSkill.GetSkillLevel());
-                            currentSkill.SetSkillLevel(0);
-                            currentSkill.SetSkillLevelText();
+                            currentSkill.ResetSkillToZero();
                         }
                     }
                     skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn = true;
+                    if (currentSkill.IsSpecialAbility)
+                    {
+                        IncrementCareerSkills(-1);
+                        currentSkill.RoleSkillSelected();
+                        AdjustCreditsForRoleLevel(currentSkill.GetSkillLevel(), currentSkill.SkillName);
+                    }
+                }
+            }
+            if (!nameMatch)
+            {
+                if (isToggleOn)
+                {
+                    IncrementCareerSkills(currentSkill.GetSkillLevel());
+                    currentSkill.ResetSkillToZero();
+                    currentToggle.isOn= false;
                 }
             }
         }
@@ -350,6 +375,162 @@ public class StatAlotter : MonoBehaviour
         else
         {
             careerSkills.text = careerSkillsCount.ToString();
+        }
+    }
+    public void AdjustCreditsForRoleLevel(int skillLevel, string skillName)
+    {
+        switch (skillName)
+        {
+            case "Charisma":
+                {
+                    int[] rockerCredits = { 1000, 1500, 2000, 5000, 8000, 1200 };
+                    if(skillLevel <= 5)
+                    {
+                        creditsCount= rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Combat Sense":
+                {
+                    int[] rockerCredits = { 2000,30000,4500,7000,9000,12000 };
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Authority":
+                {
+                    int[] rockerCredits = { 1000,1200,3000,5000,7000,9000};
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Resources":
+                {
+                    int[] rockerCredits = {1500,3000,5000,7000,9000,12000};
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Credibility":
+                {
+                    int[] rockerCredits = { 1000,1200,3000,5000,7000,10000 };
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Streetdeal":
+                {
+                    int[] rockerCredits = { 1500,3000,5000,7000,8000,10000};
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Jury Rig":
+                {
+                    int[] rockerCredits = { 1000,2000,3000,4000,5000,8000 };
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Interface":
+                {
+                    int[] rockerCredits = { 1000,2000,3000,5000,7000,10000 };
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Med Tech":
+                {
+                    int[] rockerCredits = { 1600,3000,5000,7000,10000,15000};
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
+            case "Family":
+                {
+                    int[] rockerCredits = { 1000,1500,2000,3000,4000,5000};
+                    if (skillLevel <= 5)
+                    {
+                        creditsCount = rockerCredits[0];
+                        credits.text = creditsCount.ToString();
+                    }
+                    else
+                    {
+                        creditsCount = rockerCredits[skillLevel - 5];
+                        credits.text = creditsCount.ToString();
+                    }
+                    break;
+                }
         }
     }
 }

@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -289.7, y: 196.9}
-  m_SizeDelta: {x: 153.7537, y: 28}
+  m_AnchoredPosition: {x: -290.5898, y: 199.56946}
+  m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &585045500696485451
 CanvasRenderer:
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -151,7 +151,6 @@ MonoBehaviour:
   ParentName: 
   ObjectToBeReplicated: {fileID: 4272960428223857988, guid: f534aabd0173a4145a7d81ab056f54a0, type: 3}
   listOfObjects: []
-  NumberOfObjectsToMake: 0
   SkillNames: []
   AreTheseSpecialAbilities: 0
   spacingBetweenSkills: 0
