@@ -17,6 +17,7 @@ public class SkillPanelFiller : MonoBehaviour
     public float segmentGap;
     public float columnGap;
     public float rightShift;
+    public bool hideAtStart;
 
     private void Start()
     {
@@ -74,6 +75,10 @@ public class SkillPanelFiller : MonoBehaviour
                     }
                 }
             }
+        }
+        if (hideAtStart)
+        {
+            this.gameObject.SetActive(false);
         }
         //supposed to scale the skills whenever they go past the screen. 
         /*float scale = 1;
