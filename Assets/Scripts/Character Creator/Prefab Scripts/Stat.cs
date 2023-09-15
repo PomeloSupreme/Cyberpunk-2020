@@ -12,7 +12,7 @@ public class Stat : MonoBehaviour
     public float HowMuchToFade;
     public string Name;
     public string Description;
-    public GameObject StatValue;
+    public TMP_Text StatValue;
     public GameObject DescriptionText;
     public GameObject buttonMinus;
     public GameObject buttonPlus;
@@ -30,7 +30,7 @@ public class Stat : MonoBehaviour
         DescriptionText.SetActive(true);
         ChangeTransparencyForImage(buttonMinus, HowMuchToFade);
         ChangeTransparencyForImage(buttonPlus, HowMuchToFade);
-        ChangeTransparencyForTMPText(this.GetComponent<GameObject>(), HowMuchToFade);
+        ChangeTransparencyForTMPText(GetComponent<TMP_Text>(), HowMuchToFade);
         ChangeTransparencyForTMPText(StatValue, HowMuchToFade);
     }
 
@@ -39,7 +39,7 @@ public class Stat : MonoBehaviour
         DescriptionText.SetActive(false);
         ChangeTransparencyForImage(buttonMinus, 1f);
         ChangeTransparencyForImage(buttonPlus, 1f);
-        ChangeTransparencyForTMPText(this.GetComponent<GameObject>(), 1f);
+        ChangeTransparencyForTMPText(this.GetComponent<TMP_Text>(), 1f);
         ChangeTransparencyForTMPText(StatValue, 1f);
     }
 
@@ -59,7 +59,7 @@ public class Stat : MonoBehaviour
         color.a= changeTransparency;
         gameObject.GetComponent<UnityEngine.UI.Image>().color = color;
     }
-    private void ChangeTransparencyForTMPText(GameObject gameObject, float changeTransparency)
+    private void ChangeTransparencyForTMPText(TMP_Text gameObject, float changeTransparency)
     {
         var color = gameObject.GetComponent<TMP_Text>().color;
         color.a= changeTransparency;

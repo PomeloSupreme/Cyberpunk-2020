@@ -575,7 +575,7 @@ MonoBehaviour:
     noticing things, remembering information. Almost every character type will need
     a high Intelligence, with Netrunners and Corporates requiring the highest of
     all.
-  StatValue: {fileID: 1049516944}
+  StatValue: {fileID: 1049516947}
   DescriptionText: {fileID: 832148377}
   buttonMinus: {fileID: 697592064}
   buttonPlus: {fileID: 418554166}
@@ -1949,7 +1949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.08627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
