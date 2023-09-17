@@ -114,6 +114,7 @@ public class CreatorController : MonoBehaviour
         else if (statValues[determineStatPositionInList(name)] != 0)
         {
             currentValueOptions.Add(statValues[determineStatPositionInList(name)]);
+            statValues[determineStatPositionInList(name)] = currentValueOptions[dropdownValue];
             currentValueOptions.RemoveAt(dropdownValue);
         }
         else

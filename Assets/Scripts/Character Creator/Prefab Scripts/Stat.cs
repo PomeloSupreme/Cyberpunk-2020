@@ -49,31 +49,31 @@ public class Stat : MonoBehaviour
     public void OnMinusButton()
     {
         int currentValue = statOverPanel.OnStatButtonReturnsStatValue(Name, false);
-        
+        StatValue.GetComponent<TMP_Text>().text = ConvertIntToTextAndDetermineZero(currentValue);
         if (currentValue == 2)
         {
-            buttonMinus.GetComponent<GameObject>().SetActive(false);
+            buttonMinus.SetActive(false);
         }
         if (currentValue == 9)
         {
-            buttonPlus.GetComponent<GameObject>().SetActive(true);
+            buttonPlus.SetActive(true);
         }
-        SetStatTextToControllerList();
+        
     }
 
     public void OnPlusButton()
     {
-        int currentValue = statOverPanel.OnStatButtonReturnsStatValue(name, true);
-
+        int currentValue = statOverPanel.OnStatButtonReturnsStatValue(Name, true);
+        StatValue.GetComponent<TMP_Text>().text = ConvertIntToTextAndDetermineZero(currentValue);
         if (currentValue == 3)
         {
-            buttonMinus.GetComponent<GameObject>().SetActive(true);
+            buttonMinus.SetActive(true);
         }
         if (currentValue == 10)
         {
-            buttonPlus.GetComponent<GameObject>().SetActive(false);
+            buttonPlus.SetActive(false);
         }
-        SetStatTextToControllerList();
+        
     }
     public void OnDropdown()
     {
@@ -106,7 +106,7 @@ public class Stat : MonoBehaviour
         int currentValue = creatorController.ReturnStatValue(Name);
         StatValue.GetComponent<TMP_Text>().text = ConvertIntToTextAndDetermineZero(currentValue);
     }
-    private string ConvertIntToTextAndDetermineZero(int value)
+    public string ConvertIntToTextAndDetermineZero(int value)
     {
         if( value < -9)
         {
@@ -118,7 +118,7 @@ public class Stat : MonoBehaviour
             return "-0" + (value * -1).ToString();
         }
         else if(value <= 9
-            && value > 0)
+            && value >= 0)
         {
             return "0" + value.ToString();
         }

@@ -117,6 +117,7 @@ public class StatOverPanel : MonoBehaviour
                 Debug.Log("Error OnRoleDropdown in StatTypeButton");
                 break;
         }
+        statPoints -= 18;
         UpdateStatPointPoolText();
     }
     public void SetButtonName()
@@ -145,7 +146,7 @@ public class StatOverPanel : MonoBehaviour
             return "-0" + (value * -1).ToString();
         }
         else if (value <= 9
-            && value > 0)
+            && value >= 0)
         {
             return "0" + value.ToString();
         }
@@ -172,7 +173,7 @@ public class StatOverPanel : MonoBehaviour
         int currentStatValue = creatorController.ReturnStatValue(name);
         if (isPlus)
         {
-            if (currentStatValue >= 0
+            if (statPoints > 0
                 && currentStatValue < 10)
             {
                 creatorController.IncrementStat(isPlus, name) ;
@@ -181,8 +182,7 @@ public class StatOverPanel : MonoBehaviour
         }
         else if (!isPlus)
         {
-            if (currentStatValue <= 10
-                && currentStatValue > 0)
+            if (currentStatValue > 2)
             {
                 creatorController.IncrementStat(isPlus, name);
                 statPoints++;
@@ -192,6 +192,7 @@ public class StatOverPanel : MonoBehaviour
         {
             Debug.Log("Error in OnStatButton, isPlus was not read properly");
         }
+        StatPointPoolText.GetComponent<TMP_Text>().text = ConvertIntToTextAndDetermineZero(statPoints);
         return creatorController.AccessStatValueList(name);
     }
     public void RandomizeStatPoints()
@@ -202,4 +203,5 @@ public class StatOverPanel : MonoBehaviour
             statPoints += Random.Range(1, 10);
         }
     }
+
 }
