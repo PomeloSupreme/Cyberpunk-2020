@@ -14,6 +14,7 @@ TagManager:
   - DicePoolButton
   - SecondaryPointsPool
   - SkillPointToggle
+  - Stat
   layers:
   - Default
   - TransparentFX

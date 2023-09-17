@@ -8,22 +8,11 @@ public class CreatorController : MonoBehaviour
     public GameObject PanelParent;
     private List<GameObject> panels = new List<GameObject>();
 
-    List<int> statValues = new List<int>();
-
-    enum Stat
-    {
-        Intelligence,
-        Reflex,
-        Technical,
-        Cool,
-        Attractiveness,
-        Luck,
-        Movement,
-        Body,
-        Empathy,
-    }
-
-
+    public List<int> statValues = new List<int>();
+    List<int> statValueOptions= new List<int>();
+    public List<int> currentValueOptions= new List<int>();
+    //int statPoints;
+    public GameObject[] Stats;
 
     private void Start()
     {
@@ -35,14 +24,13 @@ public class CreatorController : MonoBehaviour
         {
             panels.Add(panel);
         }
-
-        Debug.Log((int)Stat.Intelligence);
+        Stats = GameObject.FindGameObjectsWithTag("Stat");
     }
 
     private int determineStatPositionInList (string stat)
     {
         int statListPosition;
-        switch (name)
+        switch (stat)
         {
             case "Intelligence":
                 statListPosition = 0;
@@ -83,31 +71,80 @@ public class CreatorController : MonoBehaviour
         int statPositionInList = determineStatPositionInList(name);
         return statValues[statPositionInList];
     }
-    public int OnStatButtonReturnsStatValue(string name, bool isPLus)
+    public void RandomizeStatValueOptions()
     {
-        int statPositionInList = determineStatPositionInList(name);
-        int currentStatValue = statValues[statPositionInList];
-        if (isPLus)
+        statValueOptions.Clear();
+        for(int i = 0; i < 9; i++)
         {
-            if (currentStatValue >= 0
-                && currentStatValue < 10)
-            {
-                statValues[statPositionInList]++;
-            }
+            statValueOptions.Add(Random.Range(2, 10));
         }
-        else if (!isPLus)
+        currentValueOptions.Clear();
+        currentValueOptions.AddRange(statValueOptions);
+    }
+    
+    /*public int AccessStatPoints()
+    {
+        return statPoints;
+    }*/
+    /*public int AccessStatPoints(int newStatPointsValue)
+    {
+        statPoints= newStatPointsValue;
+        return statPoints;
+    }*/
+    public int AccessStatValueList(string name)
+    {
+        int index = determineStatPositionInList(name);
+        return statValues[index];
+    }
+    public int AccessStatValueOptionsList(int index)
+    {
+        return statValueOptions[index];
+    }
+    public List<int> AccessStatValueOptionsList()
+    {
+        return statValueOptions;
+    }
+    public void AdjustCurrentStatValueList(int dropdownValue, string name)
+    {
+        if (dropdownValue == -1)
         {
-            if (currentStatValue <= 10
-                && currentStatValue > 0)
-            {
-                statValues[statPositionInList]--;
-            }
+            currentValueOptions.Add(statValues[determineStatPositionInList(name)]);
+            statValues[determineStatPositionInList(name)] = 0;
+        }
+        else if (statValues[determineStatPositionInList(name)] != 0)
+        {
+            currentValueOptions.Add(statValues[determineStatPositionInList(name)]);
+            currentValueOptions.RemoveAt(dropdownValue);
         }
         else
         {
-            Debug.Log("Error in OnStatButton, isPlus was not read properly");
+            statValues[determineStatPositionInList(name)] = currentValueOptions[dropdownValue];
+            currentValueOptions.RemoveAt(dropdownValue);
         }
-        return statValues[statPositionInList];
+        
+        foreach(GameObject stat in Stats)
+        {
+            Stat statElement = stat.GetComponent<Stat>();
+            statElement.UpdateDropdownList(currentValueOptions, statValues[determineStatPositionInList(statElement.Name)]);
+        }
     }
-     
+    public void ResetStatValues(int resetValue)
+    {
+        statValues.Clear();
+        for (int i = 0; i < 9; i++)
+        {
+            statValues.Add(resetValue);
+        }
+    }
+    public void IncrementStat(bool isPlus, string name)
+    {
+        if (isPlus)
+        {
+            statValues[determineStatPositionInList(name)]++;
+        }
+        if (!isPlus)
+        {
+            statValues[determineStatPositionInList(name)]--;
+        }
+    }
 }

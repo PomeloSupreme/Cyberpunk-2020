@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 public class Stat : MonoBehaviour
 {
     public CreatorController creatorController;
+    public StatOverPanel statOverPanel;
     public float HowMuchToFade;
     public string Name;
     public string Description;
@@ -17,11 +18,11 @@ public class Stat : MonoBehaviour
     public GameObject DescriptionText;
     public GameObject buttonMinus;
     public GameObject buttonPlus;
+    public GameObject dropdown;
 
 
     private void Start()
     {
-        creatorController = GetComponentInParent<CreatorController>();
         GetComponent<TMP_Text>().text= Name + ":";
         DescriptionText.GetComponentInChildren<TMP_Text>().text = Description;
         DescriptionText.SetActive(false);
@@ -47,7 +48,7 @@ public class Stat : MonoBehaviour
 
     public void OnMinusButton()
     {
-        int currentValue = creatorController.OnStatButtonReturnsStatValue(Name, false);
+        int currentValue = statOverPanel.OnStatButtonReturnsStatValue(Name, false);
         
         if (currentValue == 2)
         {
@@ -62,7 +63,7 @@ public class Stat : MonoBehaviour
 
     public void OnPlusButton()
     {
-        int currentValue = creatorController.OnStatButtonReturnsStatValue(name, true);
+        int currentValue = statOverPanel.OnStatButtonReturnsStatValue(name, true);
 
         if (currentValue == 3)
         {
@@ -74,7 +75,20 @@ public class Stat : MonoBehaviour
         }
         SetStatTextToControllerList();
     }
-
+    public void OnDropdown()
+    {
+        TMP_Dropdown dropdownElement = dropdown.GetComponent<TMP_Dropdown>();
+        int correctedDropdownValue = dropdownElement.value;
+        if (creatorController.AccessStatValueList(Name) == 0)
+        {
+            correctedDropdownValue--;
+        }
+        else
+        {
+            correctedDropdownValue -= 2;
+        }
+        creatorController.AdjustCurrentStatValueList(correctedDropdownValue, Name);
+    }
     private void ChangeTransparencyForImage(GameObject gameObject, float changeTransparency)
     {
         var color = gameObject.GetComponent<UnityEngine.UI.Image>().color;
@@ -87,7 +101,7 @@ public class Stat : MonoBehaviour
         color.a= changeTransparency;
         gameObject.GetComponent<TMP_Text>().color = color;
     }
-    private void SetStatTextToControllerList()
+    public void SetStatTextToControllerList()
     {
         int currentValue = creatorController.ReturnStatValue(Name);
         StatValue.GetComponent<TMP_Text>().text = ConvertIntToTextAndDetermineZero(currentValue);
@@ -118,5 +132,48 @@ public class Stat : MonoBehaviour
             return "ERROR";
         }
     }
-
+    private List<string> ConvertListIntToStringIntDetermineZero(List<int> list)
+    {
+        List<string> result = new List<string>();
+        foreach (int i in list)
+        {
+            result.Add(ConvertIntToTextAndDetermineZero(i));
+        }
+        return result;
+    }
+    public void SetButtonOrDropdownActive(bool ButtonIsActive)
+        {
+        if (ButtonIsActive)
+        {
+            buttonMinus.SetActive(true);
+            buttonPlus.SetActive(true);
+            dropdown.SetActive(false);
+        }
+        else
+        {
+            buttonMinus.SetActive(false);
+            buttonPlus.SetActive(false);
+            dropdown.SetActive(true);
+        }
+    }
+    public void UpdateDropdownList(List<int> listOfInts, int currentValue)
+    {
+        List<string> dropdownDisplayList = new List<string>();
+        dropdownDisplayList.AddRange(ConvertListIntToStringIntDetermineZero(listOfInts));
+        TMP_Dropdown dropdownElement = dropdown.GetComponent<TMP_Dropdown>();
+        dropdownElement.ClearOptions();
+        if (currentValue == 0)
+        {
+            dropdownDisplayList.Insert(0, "--");
+            dropdownElement.AddOptions(dropdownDisplayList);
+        }
+        else
+        {
+            
+            dropdownDisplayList.Insert(0, ConvertIntToTextAndDetermineZero(currentValue));
+            dropdownDisplayList.Insert(1, "--");
+            dropdownElement.AddOptions(dropdownDisplayList);
+        }
+    }
+   
 }
