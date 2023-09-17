@@ -10,6 +10,7 @@ public class PanelSelectionButton : MonoBehaviour
     public GameObject[] PanelsToReveal;
     public GameObject[] PanelsToHide;
 
+
     private void Start()
     {
         this.GetComponentInChildren<TMP_Text>().text = name;

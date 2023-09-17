@@ -83,6 +83,7 @@ public class StatOverPanel : MonoBehaviour
         foreach (GameObject statName in Stats)
         {
             statName.GetComponentInChildren<Stat>().SetButtonOrDropdownActive(IsButtonActive);
+            statName.GetComponentInChildren<Stat>().buttonMinus.SetActive(false);
         }
     }
     private void PopulateRoleDropdown()
