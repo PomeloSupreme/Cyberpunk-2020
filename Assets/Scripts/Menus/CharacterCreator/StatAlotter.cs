@@ -301,7 +301,7 @@ public class StatAlotter : MonoBehaviour
 
         foreach (GameObject skillPointToggle in skillPointToggles)
         {
-            Skill currentSkill = skillPointToggle.GetComponent<Skill>();
+            SkillOld currentSkill = skillPointToggle.GetComponent<SkillOld>();
             UnityEngine.UI.Toggle currentToggle = skillPointToggle.GetComponentInChildren<UnityEngine.UI.Toggle>();
             string skillName = currentSkill.SkillName;
             bool isToggleOn = skillPointToggle.GetComponent<UnityEngine.UI.Toggle>().isOn;

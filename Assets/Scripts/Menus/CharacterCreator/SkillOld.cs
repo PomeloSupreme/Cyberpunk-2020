@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Skill : MonoBehaviour
+public class SkillOld : MonoBehaviour
 {
     StatAlotter statAlotter;
     public string SkillName;
@@ -45,7 +45,7 @@ public class Skill : MonoBehaviour
             {
                 Debug.Log("pickup skills at zero");
             }
-            else if (this.GetComponentInParent<Skill>().GetSkillLevel() >= 10)
+            else if (this.GetComponentInParent<SkillOld>().GetSkillLevel() >= 10)
             {
                 Debug.Log("Skill cannot be greater than 10");
             }

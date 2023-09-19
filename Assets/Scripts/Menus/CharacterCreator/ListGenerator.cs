@@ -37,7 +37,7 @@ public class ListGenerator : MonoBehaviour
         }
         for (int i = 0; i< listOfObjects.Count; i++)
         {
-            Skill currentSkill = listOfObjects[i].GetComponent<Skill>();
+            SkillOld currentSkill = listOfObjects[i].GetComponent<SkillOld>();
             currentSkill.SkillName = SkillNames[i];
             if (AreTheseSpecialAbilities == true)
             {

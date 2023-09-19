@@ -118,7 +118,7 @@ public class StatOverPanel : MonoBehaviour
                 Debug.Log("Error OnRoleDropdown in StatTypeButton");
                 break;
         }
-        statPoints -= 18;
+        statPoints -= creatorController.TotalStatValue();
         UpdateStatPointPoolText();
     }
     public void SetButtonName()

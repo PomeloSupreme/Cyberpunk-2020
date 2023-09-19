@@ -148,4 +148,14 @@ public class CreatorController : MonoBehaviour
             statValues[determineStatPositionInList(name)]--;
         }
     }
+    public int TotalStatValue()
+    {
+        int totalStatValue = 0;
+        foreach (int stat in statValues)
+        {
+            totalStatValue += stat;
+        }
+        return totalStatValue;
+
+    }
 }
