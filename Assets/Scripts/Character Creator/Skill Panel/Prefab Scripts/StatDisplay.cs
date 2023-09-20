@@ -14,6 +14,7 @@ public class StatDisplay : MonoBehaviour
     {
         creatorController = GetComponentInParent<CreatorController>();
         GetComponent<TMP_Text>().text = Name;
+        UpdateStatValueDisplay();
     }
 
     public void UpdateStatValueDisplay()
