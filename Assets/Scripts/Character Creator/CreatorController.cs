@@ -9,8 +9,10 @@ public class CreatorController : MonoBehaviour
     private List<GameObject> panels = new List<GameObject>();
 
     public List<int> statValues = new List<int>();
+    public List<int> skillValues = new List<int>();
     List<int> statValueOptions= new List<int>();
     public List<int> currentValueOptions= new List<int>();
+    
     //int statPoints;
     public GameObject[] Stats;
 
@@ -26,6 +28,14 @@ public class CreatorController : MonoBehaviour
         }
         Stats = GameObject.FindGameObjectsWithTag("Stat");
     }
+    /*private int determineSkillPositionInList(string skillName)
+    {
+        int skillListPosition;
+        switch (skillName)
+        {
+
+        }
+    }*/
 
     private int determineStatPositionInList (string stat)
     {

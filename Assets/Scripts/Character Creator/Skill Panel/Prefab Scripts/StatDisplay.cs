@@ -13,7 +13,11 @@ public class StatDisplay : MonoBehaviour
     void Start()
     {
         creatorController = GetComponentInParent<CreatorController>();
-        GetComponent<TMP_Text>().text = Name;
+        GetComponent<TMP_Text>().text = Name +": ";
+        UpdateStatValueDisplay();
+    }
+    private void OnEnable()
+    {
         UpdateStatValueDisplay();
     }
 
