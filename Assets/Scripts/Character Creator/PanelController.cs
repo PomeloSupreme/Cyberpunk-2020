@@ -25,6 +25,17 @@ public class PanelController : MonoBehaviour
             MiddleButtons[i].GetComponentInChildren<TMP_Text>().text = MiddleButtonNames[i];
         }
     }
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            OnLeftButton();
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            OnRightButton();
+        }
+    }
     public void OnLeftButton()
     {
         if(currentPanel == 0)
@@ -64,10 +75,6 @@ public class PanelController : MonoBehaviour
                 Panels[currentPanel].SetActive(false);
                 currentPanel = i;
                 Panels[currentPanel].SetActive(true);
-            }
-            else
-            {
-                Debug.Log("Error: On Middle Button Button GameObject Not Found");
             }
         }
     }

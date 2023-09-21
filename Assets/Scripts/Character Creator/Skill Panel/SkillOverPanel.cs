@@ -17,12 +17,12 @@ public class SkillOverPanel : MonoBehaviour
     {
         creatorController = GetComponentInParent<CreatorController>();
         careerSkillPoints = 40;
-
+        pickupSkillPointsUsed = 0;
     }
 
     private void OnEnable()
     {
-        UpdatePickupSkillPointsOnStatChange();
+        pickupSkillPoints = UpdatePickupSkillPointsOnStatChange();
         updateText(true);
         updateText(false);
     }
@@ -64,8 +64,8 @@ public class SkillOverPanel : MonoBehaviour
             return "ERROR";
         }
     }
-    private void UpdatePickupSkillPointsOnStatChange()
+    private int UpdatePickupSkillPointsOnStatChange()
     {
-        int totalPickupSkillPoints = creatorController.AccessStatValueList("Reflex") + creatorController.AccessStatValueList("Intelligence") - pickupSkillPointsUsed;
+       return (creatorController.AccessStatValueList("Reflex") + creatorController.AccessStatValueList("Intelligence") - pickupSkillPointsUsed);
     }
 }
