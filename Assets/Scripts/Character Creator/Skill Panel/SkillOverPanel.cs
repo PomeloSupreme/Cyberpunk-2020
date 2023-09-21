@@ -10,11 +10,14 @@ public class SkillOverPanel : MonoBehaviour
     int pickupSkillPoints;
     int pickupSkillPointsUsed;
     int careerSkillPoints;
+    public List<GameObject> StatSkillPanels;
     public TMP_Text PickupSkillPointsText;
     public TMP_Text CareerSkillPointsText;
     // Start is called before the first frame update
     void Start()
     {
+        TurnStatSkillPanelsOff();
+        StatSkillPanels[0].SetActive(true);
         creatorController = GetComponentInParent<CreatorController>();
         careerSkillPoints = 40;
         pickupSkillPointsUsed = 0;
@@ -26,7 +29,18 @@ public class SkillOverPanel : MonoBehaviour
         updateText(true);
         updateText(false);
     }
-
+    public void OnStatButtonShowSkillPanel(GameObject panel)
+    {
+        TurnStatSkillPanelsOff();
+        panel.SetActive(true);
+    }
+    public void TurnStatSkillPanelsOff()
+    {
+        for (int i = 0; i < StatSkillPanels.Count; i++)
+        {
+            StatSkillPanels[i].SetActive(false);
+        }
+    }
     private void updateText(bool isPickupSkills)
     {
         if (isPickupSkills)

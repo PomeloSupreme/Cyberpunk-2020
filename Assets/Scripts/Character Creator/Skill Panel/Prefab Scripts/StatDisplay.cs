@@ -9,7 +9,7 @@ public class StatDisplay : MonoBehaviour
     CreatorController creatorController;
     public string Name;
     public TMP_Text StatValueDisplay;
-    
+  
     void Start()
     {
         creatorController = GetComponentInParent<CreatorController>();

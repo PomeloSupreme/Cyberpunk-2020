@@ -20,7 +20,7 @@ public class Stat : MonoBehaviour
     public GameObject buttonPlus;
     public GameObject dropdown;
 
-
+    
     private void Start()
     {
         GetComponent<TMP_Text>().text= Name + ":";
@@ -75,6 +75,7 @@ public class Stat : MonoBehaviour
         }
         
     }
+    //Stat panel must be active at start for Dropdown To Work
     public void OnDropdown()
     {
         TMP_Dropdown dropdownElement = dropdown.GetComponent<TMP_Dropdown>();
