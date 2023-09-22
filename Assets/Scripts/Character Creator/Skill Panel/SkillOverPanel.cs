@@ -17,6 +17,7 @@ public class SkillOverPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PopulateStatPanels();
         TurnStatSkillPanelsOff();
         StatSkillPanels[0].SetActive(true);
         creatorController = GetComponentInParent<CreatorController>();
@@ -89,10 +90,52 @@ public class SkillOverPanel : MonoBehaviour
         {
             SkillPanel thisSkillPanel = StatSkillPanels[i].GetComponentInChildren<SkillPanel>();
 
-            for(i = 0; i < thisSkillPanel.SkillNames.Count; i++)
+            for(int y = 0; y < thisSkillPanel.SkillNames.Count; y++)
             {
-                thisSkillPanel.SkillObjects.Add(Instantiate(SkillPrefab))
+                thisSkillPanel.SkillObjects.Add(Instantiate(SkillPrefab, thisSkillPanel.transform));
+            }
+            for (int y = 0; y < thisSkillPanel.SkillObjects.Count; y++)
+            {
+                thisSkillPanel.SkillObjects[y].GetComponent<Skill>().SetNameAndText(thisSkillPanel.SkillNames[y]);
             }
         }
+    }
+    public int IncrementPickupOrCareerPoints(bool isCareerSkill, bool isPlus, string name)
+    {
+        if (!isCareerSkill)
+        {
+            if(isPlus
+                && pickupSkillPoints > 0)
+            {
+                pickupSkillPoints--;
+                updateText(true);
+                creatorController.IncrementSkill(isPlus, name);
+            }
+            else if(!isPlus
+                && creatorController.AccessSkillValue(name) > 0)
+            {
+                pickupSkillPoints++;
+                updateText(true);
+                creatorController.IncrementSkill(isPlus, name);
+            }
+        }
+        else
+        {
+            if (isPlus
+                && careerSkillPoints > 0)
+            {
+                careerSkillPoints--;
+                updateText(false);
+                creatorController.IncrementSkill(isPlus, name);
+            }
+            else if(!isPlus
+                && creatorController.AccessSkillValue(name) > 0)
+            {
+                careerSkillPoints++;
+                updateText(false);
+                creatorController.IncrementSkill(isPlus, name);
+            }
+        }
+        return creatorController.AccessSkillValue(name);
     }
 }

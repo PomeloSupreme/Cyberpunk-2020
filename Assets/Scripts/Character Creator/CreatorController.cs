@@ -80,7 +80,6 @@ public class CreatorController : MonoBehaviour
         }
         return statListPosition;
     }
-
     private int determineSkillPositionsInList (string skill)
     {
         int skillListPosition;
@@ -390,7 +389,6 @@ public class CreatorController : MonoBehaviour
         currentValueOptions.Clear();
         currentValueOptions.AddRange(statValueOptions);
     }
-    
     /*public int AccessStatPoints()
     {
         return statPoints;
@@ -456,6 +454,23 @@ public class CreatorController : MonoBehaviour
         {
             statValues[determineStatPositionInList(name)]--;
         }
+    }
+    public int IncrementSkill(bool isPlus, string name)
+    {
+        if (isPlus)
+        {
+            skillValues[determineSkillPositionsInList(name)]++;
+        }
+        else if(!isPlus
+            && skillValues[determineSkillPositionsInList(name)] > 0)
+        {
+            skillValues[determineSkillPositionsInList(name)]--;
+        }
+        return skillValues[determineSkillPositionsInList(name)];
+    }
+    public int AccessSkillValue(string name)
+    {
+        return skillValues[determineSkillPositionsInList(name)];
     }
     public int TotalStatValue()
     {

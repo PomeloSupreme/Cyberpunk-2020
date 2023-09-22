@@ -1855,9 +1855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &240679641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2565,9 +2562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &297972729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4092,9 +4086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &563977400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5018,6 +5009,7 @@ MonoBehaviour:
   - {fileID: 297972726}
   PickupSkillPointsText: {fileID: 1700931323}
   CareerSkillPointsText: {fileID: 2024701357}
+  SkillPrefab: {fileID: 59353472591966054, guid: 0f24cd9487b051144b0f16fb4b300ee9, type: 3}
 --- !u!224 &845768842 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1937432317088097762, guid: 1dbac9e6b1d26074db78e279b28a4b03, type: 3}
@@ -5085,9 +5077,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &884999022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10585,6 +10574,7 @@ GameObject:
   - component: {fileID: 1844415469}
   - component: {fileID: 1844415471}
   - component: {fileID: 1844415472}
+  - component: {fileID: 1844415473}
   m_Layer: 0
   m_Name: Intelligence(SkillPanel)
   m_TagString: Untagged
@@ -10663,9 +10653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &1844415472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10678,9 +10665,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5216be44ada1ec47864e7dfd6e4a1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillNames: []
+  SkillNames:
+  - Accounting
+  - Antrhopology
+  - Biology
+  - Skill 4
   SkillObjects: []
   IsSpecialAbility: 0
+--- !u!114 &1844415473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844415467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 1
+  m_CellSize: {x: 200, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!224 &1845267583 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1937432317088097762, guid: 1dbac9e6b1d26074db78e279b28a4b03, type: 3}
@@ -11365,9 +11380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &1934299029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11574,10 +11586,10 @@ RectTransform:
   m_Father: {fileID: 1844415468}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953892153
 MonoBehaviour:
@@ -12468,9 +12480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dee9896064c08f4dac441bb3f740427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillPrefab: {fileID: 0}
-  SkillNames: []
-  skillOverPanel: {fileID: 0}
 --- !u!114 &2005053693
 MonoBehaviour:
   m_ObjectHideFlags: 0
