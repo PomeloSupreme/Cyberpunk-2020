@@ -13,6 +13,7 @@ public class SkillOverPanel : MonoBehaviour
     public List<GameObject> StatSkillPanels;
     public TMP_Text PickupSkillPointsText;
     public TMP_Text CareerSkillPointsText;
+    public GameObject SkillPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,5 +82,17 @@ public class SkillOverPanel : MonoBehaviour
     private int UpdatePickupSkillPointsOnStatChange()
     {
        return (creatorController.AccessStatValueList("Reflex") + creatorController.AccessStatValueList("Intelligence") - pickupSkillPointsUsed);
+    }
+    private void PopulateStatPanels()
+    {
+        for (int i = 0; i < StatSkillPanels.Count; i++)
+        {
+            SkillPanel thisSkillPanel = StatSkillPanels[i].GetComponentInChildren<SkillPanel>();
+
+            for(i = 0; i < thisSkillPanel.SkillNames.Count; i++)
+            {
+                thisSkillPanel.SkillObjects.Add(Instantiate(SkillPrefab))
+            }
+        }
     }
 }

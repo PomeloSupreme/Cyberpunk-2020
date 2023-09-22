@@ -1821,7 +1821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &240679639
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1840,8 +1840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240679640
 MonoBehaviour:
@@ -1856,6 +1856,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
 --- !u!114 &240679641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2530,7 +2532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &297972727
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2548,8 +2550,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297972728
 MonoBehaviour:
@@ -2564,6 +2566,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
 --- !u!114 &297972729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4055,7 +4059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &563977398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4073,8 +4077,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563977399
 MonoBehaviour:
@@ -4089,6 +4093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
 --- !u!114 &563977400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5046,7 +5052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &884999020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5064,8 +5070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884999021
 MonoBehaviour:
@@ -5080,6 +5086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
 --- !u!114 &884999022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10576,6 +10584,7 @@ GameObject:
   - component: {fileID: 1844415470}
   - component: {fileID: 1844415469}
   - component: {fileID: 1844415471}
+  - component: {fileID: 1844415472}
   m_Layer: 0
   m_Name: Intelligence(SkillPanel)
   m_TagString: Untagged
@@ -10601,8 +10610,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844415469
 MonoBehaviour:
@@ -10655,6 +10664,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
+--- !u!114 &1844415472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844415467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5216be44ada1ec47864e7dfd6e4a1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillNames: []
+  SkillObjects: []
+  IsSpecialAbility: 0
 --- !u!224 &1845267583 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1937432317088097762, guid: 1dbac9e6b1d26074db78e279b28a4b03, type: 3}
@@ -11306,7 +11332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1934299027
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11324,8 +11350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1934299028
 MonoBehaviour:
@@ -11340,6 +11366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
 --- !u!114 &1934299029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12406,7 +12434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2005053691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12425,8 +12453,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -93.02197}
-  m_SizeDelta: {x: 1552.437, y: 577.26495}
+  m_AnchoredPosition: {x: 135.47615, y: -93.02197}
+  m_SizeDelta: {x: 1281.485, y: 577.265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2005053692
 MonoBehaviour:
@@ -12441,6 +12469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillPrefab: {fileID: 0}
+  SkillNames: []
+  skillOverPanel: {fileID: 0}
 --- !u!114 &2005053693
 MonoBehaviour:
   m_ObjectHideFlags: 0

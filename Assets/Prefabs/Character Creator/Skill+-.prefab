@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42358112197629027}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Skill, Assembly-CSharp
         m_MethodName: OnSkillMinusButton
         m_Mode: 1
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 42358112197629027}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Skill, Assembly-CSharp
         m_MethodName: OnSkillPlusButton
         m_Mode: 1
@@ -944,8 +944,8 @@ GameObject:
   m_Component:
   - component: {fileID: 42358112197629029}
   - component: {fileID: 42358112197629028}
-  - component: {fileID: 42358112197629027}
   - component: {fileID: 5127870605977316986}
+  - component: {fileID: 4002947598619589857}
   m_Layer: 0
   m_Name: Skill+-
   m_TagString: SkillPointToggle
@@ -1024,22 +1024,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &42358112197629027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4272960428223857988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ddf3ea1a193ae84bbeccab6852c1611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SkillName: 
-  IsSpecialAbility: 0
-  PlusButton: {fileID: 42358113831511444}
-  MinusButton: {fileID: 42358112915592128}
 --- !u!114 &5127870605977316986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,3 +1044,15 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &4002947598619589857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272960428223857988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20ff8fb31c56764dad323ee022ed3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
