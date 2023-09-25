@@ -5,27 +5,27 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    SkillOverPanel skillOverPanel;
+    public SkillOverPanel skillOverPanel;
     public bool IsCareerSkill;
     public string Name;
-    public GameObject SkillNameObject;
-    public GameObject SkillPointObject;
+    public TMP_Text SkillNameObject;
+    public TMP_Text SkillPointObject;
 
     private void Start()
     {
-        skillOverPanel = GetComponentInParent<SkillOverPanel>();
+        
         IsCareerSkill = false;
     }
 
     public void SetNameAndText(string name)
     {
         Name = name;
-        SkillNameObject.GetComponent<TMP_Text>().text = name;
+        SkillNameObject.text = name;
     }
 
     public void OnPlusOrMinusButton(bool IsPlus)
     {
-        SkillPointObject.GetComponentInChildren<TMP_Text>().text = ConvertIntToTextAndDetermineZero(skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name));
+        SkillPointObject.text = ConvertIntToTextAndDetermineZero(skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name));
     }
     private string ConvertIntToTextAndDetermineZero(int value)
     {

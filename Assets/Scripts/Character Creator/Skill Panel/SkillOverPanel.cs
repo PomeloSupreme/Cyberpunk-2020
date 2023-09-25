@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SkillOverPanel : MonoBehaviour
 {
-    CreatorController creatorController;
+    public CreatorController creatorController;
     int pickupSkillPoints;
     int pickupSkillPointsUsed;
     int careerSkillPoints;
@@ -14,27 +14,41 @@ public class SkillOverPanel : MonoBehaviour
     public TMP_Text PickupSkillPointsText;
     public TMP_Text CareerSkillPointsText;
     public GameObject SkillPrefab;
+    private GameObject currentStatPanelOpen;
+    private TMP_Text previousTextButton;
     // Start is called before the first frame update
     void Start()
     {
+        currentStatPanelOpen = StatSkillPanels[0];
         PopulateStatPanels();
         TurnStatSkillPanelsOff();
         StatSkillPanels[0].SetActive(true);
-        creatorController = GetComponentInParent<CreatorController>();
         careerSkillPoints = 40;
         pickupSkillPointsUsed = 0;
     }
 
     private void OnEnable()
     {
+        TurnStatSkillPanelsOff();
+        currentStatPanelOpen.SetActive(true);
         pickupSkillPoints = UpdatePickupSkillPointsOnStatChange();
         updateText(true);
         updateText(false);
     }
     public void OnStatButtonShowSkillPanel(GameObject panel)
     {
+        
         TurnStatSkillPanelsOff();
         panel.SetActive(true);
+        currentStatPanelOpen = panel;
+        //text.color= Color.blue;
+       //text.fontSize = 50;
+        if (previousTextButton != null)
+        {
+            previousTextButton.fontSize = 36;
+            previousTextButton.color = Color.white;
+            //previousTextButton = text;
+        }
     }
     public void TurnStatSkillPanelsOff()
     {
@@ -97,6 +111,7 @@ public class SkillOverPanel : MonoBehaviour
             for (int y = 0; y < thisSkillPanel.SkillObjects.Count; y++)
             {
                 thisSkillPanel.SkillObjects[y].GetComponent<Skill>().SetNameAndText(thisSkillPanel.SkillNames[y]);
+                thisSkillPanel.SkillObjects[y].GetComponent<Skill>().skillOverPanel = this.GetComponent<SkillOverPanel>();
             }
         }
     }
@@ -105,8 +120,10 @@ public class SkillOverPanel : MonoBehaviour
         if (!isCareerSkill)
         {
             if(isPlus
-                && pickupSkillPoints > 0)
+                && pickupSkillPoints > 0
+                && creatorController.AccessSkillValue(name) < 10)
             {
+                pickupSkillPointsUsed++;
                 pickupSkillPoints--;
                 updateText(true);
                 creatorController.IncrementSkill(isPlus, name);
@@ -114,6 +131,7 @@ public class SkillOverPanel : MonoBehaviour
             else if(!isPlus
                 && creatorController.AccessSkillValue(name) > 0)
             {
+                pickupSkillPointsUsed--;
                 pickupSkillPoints++;
                 updateText(true);
                 creatorController.IncrementSkill(isPlus, name);
@@ -122,7 +140,8 @@ public class SkillOverPanel : MonoBehaviour
         else
         {
             if (isPlus
-                && careerSkillPoints > 0)
+                && careerSkillPoints > 0
+                && creatorController.AccessSkillValue(name) < 10)
             {
                 careerSkillPoints--;
                 updateText(false);
