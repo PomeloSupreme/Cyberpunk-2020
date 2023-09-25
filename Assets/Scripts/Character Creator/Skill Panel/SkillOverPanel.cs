@@ -19,12 +19,13 @@ public class SkillOverPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        careerSkillPoints = 40;
+        pickupSkillPointsUsed = 0;
         currentStatPanelOpen = StatSkillPanels[0];
         PopulateStatPanels();
         TurnStatSkillPanelsOff();
         StatSkillPanels[0].SetActive(true);
-        careerSkillPoints = 40;
-        pickupSkillPointsUsed = 0;
+       
     }
 
     private void OnEnable()
@@ -63,7 +64,7 @@ public class SkillOverPanel : MonoBehaviour
         {
             PickupSkillPointsText.text = ConvertIntToTextAndDetermineZero(pickupSkillPoints);
         }
-        else
+        else if (!isPickupSkills)
         {
             CareerSkillPointsText.text = ConvertIntToTextAndDetermineZero(careerSkillPoints);
         }

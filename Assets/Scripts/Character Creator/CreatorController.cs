@@ -401,7 +401,7 @@ public class CreatorController : MonoBehaviour
     public int AccessStatValueList(string name)
     {
         int index = determineStatPositionInList(name);
-        return statValues[index];
+        return statValues[index];   
     }
     public int AccessStatValueOptionsList(int index)
     {

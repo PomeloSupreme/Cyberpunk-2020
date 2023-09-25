@@ -16,14 +16,21 @@ public class PanelController : MonoBehaviour
     public void Start()
     {
         Panels[0].SetActive(true);
-        for(int i = 1; i < Panels.Count; i++)
-        {
-            Panels[i].SetActive(false);
-        }
+        
         for(int i = 0; i < MiddleButtons.Count; i++)
         {
             MiddleButtons[i].GetComponentInChildren<TMP_Text>().text = MiddleButtonNames[i];
         }
+        StartCoroutine(DelayedStart());
+    }
+    private IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(0.001f);
+        for (int i = 1; i < Panels.Count; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+
     }
     public void Update()
     {

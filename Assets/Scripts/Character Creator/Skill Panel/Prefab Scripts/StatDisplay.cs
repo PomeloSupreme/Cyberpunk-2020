@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class StatDisplay : MonoBehaviour
 {
-    CreatorController creatorController;
+    public CreatorController creatorController;
     public string Name;
     public TMP_Text StatValueDisplay;
   
@@ -14,7 +14,7 @@ public class StatDisplay : MonoBehaviour
     {
         creatorController = GetComponentInParent<CreatorController>();
         GetComponent<TMP_Text>().text = Name +": ";
-        UpdateStatValueDisplay();
+        //UpdateStatValueDisplay();
     }
     private void OnEnable()
     {
