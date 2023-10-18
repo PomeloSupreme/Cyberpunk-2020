@@ -16,6 +16,7 @@ public class SkillOverPanel : MonoBehaviour
     public GameObject SkillPrefab;
     private GameObject currentStatPanelOpen;
     private TMP_Text previousTextButton;
+    List<string> currentCareerSkills = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
@@ -157,5 +158,41 @@ public class SkillOverPanel : MonoBehaviour
             }
         }
         return creatorController.AccessSkillValue(name);
+    }
+    public void OnRoleChange()
+    {
+        currentCareerSkills.Clear();
+        switch (this.GetComponentInChildren<TMP_Dropdown>().value)
+        {
+            case 0:
+                string[] copSkills = { "Awareness", "Handgun","Human Perception","Athletics","Education","Brawling","Melee","Interrogation","Streetwise"}; 
+                currentCareerSkills.AddRange(copSkills);
+                break;
+            case 1:
+                string[] corpSkills = { "Awareness", "Human Perception", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Wardrobe & Style", "Personal Grooming" };
+                currentCareerSkills.AddRange(corpSkills);
+                break;
+
+        }
+        foreach (GameObject gameObject in StatSkillPanels)
+        {
+            for (int i = 0; i < currentCareerSkills.Count; i++) 
+            {
+                string skillToCheck = currentCareerSkills[i];
+                for (int x = 0; x < gameObject.GetComponent<SkillPanel>().SkillObjects.Count; x++)
+                {
+                    string currentSkill = gameObject.GetComponent<SkillPanel>().SkillObjects[x].GetComponent<TMP_Text>().text;
+                    if (skillToCheck == currentSkill)
+                    {
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponent<TMP_Text>().color = Color.red;
+                    }
+                    else
+                    {
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponent<TMP_Text>().color = Color.white;
+                    }
+            }
+            }
+        }
+
     }
 }
