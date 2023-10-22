@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -174,25 +175,44 @@ public class SkillOverPanel : MonoBehaviour
                 break;
 
         }
+
         foreach (GameObject gameObject in StatSkillPanels)
         {
-            for (int i = 0; i < currentCareerSkills.Count; i++) 
+                List<int> skillsAlreadyChecked = new List<int>();
+            for (int x = 0; x < gameObject.GetComponentInChildren<SkillPanel>().SkillObjects.Count; x++)
             {
-                string skillToCheck = currentCareerSkills[i];
-                for (int x = 0; x < gameObject.GetComponent<SkillPanel>().SkillObjects.Count; x++)
+                if (currentCareerSkills.Contains(gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().text))
                 {
-                    string currentSkill = gameObject.GetComponent<SkillPanel>().SkillObjects[x].GetComponent<TMP_Text>().text;
+                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = true;
+                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.blue;
+                }
+                else
+                {
+                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = false;
+                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.white;
+                }
+
+               /* for (int i = 0; i < currentCareerSkills.Count; i++)
+                {
+                    string skillToCheck = currentCareerSkills[i];
+                    
+                    string currentSkill = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().text;
                     if (skillToCheck == currentSkill)
                     {
-                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponent<TMP_Text>().color = Color.red;
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = true;
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.red;
+                        skillsAlreadyChecked.Add(x);
                     }
                     else
                     {
-                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponent<TMP_Text>().color = Color.white;
+                        if (!skillsAlreadyChecked.Contains(x))
+                        {
+                            gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = false;
+                            gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.white;
+                        }
                     }
-            }
+                }*/
             }
         }
-
     }
 }

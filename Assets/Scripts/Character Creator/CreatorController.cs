@@ -18,7 +18,7 @@ public class CreatorController : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 93; i++)
+        for (int i = 0; i < 95; i++)
         {
             skillValues.Add(0);
         }
@@ -172,7 +172,7 @@ public class CreatorController : MonoBehaviour
             case "Anthropology":
                 skillListPosition = 28;
                 break;
-            case "Awareness/Notice":
+            case "Awareness":
                 skillListPosition = 29;
                 break;
             case "Biology":
@@ -366,6 +366,9 @@ public class CreatorController : MonoBehaviour
                 break;
             case "Weaponsmith":
                 skillListPosition = 93;
+                break;
+            case "Botany":
+                skillListPosition = 94;
                 break;
             default:
                 skillListPosition = 100;
