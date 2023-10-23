@@ -16,7 +16,7 @@ public class CreatorController : MonoBehaviour
     //int statPoints;
     public GameObject[] Stats;
 
-    private void Start()
+    private void Awake()
     {
         for (int i = 0; i < 105; i++)
         {
@@ -88,7 +88,7 @@ public class CreatorController : MonoBehaviour
             case "Authority":
                 skillListPosition = 0;
                 break;
-            case "Charismatic Leadership":
+            case "Charisma":
                 skillListPosition = 1;
                 break;
             case "Combat Sense":
@@ -115,16 +115,16 @@ public class CreatorController : MonoBehaviour
             case "Streetdeal":
                 skillListPosition = 9;
                 break;
-            case "Personal Grooming":
+            case "Grooming":
                 skillListPosition= 10;
                 break;
-            case "Wardrobe & Style":
+            case "Style":
                 skillListPosition = 11;
                 break;
             case "Endurance":
                 skillListPosition = 12;
                 break;
-            case "Strength Feat":
+            case "Strength":
                 skillListPosition = 13;
                 break;
             case "Swimming":
@@ -133,19 +133,19 @@ public class CreatorController : MonoBehaviour
             case "Interrogation":
                 skillListPosition = 15;
                 break;
-            case "Intimidate":
+            case "Intimidation":
                 skillListPosition = 16;
                 break;
-            case "Oratory":
+            case "Oration":
                 skillListPosition = 17;
                 break;
-            case "Resist Torture/Drugs":
+            case "Willpower":
                 skillListPosition = 18;
                 break;
-            case "Streetwise":
+            case "Streetsmarts":
                 skillListPosition = 19;
                 break;
-            case "Human Perception":
+            case "Insight":
                 skillListPosition = 20;
                 break;
             case "Interview":
@@ -157,13 +157,13 @@ public class CreatorController : MonoBehaviour
             case "Seduction":
                 skillListPosition = 23;
                 break;
-            case "Social":
+            case "Etiquette":
                 skillListPosition = 24;
                 break;
-            case "Persuasion & Fast Talk":
+            case "Persuasion":
                 skillListPosition = 25;
                 break;
-            case "Perform":
+            case "Performance":
                 skillListPosition = 26;
                 break;
             case "Accounting":
@@ -187,19 +187,19 @@ public class CreatorController : MonoBehaviour
             case "Diagnose Illness":
                 skillListPosition = 33;
                 break;
-            case "Education & Gen.Know":
+            case "Education":
                 skillListPosition = 34;
                 break;
-            case "Expert":
+            case "Expertise":
                 skillListPosition = 35;
                 break;
-            case "Gamble":
+            case "Gambling":
                 skillListPosition = 36;
                 break;
             case "Geology":
                 skillListPosition = 37;
                 break;
-            case "Hide/Evade":
+            case "Subterfuge":
                 skillListPosition = 38;
                 break;
             case "History":
@@ -208,13 +208,13 @@ public class CreatorController : MonoBehaviour
             case "Language 1":
                 skillListPosition = 40;
                 break;
-            case "Langauge 2":
+            case "Language 2":
                 skillListPosition = 41;
                 break;
-            case "Langauge 3":
+            case "Language 3":
                 skillListPosition = 42;
                 break;
-            case "Library Search":
+            case "Database":
                 skillListPosition = 43;
                 break;
             case "Mathematics":
@@ -226,7 +226,7 @@ public class CreatorController : MonoBehaviour
             case "Programming":
                 skillListPosition = 46;
                 break;
-            case "Shadow/Track":
+            case "Shadow":
                 skillListPosition = 47;
                 break;
             case "Stock Market":
@@ -238,7 +238,7 @@ public class CreatorController : MonoBehaviour
             case "Teaching":
                 skillListPosition = 50;
                 break;
-            case "Wilderness Survival":
+            case "Survival":
                 skillListPosition = 51;
                 break;
             case "Zoology":
@@ -256,17 +256,17 @@ public class CreatorController : MonoBehaviour
             case "Dance":
                 skillListPosition = 56;
                 break;
-            case "Dodge & Escape":
+            case "Evasion":
                 skillListPosition = 57;
                 break;
             case "Driving":
                 skillListPosition = 58;
                 break;
-            case "Fencing":
+            case "Sword":
                 skillListPosition = 59;
                 break;
             case "Handgun":
-                skillListPosition= 60;
+                skillListPosition = 60;
                 break;
             case "Heavy Weapons":
                 skillListPosition = 61;
@@ -283,19 +283,19 @@ public class CreatorController : MonoBehaviour
             case "Motorcycle":
                 skillListPosition = 65;
                 break;
-            case "Operate Hvy. Machinery":
+            case "Hvy. Machinery":
                 skillListPosition = 66;
                 break;
-            case "Pilot(Gyro)":
+            case "Gyro":
                 skillListPosition = 67;
                 break;
-            case "Pilot(Fixed Wing)":
+            case "Airplane":
                 skillListPosition = 68;
                 break;
-            case "Pilot(Dirigible)":
+            case "Dirigible":
                 skillListPosition = 69;
                 break;
-            case "Pilot(Vect. Thrust Vehicle)":
+            case "Hovercraft":
                 skillListPosition = 70;
                 break;
             case "Rifle":
@@ -310,19 +310,19 @@ public class CreatorController : MonoBehaviour
             case "Aero Tech":
                 skillListPosition = 74;
                 break;
-            case "AV Tech":
+            case "Hover Tech":
                 skillListPosition = 75;
                 break;
             case "Basic Tech":
                 skillListPosition = 76;
                 break;
-            case "Cryotank Operation":
+            case "Cryo Tech":
                 skillListPosition = 77;
                 break;
-            case "Cyberdeck Design":
+            case "Cyberdeck Tech":
                 skillListPosition = 78;
                 break;
-            case "CyberTech":
+            case "Cyberware Tech":
                 skillListPosition = 79;
                 break;
             case "Demolitions":
@@ -334,7 +334,7 @@ public class CreatorController : MonoBehaviour
             case "Electronics":
                 skillListPosition = 82;
                 break;
-            case "Elect. Security":
+            case "E-Security":
                 skillListPosition = 83;
                 break;
             case "First Aid":
@@ -346,13 +346,13 @@ public class CreatorController : MonoBehaviour
             case "Gyro Tech":
                 skillListPosition = 86;
                 break;
-            case "Paint or Draw":
+            case "Art":
                 skillListPosition = 87;
                 break;
-            case "Photo & Film":
+            case "Film":
                 skillListPosition = 88;
                 break;
-            case "Pharmaceuticals":
+            case "Pharmacology":
                 skillListPosition = 89;
                 break;
             case "Pick Lock":
@@ -364,15 +364,18 @@ public class CreatorController : MonoBehaviour
             case "Play Instrument":
                 skillListPosition = 92;
                 break;
-            case "Weaponsmith":
+            case "Weapon Tech":
                 skillListPosition = 93;
                 break;
             case "Botany":
                 skillListPosition = 94;
                 break;
+            case "Martial Art 3":
+                skillListPosition = 95;
+                break;
             default:
-                skillListPosition = 110;
-                Debug.Log("Skill Position Entry Not Properly Spelled");
+                skillListPosition = 999;
+                Debug.Log("Skill Position Entry Not Properly Spelled    " + skill);
                 break;
         }
         return skillListPosition;
@@ -477,7 +480,16 @@ public class CreatorController : MonoBehaviour
     }
     public int AccessSkillValue(string name)
     {
-        return skillValues[determineSkillPositionsInList(name)];
+        int skillValue = determineSkillPositionsInList(name);
+        if (skillValue == 999)
+        {
+            return 0;
+            Debug.Log("Error: AccessSkillValue Returned 999: Skill Position Entry Not Properly Spelled");
+        }
+        else
+        {
+            return skillValues[determineSkillPositionsInList(name)];
+        }
     }
     public int TotalStatValue()
     {

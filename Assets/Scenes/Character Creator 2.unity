@@ -1897,10 +1897,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillNames:
   - Interrogation
-  - Intimidate
-  - Oratory
-  - Resist Torture/Drugs
-  - Streetwise
+  - Intimidation
+  - Oration
+  - Willpower
+  - Streetsmarts
   SkillObjects: []
   IsSpecialAbility: 0
 --- !u!114 &240679644
@@ -2663,7 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillNames:
   - Endurance
-  - Strength Feat.
+  - Strength
   - Swimming
   SkillObjects: []
   IsSpecialAbility: 0
@@ -4195,25 +4195,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillNames:
   - Aero Tech
-  - AV Tech
+  - Hover Tech
   - Basic Tech
-  - Cryotank Operation
-  - Cyberdeck Design
-  - CyberTech
+  - Cryo Tech
+  - Cyberdeck Tech
+  - Cyberware Tech
   - Demolitions
   - Disguise
   - Electronics
-  - Elect. Security
+  - E-Security
   - First Aid
   - Forgery
   - Gyro Tech
-  - Paint or Draw
-  - Photo & Film
-  - Pharmaceuticals
+  - Art
+  - Film
+  - Pharmacology
   - Pick Lock
   - Pick Pocket
   - Play Instrument
-  - Weaponsmith
+  - Weapon Tech
   SkillObjects: []
   IsSpecialAbility: 0
 --- !u!114 &563977403
@@ -5100,8 +5100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillNames:
-  - Personal Grooming
-  - Wardrobe & Style
+  - Grooming
+  - Style
   SkillObjects: []
   IsSpecialAbility: 0
 --- !u!114 &884999025
@@ -5391,7 +5391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillNames:
   - Authority
-  - Charismatic Leadership
+  - Charisma
   - Combat Sense
   - Credibility
   - Family
@@ -10683,23 +10683,23 @@ MonoBehaviour:
   - Composition
   - Diagnose Illness
   - Education
-  - Expert
-  - Gamble
+  - Expertise
+  - Gambling
   - Geology
-  - Hide/Evade
+  - Subterfuge
   - History
   - Language 1
   - Language 2
   - Language 3
-  - Library Search
+  - Database
   - Mathematics
   - Physics
   - Programming
-  - Shadow/Track
+  - Shadow
   - Stock Market
   - System Knowledge
   - Teaching
-  - Wilderness Survival
+  - Survival
   - Zoology
   SkillObjects: []
   IsSpecialAbility: 0
@@ -11452,13 +11452,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillNames:
-  - Human Perception
+  - Insight
   - Interview
   - Leadership
   - Seduction
-  - Social
-  - Persuasion & Fast Talk
-  - Perform
+  - Etiquette
+  - Persuasion
+  - Performance
   SkillObjects: []
   IsSpecialAbility: 0
 --- !u!114 &1934299032
@@ -12456,9 +12456,9 @@ MonoBehaviour:
   - Athletics
   - Brawling
   - Dance
-  - Dodge & Escape
+  - Evasion
   - Driving
-  - Fencing
+  - Sword
   - Handgun
   - Heavy Weapons
   - Martial Art 1
@@ -12466,11 +12466,11 @@ MonoBehaviour:
   - Martial Art 3
   - Melee
   - Motorcycle
-  - Operate Hvy. Machinery
-  - Pilot(Gyro)
-  - Pilot(Fixed Wing)
-  - Pilot(Dirigible)
-  - Pilot(Vect. Thrust Vehicle)
+  - Hvy. Machinery
+  - Gyro
+  - Airplane
+  - Dirigible
+  - Hovercraft
   - Rifle
   - Stealth
   - Submachinegun

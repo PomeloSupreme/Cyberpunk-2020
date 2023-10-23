@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class Skill : MonoBehaviour
@@ -29,8 +30,9 @@ public class Skill : MonoBehaviour
         MinusButton.SetActive(hide);
         PlusButton.SetActive(hide);
     }
-    public void HideButtonDependentOnNumber(int skillLevel)
+    public void DetermineButtonStatus()
     {
+        int skillLevel = skillOverPanel.creatorController.AccessSkillValue(Name);
         if(skillLevel == 10)
         {
             PlusButton.SetActive(false);
@@ -54,14 +56,14 @@ public class Skill : MonoBehaviour
             {
                 int skillLevel = skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name);
                 SkillPointObject.text = ConvertIntToTextAndDetermineZero(skillLevel);
-                HideButtonDependentOnNumber(skillLevel);
+                DetermineButtonStatus();
             }
         }
         else
         {
             int skillLevel = skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name);
             SkillPointObject.text = ConvertIntToTextAndDetermineZero(skillLevel);
-            HideButtonDependentOnNumber(skillLevel);
+            DetermineButtonStatus();
         }
     }
     public void SetText(string text)

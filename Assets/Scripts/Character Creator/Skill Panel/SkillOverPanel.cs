@@ -24,7 +24,7 @@ public class SkillOverPanel : MonoBehaviour
         careerSkillPoints = 40;
         pickupSkillPointsUsed = 0;
         currentStatPanelOpen = StatSkillPanels[1];
-        PopulateStatPanels();
+        PopulateSkillPanels();
         TurnStatSkillPanelsOff();
         StatSkillPanels[0].SetActive(true);
        
@@ -101,7 +101,7 @@ public class SkillOverPanel : MonoBehaviour
     {
        return (creatorController.AccessStatValueList("Reflex") + creatorController.AccessStatValueList("Intelligence") - pickupSkillPointsUsed);
     }
-    private void PopulateStatPanels()
+    private void PopulateSkillPanels()
     {
         for (int i = 0; i < StatSkillPanels.Count; i++)
         {
@@ -115,6 +115,7 @@ public class SkillOverPanel : MonoBehaviour
             {
                 thisSkillPanel.SkillObjects[y].GetComponent<Skill>().SetNameAndText(thisSkillPanel.SkillNames[y]);
                 thisSkillPanel.SkillObjects[y].GetComponent<Skill>().skillOverPanel = this.GetComponent<SkillOverPanel>();
+                thisSkillPanel.SkillObjects[y].GetComponent<Skill>().DetermineButtonStatus();
             }
         }
     }
@@ -166,39 +167,39 @@ public class SkillOverPanel : MonoBehaviour
         switch (this.GetComponentInChildren<TMP_Dropdown>().value)
         {
             case 0:
-                string[] copSkills = { "Authority","Awareness", "Handgun","Human Perception","Athletics","Education","Brawling","Melee","Interrogation","Streetwise"}; 
+                string[] copSkills = { "Authority","Awareness", "Handgun","Insight","Athletics","Education","Brawling","Melee","Interrogation","Streetsmarts"}; 
                 currentCareerSkills.AddRange(copSkills);
                 break;
             case 1:
-                string[] corpSkills = { "Resources","Awareness", "Human Perception", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Wardrobe & Style", "Personal Grooming" };
+                string[] corpSkills = { "Resources","Awareness", "Insight", "Education", "Database", "Etiquette", "Persuasion", "Stock Market", "Style", "Grooming" };
                 currentCareerSkills.AddRange(corpSkills);
                 break;
             case 2:
-                string[] fixerSkills = { "Streetdeal","Awareness", "Forgery", "Handgun", "Human Perception", "Athletics", "Education", "Brawling", "Melee", "Interrogation", "Streetwise" };
+                string[] fixerSkills = { "Streetdeal","Awareness", "Forgery", "Handgun", "Insight", "Athletics", "Education", "Brawling", "Melee", "Interrogation", "Streetsmarts" };
                 currentCareerSkills.AddRange(fixerSkills);
                 break;
             case 3:
-                string[] mediaSkills = { "Credibility","Awareness", "Composition", "Education", "Persuasion", "Human Perception", "Social", "Streetwise", "Photo & Film", "Interview" };
+                string[] mediaSkills = { "Credibility","Awareness", "Composition", "Education", "Persuasion", "Insight", "Etiquette", "Streetsmarts", "Film", "Interview" };
                 currentCareerSkills.AddRange(mediaSkills);
                 break;
             case 4:
-                string[] medtechieSkills = { "Medical Tech","Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Tech", "Library Search", "Drugs", "Zoology", "Human Perception" };
+                string[] medtechieSkills = { "Medical Tech","Awareness", "Basic Tech", "Diagnose Illness", "Education", "Cryo Tech", "Database", "Pharmacology", "Zoology", "Insight" };
                 currentCareerSkills.AddRange(medtechieSkills);
                 break;
             case 5:
-                string[] netrunnerSkills = { "Interface","Awareness", "Basic Tech", "Education", "System Knowledge", "CyberTech", "Cyberdeck Design", "Composition", "Electronics", "Programming" };
+                string[] netrunnerSkills = { "Interface","Awareness", "Basic Tech", "Education", "System Knowledge", "Cyberware Tech", "Cyberdeck Tech", "Composition", "Electronics", "Programming" };
                 currentCareerSkills.AddRange(netrunnerSkills);
                 break;
             case 6:
-                string[] nomadSkills = { "Family","Awareness", "Endurance", "Melee", "Rifle", "Drive", "Basic Tech", "Survival", "Brawling", "Athletics" };
+                string[] nomadSkills = { "Family","Awareness", "Endurance", "Melee", "Rifle", "Driving", "Basic Tech", "Survival", "Brawling", "Athletics" };
                 currentCareerSkills.AddRange(nomadSkills);
                 break;
             case 7:
-                string[] rockerSkills = { "Charismatic Leadership","Awareness", "Perform", "Style", "Composition", "Brawling", "Play Instrument", "Streetwise", "Persuasion", "Seducation" };
+                string[] rockerSkills = { "Charisma","Awareness", "Performance", "Style", "Composition", "Brawling", "Play Instrument", "Streetsmarts", "Persuasion", "Seduction" };
                 currentCareerSkills.AddRange(rockerSkills);
                 break;
             case 8:
-                string[] soloSkills = { "Combat Sense", "Awareness", "Handgun", "Martial Art I", "Melee", "Weapons Tech", "Rifle", "Rifle", "Athletics", "Submachinegun", "Stealth" };
+                string[] soloSkills = { "Combat Sense", "Awareness", "Handgun", "Martial Art I", "Melee", "Weapon Tech", "Rifle", "Athletics", "Submachinegun", "Stealth" };
                 currentCareerSkills.AddRange(soloSkills);
                 break;
             case 9:
@@ -217,10 +218,12 @@ public class SkillOverPanel : MonoBehaviour
                 for (int x = 0; x < gameObject.GetComponentInChildren<SkillPanel>().SkillObjects.Count; x++)
                 {
                     string gameObjectText = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().text;
+                    int pointsToMove = creatorController.AccessSkillValue(gameObjectText);
                     bool isCareerSkill = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill;
                     if (currentCareerSkills.Contains(gameObjectText))
                     {
                         gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().HideButtons(true);
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().DetermineButtonStatus();
                         gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = true;
                         gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.blue;
                     }
@@ -228,7 +231,6 @@ public class SkillOverPanel : MonoBehaviour
                     {
                         if (creatorController.AccessSkillValue(gameObjectText) > 0)
                         {
-                            int pointsToMove = creatorController.AccessSkillValue(gameObjectText);
                             careerSkillPoints += pointsToMove;
                             updateText(false);
                             creatorController.ResetSkill(gameObjectText);

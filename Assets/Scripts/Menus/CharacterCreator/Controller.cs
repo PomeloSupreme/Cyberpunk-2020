@@ -106,7 +106,6 @@ public class Controller : MonoBehaviour
          * because we shift the values on the objectList +1 to account for everything sliding up, 
          * but in the event you pull from the bottom of the dropdown list, the +1 shift still occurs even though
          * no such shift as occurred*/
-        bool dropdownHasNotChanged = false;
         Tuple<int, string> previousSelectedTuple = currentDicePoolDropdown.AccessCurrentTuple();
         Tuple<int, string> currentSelectedTuple = null;
         Debug.Log("Current dropdown value " + dropdown.value);
