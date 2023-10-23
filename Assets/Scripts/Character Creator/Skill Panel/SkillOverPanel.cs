@@ -173,6 +173,35 @@ public class SkillOverPanel : MonoBehaviour
                 string[] corpSkills = { "Awareness", "Human Perception", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Wardrobe & Style", "Personal Grooming" };
                 currentCareerSkills.AddRange(corpSkills);
                 break;
+            case 2:
+                string[] fixerSkills = { "Awareness", "Forgery", "Handgun", "Human Perception", "Athletics", "Education", "Brawling", "Melee", "Interrogation", "Streetwise" };
+                currentCareerSkills.AddRange(fixerSkills);
+                break;
+            case 3:
+                string[] mediaSkills = { "Awareness", "Composition", "Education", "Persuasion", "Human Perception", "Social", "Streetwise", "Photo & Film", "Interview" };
+                currentCareerSkills.AddRange(mediaSkills);
+                break;
+            case 4:
+                string[] medtechieSkills = { "Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Tech", "Library Search", "Drugs", "Zoology", "Human Perception" };
+                currentCareerSkills.AddRange(medtechieSkills);
+                break;
+            case 5:
+                string[] netrunnerSkills = { "Awareness", "Basic Tech", "Education", "System Knowledge", "CyberTech", "Cyberdeck Design", "Composition", "Electronics", "Programming" };
+                currentCareerSkills.AddRange(netrunnerSkills);
+                break;
+            case 6:
+                string[] nomadSkills = { "Awareness", "Endurance", "Melee", "Rifle", "Drive", "Basic Tech", "Survival", "Brawling", "Athletics" };
+                currentCareerSkills.AddRange(nomadSkills);
+                break;
+            case 7:
+                string[] rockerSkills = { "Awareness", "Perform", "Style", "Composition", "Brawling", "Play Instrument", "Streetwise", "Persuasion", "Seducation" };
+                currentCareerSkills.AddRange(rockerSkills);
+                break;
+            case 8:
+                string[] techieSkills = { "Awareness", "Basic Tech", "Cyber Tech", "Teaching", "Education", "Electronics" };
+                currentCareerSkills.AddRange(techieSkills);
+                break;
+
 
         }
 
