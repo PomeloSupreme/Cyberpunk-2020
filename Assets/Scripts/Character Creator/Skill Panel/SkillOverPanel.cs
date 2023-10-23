@@ -23,7 +23,7 @@ public class SkillOverPanel : MonoBehaviour
     {
         careerSkillPoints = 40;
         pickupSkillPointsUsed = 0;
-        currentStatPanelOpen = StatSkillPanels[0];
+        currentStatPanelOpen = StatSkillPanels[1];
         PopulateStatPanels();
         TurnStatSkillPanelsOff();
         StatSkillPanels[0].SetActive(true);
@@ -55,7 +55,7 @@ public class SkillOverPanel : MonoBehaviour
     }
     public void TurnStatSkillPanelsOff()
     {
-        for (int i = 0; i < StatSkillPanels.Count; i++)
+        for (int i = 1; i < StatSkillPanels.Count; i++)
         {
             StatSkillPanels[i].SetActive(false);
         }
@@ -166,39 +166,43 @@ public class SkillOverPanel : MonoBehaviour
         switch (this.GetComponentInChildren<TMP_Dropdown>().value)
         {
             case 0:
-                string[] copSkills = { "Awareness", "Handgun","Human Perception","Athletics","Education","Brawling","Melee","Interrogation","Streetwise"}; 
+                string[] copSkills = { "Authority","Awareness", "Handgun","Human Perception","Athletics","Education","Brawling","Melee","Interrogation","Streetwise"}; 
                 currentCareerSkills.AddRange(copSkills);
                 break;
             case 1:
-                string[] corpSkills = { "Awareness", "Human Perception", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Wardrobe & Style", "Personal Grooming" };
+                string[] corpSkills = { "Resources","Awareness", "Human Perception", "Education", "Library Search", "Social", "Persuasion", "Stock Market", "Wardrobe & Style", "Personal Grooming" };
                 currentCareerSkills.AddRange(corpSkills);
                 break;
             case 2:
-                string[] fixerSkills = { "Awareness", "Forgery", "Handgun", "Human Perception", "Athletics", "Education", "Brawling", "Melee", "Interrogation", "Streetwise" };
+                string[] fixerSkills = { "Streetdeal","Awareness", "Forgery", "Handgun", "Human Perception", "Athletics", "Education", "Brawling", "Melee", "Interrogation", "Streetwise" };
                 currentCareerSkills.AddRange(fixerSkills);
                 break;
             case 3:
-                string[] mediaSkills = { "Awareness", "Composition", "Education", "Persuasion", "Human Perception", "Social", "Streetwise", "Photo & Film", "Interview" };
+                string[] mediaSkills = { "Credibility","Awareness", "Composition", "Education", "Persuasion", "Human Perception", "Social", "Streetwise", "Photo & Film", "Interview" };
                 currentCareerSkills.AddRange(mediaSkills);
                 break;
             case 4:
-                string[] medtechieSkills = { "Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Tech", "Library Search", "Drugs", "Zoology", "Human Perception" };
+                string[] medtechieSkills = { "Medical Tech","Awareness", "Basic Tech", "Diagnose", "Education", "Cryotank Tech", "Library Search", "Drugs", "Zoology", "Human Perception" };
                 currentCareerSkills.AddRange(medtechieSkills);
                 break;
             case 5:
-                string[] netrunnerSkills = { "Awareness", "Basic Tech", "Education", "System Knowledge", "CyberTech", "Cyberdeck Design", "Composition", "Electronics", "Programming" };
+                string[] netrunnerSkills = { "Interface","Awareness", "Basic Tech", "Education", "System Knowledge", "CyberTech", "Cyberdeck Design", "Composition", "Electronics", "Programming" };
                 currentCareerSkills.AddRange(netrunnerSkills);
                 break;
             case 6:
-                string[] nomadSkills = { "Awareness", "Endurance", "Melee", "Rifle", "Drive", "Basic Tech", "Survival", "Brawling", "Athletics" };
+                string[] nomadSkills = { "Family","Awareness", "Endurance", "Melee", "Rifle", "Drive", "Basic Tech", "Survival", "Brawling", "Athletics" };
                 currentCareerSkills.AddRange(nomadSkills);
                 break;
             case 7:
-                string[] rockerSkills = { "Awareness", "Perform", "Style", "Composition", "Brawling", "Play Instrument", "Streetwise", "Persuasion", "Seducation" };
+                string[] rockerSkills = { "Charismatic Leadership","Awareness", "Perform", "Style", "Composition", "Brawling", "Play Instrument", "Streetwise", "Persuasion", "Seducation" };
                 currentCareerSkills.AddRange(rockerSkills);
                 break;
             case 8:
-                string[] techieSkills = { "Awareness", "Basic Tech", "Cyber Tech", "Teaching", "Education", "Electronics" };
+                string[] soloSkills = { "Combat Sense", "Awareness", "Handgun", "Martial Art I", "Melee", "Weapons Tech", "Rifle", "Rifle", "Athletics", "Submachinegun", "Stealth" };
+                currentCareerSkills.AddRange(soloSkills);
+                break;
+            case 9:
+                string[] techieSkills = { "Jury Rig","Awareness", "Basic Tech", "Cyber Tech", "Teaching", "Education", "Electronics" };
                 currentCareerSkills.AddRange(techieSkills);
                 break;
 
@@ -208,19 +212,66 @@ public class SkillOverPanel : MonoBehaviour
         foreach (GameObject gameObject in StatSkillPanels)
         {
                 List<int> skillsAlreadyChecked = new List<int>();
-            for (int x = 0; x < gameObject.GetComponentInChildren<SkillPanel>().SkillObjects.Count; x++)
+            if (gameObject.GetComponentInChildren<SkillPanel>().IsSpecialAbility)
             {
-                if (currentCareerSkills.Contains(gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().text))
+                for (int x = 0; x < gameObject.GetComponentInChildren<SkillPanel>().SkillObjects.Count; x++)
                 {
-                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = true;
-                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.blue;
+                    string gameObjectText = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().text;
+                    bool isCareerSkill = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill;
+                    if (currentCareerSkills.Contains(gameObjectText))
+                    {
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().HideButtons(true);
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = true;
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.blue;
+                    }
+                    else
+                    {
+                        if (creatorController.AccessSkillValue(gameObjectText) > 0)
+                        {
+                            int pointsToMove = creatorController.AccessSkillValue(gameObjectText);
+                            careerSkillPoints += pointsToMove;
+                            updateText(false);
+                            creatorController.ResetSkill(gameObjectText);
+                            gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().SetText("00");
+                        }
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().HideButtons(false);
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = false;
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.white;
+                    }
                 }
-                else
+            }
+            else {
+                for (int x = 0; x < gameObject.GetComponentInChildren<SkillPanel>().SkillObjects.Count; x++)
                 {
-                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = false;
-                    gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.white;
+                    string gameObjectText = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().text;
+                    bool isCareerSkill = gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill;
+                    if (currentCareerSkills.Contains(gameObjectText))
+                    {
+                        if (!isCareerSkill)
+                        {
+                            int pointsToMove = creatorController.AccessSkillValue(gameObjectText);
+                            careerSkillPoints -= pointsToMove;
+                            pickupSkillPoints += pointsToMove;
+                            updateText(true);
+                            updateText(false);
+                        }
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = true;
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.blue;
+                    }
+                    else
+                    {
+                        if (isCareerSkill)
+                        {
+                            int pointsToMove = creatorController.AccessSkillValue(gameObjectText);
+                            careerSkillPoints += pointsToMove;
+                            pickupSkillPoints -= pointsToMove;
+                            updateText(true);
+                            updateText(false);
+                        }
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<Skill>().IsCareerSkill = false;
+                        gameObject.GetComponentInChildren<SkillPanel>().SkillObjects[x].GetComponentInChildren<TMP_Text>().color = Color.white;
+                    }
                 }
-
                /* for (int i = 0; i < currentCareerSkills.Count; i++)
                 {
                     string skillToCheck = currentCareerSkills[i];

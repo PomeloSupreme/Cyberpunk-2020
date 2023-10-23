@@ -10,6 +10,8 @@ public class Skill : MonoBehaviour
     public string Name;
     public TMP_Text SkillNameObject;
     public TMP_Text SkillPointObject;
+    public GameObject MinusButton;
+    public GameObject PlusButton;
 
     private void Start()
     {
@@ -22,10 +24,49 @@ public class Skill : MonoBehaviour
         Name = name;
         SkillNameObject.text = name;
     }
+    public void HideButtons(bool hide)
+    {
+        MinusButton.SetActive(hide);
+        PlusButton.SetActive(hide);
+    }
+    public void HideButtonDependentOnNumber(int skillLevel)
+    {
+        if(skillLevel == 10)
+        {
+            PlusButton.SetActive(false);
+        }
+        else if(skillLevel == 0)
+        {
+            MinusButton.SetActive(false);
+        }
+        else
+        {
+            MinusButton.SetActive(true);
+            PlusButton.SetActive(true);
+        }
+    }
 
     public void OnPlusOrMinusButton(bool IsPlus)
     {
-        SkillPointObject.text = ConvertIntToTextAndDetermineZero(skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name));
+        if (this.GetComponentInParent<SkillPanel>().IsSpecialAbility)
+        {
+            if (IsCareerSkill)
+            {
+                int skillLevel = skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name);
+                SkillPointObject.text = ConvertIntToTextAndDetermineZero(skillLevel);
+                HideButtonDependentOnNumber(skillLevel);
+            }
+        }
+        else
+        {
+            int skillLevel = skillOverPanel.IncrementPickupOrCareerPoints(IsCareerSkill, IsPlus, Name);
+            SkillPointObject.text = ConvertIntToTextAndDetermineZero(skillLevel);
+            HideButtonDependentOnNumber(skillLevel);
+        }
+    }
+    public void SetText(string text)
+    {
+        SkillPointObject.text = text;
     }
     private string ConvertIntToTextAndDetermineZero(int value)
     {

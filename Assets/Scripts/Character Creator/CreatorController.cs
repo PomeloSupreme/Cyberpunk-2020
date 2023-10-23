@@ -18,7 +18,7 @@ public class CreatorController : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 95; i++)
+        for (int i = 0; i < 105; i++)
         {
             skillValues.Add(0);
         }
@@ -371,7 +371,7 @@ public class CreatorController : MonoBehaviour
                 skillListPosition = 94;
                 break;
             default:
-                skillListPosition = 100;
+                skillListPosition = 110;
                 Debug.Log("Skill Position Entry Not Properly Spelled");
                 break;
         }
@@ -446,6 +446,10 @@ public class CreatorController : MonoBehaviour
         {
             statValues.Add(resetValue);
         }
+    }
+    public void ResetSkill(string skillName)
+    {
+        skillValues[determineSkillPositionsInList(skillName)] = 0;
     }
     public void IncrementStat(bool isPlus, string name)
     {

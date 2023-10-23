@@ -58,6 +58,8 @@ MonoBehaviour:
   Name: 
   SkillNameObject: {fileID: 705425383768070098}
   SkillPointObject: {fileID: 705425384823647212}
+  MinusButton: {fileID: 705425384430715539}
+  PlusButton: {fileID: 705425383301279457}
 --- !u!1 &705425383301279457
 GameObject:
   m_ObjectHideFlags: 0
