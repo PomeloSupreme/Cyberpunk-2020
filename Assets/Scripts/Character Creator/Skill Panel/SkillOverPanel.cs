@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SkillOverPanel : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class SkillOverPanel : MonoBehaviour
         pickupSkillPointsUsed = 0;
         currentStatPanelOpen = StatSkillPanels[1];
         PopulateSkillPanels();
+        this.GetComponentInChildren<TMP_Dropdown>().value = 1;
+        this.GetComponentInChildren<TMP_Dropdown>().value = 0;
         TurnStatSkillPanelsOff();
         StatSkillPanels[0].SetActive(true);
        
