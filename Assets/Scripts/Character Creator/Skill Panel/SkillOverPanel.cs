@@ -19,6 +19,7 @@ public class SkillOverPanel : MonoBehaviour
     private GameObject currentStatPanelOpen;
     private TMP_Text previousTextButton;
     List<string> currentCareerSkills = new List<string>();
+    public Skill pharmaSkill;
     // Start is called before the first frame update
     void Start()
     {
@@ -116,6 +117,10 @@ public class SkillOverPanel : MonoBehaviour
             }
             for (int y = 0; y < thisSkillPanel.SkillObjects.Count; y++)
             {
+                if(thisSkillPanel.SkillNames[y] == "Pharmacology")
+                {
+                    pharmaSkill = thisSkillPanel.SkillObjects[y].GetComponent<Skill>();
+                }
                 thisSkillPanel.SkillObjects[y].GetComponent<Skill>().SetNameAndText(thisSkillPanel.SkillNames[y]);
                 thisSkillPanel.SkillObjects[y].GetComponent<Skill>().skillOverPanel = this.GetComponent<SkillOverPanel>();
                 thisSkillPanel.SkillObjects[y].GetComponent<Skill>().DetermineButtonStatus();
@@ -299,5 +304,32 @@ public class SkillOverPanel : MonoBehaviour
                 }*/
             }
         }
+    }
+    public void PharmaAvailable(bool ChemOverFour)
+    {
+        if (ChemOverFour)
+        {
+            pharmaSkill.HideButtons(true);
+            pharmaSkill.DetermineButtonStatus();
+        }
+        if (!ChemOverFour)
+        {
+            pharmaSkill.HideButtons(false);
+            if (pharmaSkill.IsCareerSkill)
+            {
+                careerSkillPoints += creatorController.AccessSkillValue("Pharmacology");
+                updateText(false );
+                creatorController.ResetSkill("Pharmacology");
+                pharmaSkill.SetText("00");
+            }
+            else if (!pharmaSkill.IsCareerSkill)
+            {
+                pickupSkillPoints += creatorController.AccessSkillValue("Pharmacology");
+                updateText(true);
+                creatorController.ResetSkill("Pharmacology");
+                pharmaSkill.SetText("00");
+            }
+        }
+        
     }
 }

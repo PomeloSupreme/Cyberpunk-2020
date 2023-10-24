@@ -33,6 +33,25 @@ public class Skill : MonoBehaviour
     public void DetermineButtonStatus()
     {
         int skillLevel = skillOverPanel.creatorController.AccessSkillValue(Name);
+        if (Name == "Pharmacology")
+        {
+            if(skillOverPanel.creatorController.AccessSkillValue("Chemistry")<4)
+            {
+                HideButtons(false);
+            }
+        }
+        if (Name == "Chemistry"
+            && skillOverPanel.pharmaSkill != null)
+        {
+            if(skillLevel >= 4)
+            {
+                skillOverPanel.PharmaAvailable(true);
+            }
+            else
+            {
+                skillOverPanel.PharmaAvailable(false);
+            }
+        }
         if(skillLevel == 10)
         {
             PlusButton.SetActive(false);
