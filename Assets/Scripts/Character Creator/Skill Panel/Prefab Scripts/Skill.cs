@@ -14,18 +14,12 @@ public class Skill : MonoBehaviour
     public GameObject MinusButton;
     public GameObject PlusButton;
 
-    private void Start()
-    {
-        
-        IsCareerSkill = false;
-    }
-
     public void SetNameAndText(string name)
     {
         Name = name;
         SkillNameObject.text = name;
     }
-    public void HideButtons(bool hide)
+    public void HideButtons(bool hide)  
     {
         MinusButton.SetActive(hide);
         PlusButton.SetActive(hide);
