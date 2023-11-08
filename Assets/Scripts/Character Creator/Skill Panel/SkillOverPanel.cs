@@ -39,8 +39,14 @@ public class SkillOverPanel : MonoBehaviour
     private void OnEnable()
     {
         TurnStatSkillPanelsOff();
-        currentStatPanelOpen.SetActive(true);
-        pickupSkillPoints = UpdatePickupSkillPointsOnStatChange();
+        if(currentStatPanelOpen != null)
+        {
+            currentStatPanelOpen.SetActive(true);
+        }
+        if (creatorController.statValues.Count > 0)
+        {
+            pickupSkillPoints = UpdatePickupSkillPointsOnStatChange();
+        }
         updateText(true);
         updateText(false);
     }

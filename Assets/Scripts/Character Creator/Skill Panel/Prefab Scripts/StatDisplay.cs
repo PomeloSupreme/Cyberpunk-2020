@@ -9,21 +9,31 @@ public class StatDisplay : MonoBehaviour
     public CreatorController creatorController;
     public string Name;
     public TMP_Text StatValueDisplay;
-  
-    void Start()
+
+    private void Awake()
     {
         creatorController = GetComponentInParent<CreatorController>();
+    }
+    void Start()
+    {
         GetComponent<TMP_Text>().text = Name +": ";
         //UpdateStatValueDisplay();
     }
     private void OnEnable()
     {
-        UpdateStatValueDisplay();
+        if (creatorController.statValues.Count > 0)
+        {
+            UpdateStatValueDisplay();
+        }
     }
 
     public void UpdateStatValueDisplay()
     {
-        StatValueDisplay.text = ConvertIntToTextAndDetermineZero(creatorController.AccessStatValueList(Name));
+        if(StatValueDisplay != null)
+        {
+            StatValueDisplay.text = ConvertIntToTextAndDetermineZero(creatorController.AccessStatValueList(Name));
+        }
+        
     }
     private string ConvertIntToTextAndDetermineZero(int value)
     {
